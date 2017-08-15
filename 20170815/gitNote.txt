@@ -1,0 +1,83 @@
+1.git配置
+git config --global user.name "你的用户名"
+git config --global user.email "你的邮箱"
+git config --list 看下是否配置成功
+
+2.创建本地git仓库
+1)新建一个文件夹例如test
+2)打开test ,点击右键,在出现的菜单中选择git Bash here  (指在当前目录下打开git命令窗口)
+3)git init (初始化本地git仓库)
+
+
+3)将本地仓库推送到远程仓库
+
+① 将本地仓库和远程仓库关联
+1) git remote add student https://github.com/amgYen/JsTest.git
+
+2) git remote -v 看下关联远程仓库地址
+   git remote rm student  删除关联的远程仓库
+
+3)把远程仓库里的内容先拉下来(先更新下 避免发生冲突问题)
+
+  git pull origin master --allow-unrelated-histories  (把远程仓库student上的主分支上的内容拉下来,本地仓库和远程仓库不是一个时)
+
+ 常用的命令:
+   ls  查看当前目录下有哪些文件
+   cd test 进入test文件夹里
+   cd ..   返回上一级目录
+4)工作流
+1)git add . 把本地仓库的内容先添加到暂存区
+2)git commit -m"提交内容的注释" 把内容提交到历史区
+3)git push student master 推送到远程仓库
+
+
+② 如何更新老师讲义
+  1.git clone https://github.com/zhufengpeixun/JavaScript201709.git 
+  把远程仓库的内容克隆到了本地仓库(克隆的同时初始化了本地仓库,并且关联了远程仓库地址)
+   	
+  2.git pull origin master 把远程仓库内容拉到本地来
+
+  克隆下来的本地仓库JavaScript201709这里的东西不要修改,以防止冲突
+
+③ 组长如何提交作业	
+  1.在github上用自己的用户名和密码登录
+  2.复制老师的远程仓库地址https://github.com/amgYen/201709Test,放在地址栏里按回车
+  3.fork (把老师远程仓库里的内容拷贝到自己的远程仓库里) 
+  4.git remote add student https://github.com/amgYen/201709Test.git  自己的本地git仓库和自己远程仓库关联
+   git remote -v  看下关联了几个远程仓库地址
+   origin  https://github.com/zhufengpeixun/201709Test.git (fetch)  为了更新老师讲义
+   origin  https://github.com/zhufengpeixun/201709Test.git (push)
+   student https://github.com/amgYen/201709Test.git (fetch)  
+   student https://github.com/amgYen/201709Test.git (push)  为了把本地git仓库里的代码推送到自己的远程仓库下
+
+  5.pull request :向老师的远程仓库发送请求,请求合并代码
+    1)点击New pull request 按钮	
+    2)点击create pull request按钮
+
+
+复习一遍
+1.git clone https://github.com/zhufengpeixun/JavaScript201709.git 
+2.git pull origin master
+3.进入github操作,先用自己的用户名和密码登录
+4.https://github.com/zhufengpeixun/JavaScript201709 黏贴到地址栏,按回车
+5.fork 刷新
+6.把自己本地仓库内容提交到自己远程仓库
+  1)关联自己的远程仓库  git remote add myself https://github.com/amgYen/JavaScript201709.git
+  2)把本地仓库内容提交到远程仓库  1.git add . 2.git commit -m"注释内容" 3)git push  myself master
+  3)如果请求老师收了作业 1) 点击New pull request 按钮	 2)点击create pull request按钮
+	
+
+	
+
+
+	
+		 
+	
+
+	
+
+	 
+	
+	  	
+
+
