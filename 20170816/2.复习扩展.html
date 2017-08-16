@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head><body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li id="li3">333</li>
+        <li>444</li>
+    </ul>
+</body>
+</html>
+<script>
+    //获取指定元素的哥哥元素节点,兼容所有的浏览器,返回值是哥哥元素节点
+    function prev(ele){
+        //1.获取ele的哥哥节点
+        var pre = ele.previousSibling;
+        //2.先判断下是否存在,然后再判断下是否是元素节点,若是则返回,若不是则继续往上查找,直到找到哥哥元素节点
+        while(pre){
+            if(pre.nodeType == 1){
+                return pre;
+            }
+            pre =  pre.previousSibling;//一级一级往上找
+        }
+        return null;
+    }
+    var oLi3 = document.getElementById("li3");
+    console.log(prev(oLi3));
+    //扩展思考:
+    //1.获取指定元素的弟弟元素节点(一个)
+    //2.获取指定元素的所有的弟弟元素节点(所有的)
+
+</script>

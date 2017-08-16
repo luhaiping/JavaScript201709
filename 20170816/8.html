@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body></body>
+</html>
+<script>
+    console.log(num,str);//undefined,undefined
+    var num = 18;
+    var str = "lily";
+    function fn2(){
+        console.log(str,num);//"lily",undefined | "lily",18
+        num = 19;
+        str = "candy";
+        var num = 14;
+        console.log(str,num);//"candy",14
+    }
+    fn2();
+    console.log(str,num);
+</script>

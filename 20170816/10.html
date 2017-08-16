@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    alert(fn);//在标准浏览器下是undefined ,在IE浏览器是方法本身
+    //fn();//在标准浏览器下报错 ,在IE浏览器下正常执行
+    if(9==8){
+        function fn(){alert(1)};
+    }
+
+//    var a = 10;
+//    var a = 5; //a = 5
+//    var a = 20;//a = 20
+
+
+
+//    console.log(a);//函数a本身
+//    var  a= 10;
+//    console.log(a);//10
+//    function a(){
+//        alert(5);
+//    }
+//    console.log(a);//10
+
+
+    console.log(a);
+    function a(){
+       alert(5);
+    }
+    var  a= 10;
+    console.log(a);
+</script>

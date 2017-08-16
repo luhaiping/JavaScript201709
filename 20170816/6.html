@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var n = 10;
+    function fn(n){//在函数内,形参和带var的变量名一样,则他们是一个变量
+        alert(n);
+        var n = 20;
+        alert(n);
+        var num = 20;
+    }
+    fn(n);
+    /*方法执行的步骤:
+    1.开辟一个私有作用域
+    2.形参赋值
+    3.代码执行之前,预解释 --条件反射对var和function进行预解释
+    4.代码从上往下执行
+    * */
+
+    //对象定义时:属性名和属性值的方式存起来
+    //函数定义时:以字符串的形式存起来
+
+</script>
+
+</body>
+</html>

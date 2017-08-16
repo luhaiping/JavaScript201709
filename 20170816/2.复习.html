@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //获取去重和排序(从小到大)后的数组
+    var ary = [10,5,5,5,18,8,10,4,2];
+    function unique(ary){
+        for(var i = 0;i<ary.length-1;i++){
+            var cur = ary[i];
+            for(var j = i+1;j<ary.length;j++){
+               if(cur == ary[j]){
+                   ary.splice(j,1);//数组的塌陷
+                   j--;
+               }
+            }
+        }
+    }
+        unique(ary);
+       function quickSort(ary){
+           if(ary.length<=1){//让递归停下来
+               return ary;
+           }
+          var pointIndex =Math.floor(ary.length/2) ;//数组中间项索引
+          var pointValue = ary.splice(pointIndex,1)[0];
+          var left = [];
+          var right = [];
+           for(var i = 0;i<ary.length;i++){
+               var cur = ary[i];
+               if(cur<=pointValue){
+                  left.push(cur);
+               }else{
+                  right.push(cur);
+               }
+           }
+           return quickSort(left).concat(pointValue,quickSort(right));
+       }
+    console.log(quickSort(ary));
+</script>
+
+</body>
+</html>

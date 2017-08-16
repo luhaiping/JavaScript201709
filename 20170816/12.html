@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //自执行函数不会进行预解释
+    /*console.log(sum);
+    ~(function sum(){
+        alert(1);
+    })()*/
+
+//    (function f(){
+//        function f(){ return 1; }
+//        alert (f());
+//        function f(){ return 2; }
+//    })();
+/*
+* 涉及到的知识点:
+1.逻辑运算符 && ||
+2.运算先后顺序
+   算术>比较>逻辑>赋值
+3.预解释之无节操的规则
+* */
+
+    f = function(){return true};
+    g = function(){return false};
+    (function (){
+        if(g()&&[]==![]){//在标准浏览器下g是undefined,所以报错
+            f = function f(){return false};
+            function g(){return true};
+        }
+    })();
+    alert(f());//false 是在ie浏览器的结果
+    alert(g());//false 是在ie浏览器的结果
+
+    (function(){//自执行函数就是一个闭包,会形成一个私有的作用域
+
+    })()
+
+
+
+</script>

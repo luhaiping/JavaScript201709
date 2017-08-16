@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="oUl">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+   //获得某个元素下所有的子元素节点,并且兼容所有的浏览器
+   /**
+    * 获取指定元素下所有的子元素节点
+    * @param ele  指定元素
+    * @return array 所有的子元素
+    */
+    function getChildren(ele){
+       var array=[];
+       var childs = ele.childNodes;//获取所有的子节点
+       //获取到每个子节点,然后再判断下是否是元素节点
+      for(var i = 0;i<childs.length;i++){
+          if(childs[i].nodeType==1){
+              //array.push(childs[i]);
+              array[array.length] = childs[i];
+          }
+      }
+       return array;
+    }
+    var oUl = document.getElementById("oUl");
+   console.log(getChildren(oUl));
+
+
+</script>
+</body>
+</html>
