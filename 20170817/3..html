@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="0"/>
+<input type="button" value="1"/>
+<input type="button" value="2"/>
+<input type="button" value="3"/>
+</body>
+</html>
+<!--点击每个标签弹出相应的索引-->
+<script>
+    var oInputs = document.getElementsByTagName("input");//集合
+    //问题:每次点击获取到的是循环结束后i的值
+    var i = 0;
+    for(;i<oInputs.length;i++){
+            oInputs[i].onclick = function(){
+                alert(i);
+            }
+    }
+    //通过闭包作用域解决这个问题
+    //方法一:
+    for(var i = 0;i<oInputs.length;i++){
+        ~(function(i){
+            oInputs[i].onclick = function(){
+                alert(i);
+            }
+        })(i);
+
+    }
+
+    //方法二:
+    for(var i = 0;i<oInputs.length;i++){
+        fn(i);
+    }
+    function fn(i){
+        oInputs[i].onclick = function(){
+                alert(i);
+        }
+    }
+
+//    //函数的定义
+//    (function(){})
+//    function fn(){}
+//    //函数的执行
+//    (function(){})()
+//    fn();
+//
+</script>

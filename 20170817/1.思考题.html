@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>111</li>
+    <li id="li2">222</li>
+    <li>333</li>
+    <li>444</li>
+</ul>
+</body>
+</html>
+<script>
+    //获取指定元素的相邻的弟弟节点
+    //参数:指定元素 返回值:相邻的弟弟元素节点
+    //思路:1.先获取ele的弟弟节点 2.若弟弟节点存在则判断下是否是节点,是则返回,不是则继续往下找
+    var oLi2 = document.getElementById("li2");
+    //console.log(oLi2.nextElementSibling);
+    function next(ele) {
+        if (ele.nextElementSibling) {
+            return ele.nextElementSibling;
+        } else {
+            var nextSi = ele.nextSibling;
+            while (nextSi) {
+                if (nextSi.nodeType == 1) {
+                    return nextSi;
+                }
+                nextSi = nextSi.nextSibling;
+            }
+        }
+    }
+    /*var newLi2 = next(oLi2);
+    newLi2.style.backgroundColor = "red";*/
+
+    //获取所有的弟弟元素节点 返回值:数组
+//    function nextAll(ele){
+//        var ary = [];
+//        var nextSi = ele.nextSibling;
+//        while(nextSi){
+//           if(nextSi.nodeType ==1){
+//               ary.push(nextSi);
+//           }
+//            nextSi = nextSi.nextSibling;//继续往下找弟弟节点
+//        }
+//        return ary;
+//    }
+
+    function nextAll(ele){
+        var ary = [];
+        var nextSi = next(ele);
+        while(nextSi){//若存在,则就是弟弟元素节点
+            ary.push(nextSi);
+            nextSi = next(nextSi);
+        }
+        return ary;
+    }
+    console.log(nextAll(oLi2));
+
+
+
+</script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+//  (function(){
+//        var myName = "lily";
+//        var age = 18;
+//       function  fn(){
+//           console.log(1);
+//       }
+//      window.a = fn;
+//    })();
+//    a();
+
+( function( global, factory ) {
+
+} )(typeof window !== "undefined" ? window : this,function( window, noGlobal ) {
+
+    if ( !noGlobal ) {
+        window.jQuery = window.$ = jQuery;
+    }
+
+})
+//$.a()
+//$.b("<div></div>")
+//jQuery.a()
+
+//(function(){
+//    function a(n){console.log(n)}
+//    function b(){}
+//    function c(){}
+//    window.jQuery = window.$ = {
+//        aa:a,
+//        bb:b,
+//        cc:c
+//    }
+//})()
+//$.aa(5);
+
+    var myName = "lily";
+    var age = 20;
+~(function(myName){
+    var myName = myName;
+    age = 45;//若不是私有的,则会污染全局下的变量,闭包下的变量都定义成私有的
+    console.log(age);
+})(myName);
+console.log(age);
+</script>
