@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <Style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </Style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var innerHTML = "我是window下的内容";
+    function fn(){
+        //console.log(this.innerHTML);
+        console.log(this);
+    }
+    var obj = {
+        innerHTML :"我是obj的内容",
+        fn:fn
+    }
+
+    //fn();//this->window
+    obj.fn();//this ->obj
+    var obj2 = {name:"lily",fn:fn};
+    obj2.fn();
+
+    ~(function(){
+        console.log(this);
+    })()
+
+    div1.onclick = function(){
+        this.style.background = "red";
+    }
+</script>

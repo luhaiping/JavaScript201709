@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>点击计数</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background-color: pink;
+            color: palegreen;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 35px;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">0</div>
+</body>
+</html>
+<script>
+     var oDiv = document.getElementById("div1");
+     //思路1 :全局下定义n = 0 容易引起全局变量污染
+//    var n = 0;
+//    oDiv.onclick = function(){
+//         this.innerHTML = ++n;
+//    }
+
+    //思路2 :利用闭包,作用域不销毁的知识
+//     ~(function(){
+//        var n = 0;
+//       oDiv.onclick = function(){
+//            this.innerHTML = ++n;
+//        }
+//     })()
+
+     //思路3:利用闭包,作用域不销毁的知识 原理和思路2一样
+
+    oDiv.onclick =(function(){
+        var n = 0;
+        return function(){
+            this.innerHTML = ++n;
+        }
+    })();
+//    var fn = function(){}
+//    (function(){})
+
+
+
+
+
+</script>
