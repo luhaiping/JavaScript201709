@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var num = 3;
+    var obj = {
+        num:5,
+        fn : (function(){
+            this.num*=2;
+            var num = 4;
+            return function(){
+                this.num *=2;
+                num *= 4;
+                alert(num);
+            }
+        })()
+    }
+    var fn = obj.fn;
+    alert(num); //6
+    fn();//16
+    obj.fn();//64
+    console.log(window.num,obj.num);//12,10
+
+</script>

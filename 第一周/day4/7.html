@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    //简单的单例模式
+    var tabModel ={
+        num : 10,
+        bind:function(){
+            console.log('bind')
+        },
+        getEle:function(){
+            console.log('getEle');
+        }
+    }
+   // tabModel.bind();
+
+    var searchModel = {
+        check:function(){
+            console.log("check");
+        },
+        search :function(){
+            //this.check();//调用本模块的check方法
+            tabModel.getEle();//在本模块里调用其他模块的方法
+            console.log('search');
+        }
+    }
+    searchModel.search();
+</script>

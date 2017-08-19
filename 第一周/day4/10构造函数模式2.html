@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Person(name,age){
+        //var num = 10;//跟实例无关
+        this.name = name;
+        this.age = age;
+        this.writeCss = function(){console.log('css')};
+        this.writeJs = function(){console.log('js')};
+        console.log(this);//指的是实例
+    }
+    var person1 = new Person("lily",18);
+    /*
+    * new去运行Person方法的步骤:
+    * 1.以person1实例为执行主体 也就是this指的是person1
+    * 2.给person1实例添加属性和方法
+    * 3.返回person1实例
+    *
+    * */
+    var person2 = new Person("lucy",20);
+    console.log(person2.name);
+    person2.writeCss();
+    console.log(person1.writeJs == person2.writeJs);//false
+</script>

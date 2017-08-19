@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+
+    }
+    Person.prototype.writeCss = function(){
+        console.log("我会写CSS");
+    }
+    var person1 = new Person("lily",18);
+    var person2 = new Person("lucy",20);
+   // console.log(person1.writeCss == person2.writeCss);//true
+    //console.log(Person.prototype == person1.__proto__);//true
+    //console.log(person1.__proto__.writeCss == person2.__proto__.writeCss);
+    //console.log(person1.writeCss);
+   // console.log(person1.writeCss == Person.prototype.writeCss);//true
+    //console.log(person1.writeCss == person1.__proto__.writeCss);//true
+//    console.log(person1.constructor);
+
+   // console.log(person1.__proto__);//IE里禁止手动操作__proto__
+
+    //console.log("writeCss" in person1);//确定是否是person1上的属性,但是不能确定是否是私有还是公有
+    //console.log(person1.hasOwnProperty("name"));//判断是否是私有的
+    //思考:封装一个方法hasPublicProperty()用来判断是否是公有的
+
+   Person.prototype.isPrototypeOf(person1);
+
+</script>

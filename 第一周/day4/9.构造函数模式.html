@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(name,age){//类 ->构造函数
+        //1.创建对象
+        //var obj = {};
+        //2.添加对象的属性和方法
+        this.name = name;
+        this.age = age;
+        this.writeCss = function(){console.log("writeCss")};
+        this.writeJs = function(){};
+        //3.返回对象
+        //return obj;
+        return {};
+    }
+    var person1 = new Person("lily",18);
+    //new Person();//匿名实例
+    //1.通过new运行的函数是构造函数
+    //2.以实例person1为执行主体运行构造函数,this指的是实例person1
+    //3.this.xxx ->在实例上添加属性和方法,最后默认会把实例返回,这一步系统帮你做了
+
+//    person1.writeCss();
+//    console.log(person1.name);
+//    person1.writeCss();
+    var person2 = new Person("lucy",20);
+    person2.writeCss();
+
+    //console.log(person1.writeCss == person2.writeCss);//false
+
+
+
+    //通过类产出很多实例
+//    var ary1 = new Array(1);//[1]
+//    var ary2 = new Array(1,2)//[1,2]
+
+</script>
+</body>
+</html>
