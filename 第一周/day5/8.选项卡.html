@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        .tab{
+            width: 304px;
+            margin: 10px auto;
+        }
+        .tab ul{
+            border:1px solid palegreen;
+            border-left: 0;
+            overflow: hidden;
+        }
+        .tab ul li{
+            width: 100px;
+            border-left: 1px solid  palegreen;
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            list-style: none;
+            cursor: pointer;
+        }
+        .tab div{
+            border:1px solid  palegreen;
+            margin-top: -1px;
+            height: 150px;
+            display: none;
+        }
+        .tab ul li.selectLi{
+            color: #fff;
+            background: orange;
+        }
+        .tab div.selectDiv{
+          display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="tab" id="tab1">
+    <ul>
+        <li class="selectLi">选项卡一</li>
+        <li>选项卡二</li>
+        <li>选项卡三</li>
+    </ul>
+    <div class="selectDiv">选项卡一内容</div>
+    <div>选项卡二内容</div>
+    <div>选项卡三内容</div>
+</div>
+
+
+<script>
+    //1.获取元素
+    var oTab = document.getElementById("tab1");
+    var oLis = oTab.getElementsByTagName("li");
+    var oDivs  = oTab.getElementsByTagName("div");
+    //2.绑定事件
+    for(var i = 0;i<oLis.length;i++){
+        (function(i){
+            oLis[i].onclick = function(){
+                changeTab(i);//点击li的索引
+            }
+        })(i);
+
+    }
+
+    //3.实现tab切换
+    function changeTab(n){
+        for(var i = 0;i<oLis.length;i++){
+            oLis[i].className = "";
+            oDivs[i].className = "";
+        }
+        oLis[n].className = "selectLi";
+        oDivs[n].className = "selectDiv";
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function short(){
+        var obj = {};
+        obj.metrial = "棉";
+        obj.fn = function(){};
+        return obj;
+    }
+    for(var i = 0;i<100;i++){
+        var s =  short();
+        console.log(s.constructor);
+    }
+</script>
+
+</body>
+</html>

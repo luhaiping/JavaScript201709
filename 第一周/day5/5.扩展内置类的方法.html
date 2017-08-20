@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //原有数组发生改变
+    //push() unshift() pop() shift() ary.length-- reverse() sort()
+    //sort(function(a,b){return a-b}) splice(n,m,x)
+
+    //原有数组不发生改变
+    //toString() join() slice() concat() indexOf() lastIndexOf()
+
+    console.dir(Array.prototype);
+    //原型上的方法里的this是指的啥? 谁调用这个方法 this指的是实例
+   /* Array.prototype.push = function(n){//修改内置类的方法
+        this.length--;
+    };*/
+
+    //在Array类上添加数组去重的方法,并且不改变原数组,返回值是去重后的数组
+//    Array.prototype.distinct = function(){
+//        //this->指的是ary实例
+//        var obj={};
+//        var newAry=[];
+//        var temp=null;
+//        for(var i=0;i<this.length;i++){
+//            temp=this[i];
+//            if(obj[temp]!==temp){
+//                newAry.push(temp);
+//                obj[temp]=temp;
+//            }
+//        }
+//        return newAry;
+//    };
+
+    Array.prototype.distinct = function(){
+        //this指的是实例,也就是ary
+        var newAry  = this.slice(0);//引用数据类型不改变原有实例,克隆一份就行
+        //var newAry = this.concat();//克隆一份
+        var obj = {};
+        for(var i = 0;i<newAry.length;i++){
+            var cur = newAry[i];
+            if(obj[cur]==cur){
+                newAry.splice(i,1);
+                i--;
+                continue
+            }
+            obj[cur] = cur;
+        }
+        return newAry;
+    };
+
+        var ary = [2,6,18,3,3,3,20,2];
+        var res = ary.distinct();
+        console.log(ary);
+        console.log(res);
+
+    //思考1自己把slice方法封装一遍
+    Array.prototype.slice = function(){
+        //1.一个参数 n
+        //2.两个参数n,m
+//        n>m?
+//        n和m都不是整数?
+//        n和m传的是负数索引?
+//        n或m超过索引?
+    }
+
+    Array.prototype = {//内置类原型上的方法可以一一的修改或者添加,但是不能这样批量的操作,这种操作给禁止掉了
+    };
+    var ary = [2,6,18,3,3,3,20,2];
+    ary.push(888);
+    console.log(ary);
+
+</script>
+</body>
+</html>

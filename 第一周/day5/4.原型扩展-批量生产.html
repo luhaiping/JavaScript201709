@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    /*Person.prototype.writeJs = function(){
+        console.log('会写js');
+    };
+    Person.prototype.writeCss = function(){
+        console.log('会写CSS');
+    }
+    Person.prototype.drink = function(){
+        console.log('会喝水');
+    }
+    Person.prototype.eat = function(){
+        console.log('会吃');
+    }
+    Person.prototype.sleep = function(){
+        console.log('会睡');
+    }*/
+    Person.prototype = {//批量设置公有的方法
+        constructor:Person,//强制指向当前构造函数
+        writeJs:function(){
+            console.log('会写js');
+        },
+        writeCss:function(){
+            console.log('会写CSS');
+        },
+        drink:function(){
+            console.log('会喝水');
+        },
+        eat:function(){
+            console.log('会吃');
+        },
+        sleep:function(){
+            console.log('会睡');
+        }
+    };
+
+    var p1 = new Person("lily",18);
+    console.log(p1.constructor);
+    p1.writeCss();
+</script>
+</body>
+</html>

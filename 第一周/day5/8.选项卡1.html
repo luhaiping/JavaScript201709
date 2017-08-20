@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        .tab{
+            width: 304px;
+            margin: 10px auto;
+        }
+        .tab ul{
+            border:1px solid palegreen;
+            border-left: 0;
+            overflow: hidden;
+        }
+        .tab ul li{
+            width: 100px;
+            border-left: 1px solid  palegreen;
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            list-style: none;
+            cursor: pointer;
+        }
+        .tab div{
+            border:1px solid  palegreen;
+            margin-top: -1px;
+            height: 150px;
+            display: none;
+        }
+        .tab ul li.selectLi{
+            color: #fff;
+            background: orange;
+        }
+        .tab div.selectDiv{
+          display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="tab" id="tab1">
+    <ul>
+        <li class="selectLi">选项卡一</li>
+        <li>选项卡二</li>
+        <li>选项卡三</li>
+    </ul>
+    <div class="selectDiv">选项卡一内容</div>
+    <div>选项卡二内容</div>
+    <div>选项卡三内容</div>
+</div>
+<div class="tab" id="tab2">
+    <ul>
+        <li class="selectLi">选项卡一</li>
+        <li>选项卡二</li>
+        <li>选项卡三</li>
+    </ul>
+    <div class="selectDiv">选项卡一内容</div>
+    <div>选项卡二内容</div>
+    <div>选项卡三内容</div>
+</div>
+
+<script>
+   /* //1.获取元素
+    var oTab = document.getElementById("tab1");
+    var oLis = oTab.getElementsByTagName("li");
+    var oDivs  = oTab.getElementsByTagName("div");
+    //2.绑定事件
+    for(var i = 0;i<oLis.length;i++){
+        (function(i){
+            oLis[i].onclick = function(){
+                changeTab(i);//点击li的索引
+            }
+        })(i);
+
+    }
+
+    //3.实现tab切换
+    function changeTab(n){
+        for(var i = 0;i<oLis.length;i++){
+            oLis[i].className = "";
+            oDivs[i].className = "";
+        }
+        oLis[n].className = "selectLi";
+        oDivs[n].className = "selectDiv";
+    }*/
+
+     //1.确定哪些参数是必须传的,哪些是可选的
+    //2.以哪种方式封装插件 构造函数+原型
+    //3.插件里实现的功能有哪些?1.获取元素 2.绑定事件 3.实现tab切换
+    function Tab(option){
+        this.id = option.id;
+        this.select = option.select || 0;
+        this.init()//初始化
+    }
+   Tab.prototype.init = function(){
+       //1.获取元素
+       this.getEle();
+       //2.绑定事件
+       this.bind();
+       //3.实现tab切换
+
+       //初始化选中效果
+       this.changeTab(this.select);
+   }
+   Tab.prototype.getEle = function(){
+       var oTab = document.getElementById(this.id);
+       this.oLis = oTab.getElementsByTagName("li");
+       this.oDivs  = oTab.getElementsByTagName("div");
+   }
+   Tab.prototype.bind = function(){
+       var that = this;
+       for(var i = 0;i<this.oLis.length;i++){
+           (function(i){
+               that.oLis[i].onclick = function(){
+                   that.changeTab(i);
+               }
+           })(i);
+
+       }
+   }
+   Tab.prototype.changeTab = function(n){
+       for(var i = 0;i<this.oLis.length;i++){
+           this.oLis[i].className = "";
+           this.oDivs[i].className = "";
+       }
+       this.oLis[n].className = "selectLi";
+       this.oDivs[n].className = "selectDiv";
+   }
+
+    new Tab({id:"tab1"});
+    new Tab({id:"tab2",select:2});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body></body>
+</html>
+<script>
+    //父类
+     function F(){
+         this.x = 10;
+         this.y  = 20;
+     }
+     F.prototype.showX = function(){
+        console.log(this.x);//->S.prototype.x->10
+     };
+    //子类
+    function S(){
+       this.w = 30;
+    }
+     S.prototype = new F();//让S的原型对象成为F类的实例
+//    S.prototype.fn = function(){console.log('fn')}; 添加在下面
+     S.prototype.constructor = S;//强制将它指向S构造函数
+     var s = new S();
+//    s.showX();
+//    S.prototype.showX();
+    //console.log(s.x);
+    console.dir(s);
+
+</script>

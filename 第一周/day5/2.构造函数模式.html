@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(name,age){
+        //var num  = 10;跟实例无关
+        this.name = name;
+        this.age = age;
+        this.writeJs = function(){console.log("writeJs")};
+    }
+    //Person("aa",22);当成普通函数运行,函数里this是window
+    var person1 = new Person("lily", 18);//通过new去运行Person方法,Person则是个构造函数,
+    var person2 = new Person("lucy",20);
+    console.log(person1.writeJs == person2.writeJs);//false
+    /*
+    1.构造函数里的this指实例
+    2.通过this.xxx添加的属性和方法是添加在实例上,这些属性和方法是实例私有的
+    3.实例只跟this.xxx有关,跟通过var定义的变量无关
+    4.手动return ,基本数据类型的没影响,引用数据类型的会覆盖实例
+
+    * */
+    //console.log(person3.constructor);
+
+//    var arr1 =[11,22];//字面量方式
+//    var arr = new Array(11,22);
+//    console.log(arr1.constructor);
+
+
+</script>
+</body>
+</html>
