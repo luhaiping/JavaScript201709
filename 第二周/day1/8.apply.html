@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function fn(n,m){
+        console.log(this+n+m);
+    }
+    //apply方法基本和call方法一样,但是传参的方式不同
+    /* apply用法:
+    *  第一个参数改变点前面方法里的this关键,并且让点前面的方法运行
+    *  第二个参数,是一个数组或者类数组,是把所有的参数放在数组里传给点前面的方法
+    *
+    * */
+    var obj = {};
+    //fn.call(obj,10,5)
+    fn.apply(obj,[10,5]);//虽然都放在一个数组里给传过去,但是实际上还是把数组里的每一项拿出来依次传给形参
+    //call和apply传参的区别:call是散列式的 apply是打包式
+
+</script>
+
+</body>
+</html>

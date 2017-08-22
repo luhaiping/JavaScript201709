@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //console.dir(Function);
+    //Function.prototype上需掌握这几个方法:call,apply,bind
+    function fn(n,m){
+        //console.log(this+n+m);
+        console.log(this);
+    }
+    var obj = {}
+    fn.call(obj,10,5);
+    fn.call(null,10,5);//->this->window
+    fn.call(undefined,10,5);//this ->window
+    fn.call(10,5);
+    fn.call();//->window
+
+
+    //补充
+    //数值,字符,布尔 原始类型的值
+    //数值,字符,布尔变成对象类型就成了包装对象
+    var num = new Number(10);
+    var res = num.valueOf();
+    console.log(res);//res=>10
+    //Number/String/Boolean 单独用是强制将其他数据类型转换成数值/字符串/布尔
+    //new Number()/new String()/new Boolean() ->原始类型的值转换成包装对象
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

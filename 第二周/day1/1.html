@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+1.sort(function(a,b){return b-a});
+2.pop() ary.length--  ary.splice(ary.length-1,1);
+3.slice(n-1,m)
+4.document.documentElement.clientWidth||document.body.clientWidth
+5.document.body.appendChild(ele);  document.body.insertBefore(newEle,oldEle)
+6.function prev(ele){
+}
+7.Math.round(Math.random()*(m-n)+n)
+Math.abs()
+Math.floor()
+Math.ceil()
+Math.max()
+Math.min()
+Math.round() 四舍五入
+Math.random()0-1随机数包0不包1
+Math.pow()幂次方
+Math.sqrt() 开方
+8.replace("a","b")
+9.id   document.getElementById(id名)
+  className  context.getElementsByClassName(类名)[0]
+  标记名    context.getElementsByTagName(标记名)[0]
+  name属性  document.getElementsByName(name属性) ie只对表单元素起作用
+  选择器 document.querySelector()  一个元素
+        document.querySelectorAll() 一个元素集合
+
+10.true
+   true
+   0,"",NaN,undefined,null  ->false true
+   Number() ->强制将其他类型转换成数类型
+   true->1 false->0
+   null ->0
+   undefined ->NaN
+   "" -> 0
+   字符串中只要有一个字符不是数值,则返回结果就是NaN
+二.
+1.undefined undefined
+2."珠峰" 5000    "珠峰" undefined
+3.{age:5000}
+  {name:"中国",age:7}
+
+
+
+
+
+<script>
+    function prev(ele){
+        if(ele.previousElementSibling){
+            return ele.previousElementSibling;
+        }
+        var pre = ele.previousSibling;
+        while(pre){
+            if(pre.nodeType==1){
+                return pre;
+            }
+            pre = pre.previousSibling;
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //求数组中的最大值和最小值
+    var ary = [34, 5, 7, 22, 12, 10];
+    //思路1:
+    // ary.sort(function(a,b){return a-b})
+    //    var min = ary[0];
+    //    var max = ary[ary.length-1];
+
+    //思路2:
+    //console.log(ary.toString());//"34,5,7,22,12,10"
+    var max = eval("Math.max(" + ary.toString() + ")");//eval("Math.max(34,5,7,22,12,10)")
+    var min = eval("Math.min(" + ary.toString() + ")");
+    //console.log(max,min);
+
+    //不正确的情况:
+    Math.max(eval(ary.toString()))//=>10
+    //=>eval(ary.toString())=>eval("34,5,7,22,12,10")=>(34,5,7,22,12,10)=>10=>Math.max(10)=>10
+    //逗号运算符/括号运算符 ->结果总是取最后一个值
+
+    console.log(Math.max(ary.toString()));//NaN
+    console.log(Math.max(ary)); //NaN
+
+    //思路3:
+    // Math.max(34,5,7,22,12,10);
+    console.log(Math.max.apply(null, ary));
+    console.log(Math.min.apply(null, ary));
+
+    //思路4:假设法
+    var max = ary[0];
+    var min = ary[0];
+    for (var i = 1; i < ary.length; i++) {
+        var cur = ary[i];
+        cur > max ? max = cur : null;
+        cur < min ? min = cur : null;
+    }
+    console.log(max,min);
+
+</script>
+</body>
+</html>

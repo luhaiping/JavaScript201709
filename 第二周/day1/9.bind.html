@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //预处理机制
+    //bind()传参的方式和call一样 IE6~IE8不兼容
+    function fn(n,m){
+        console.log(this+n+m);
+    }
+    var obj = {};
+    var res = fn.bind(obj,10,5);
+    console.log(res);
+    res();
+    /*
+    * 1.把第一个参数传给点前面的方法fn,从第二个参数开始依次传给fn的形参
+    * 2.返回一个修改好的函数的定义  说明bind有返回值,并且返回的一个函数
+    * 3.待需要时手动运行
+    * */
+</script>
+</body>
+</html>

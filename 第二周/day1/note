@@ -1,0 +1,42 @@
+函数的三种身份:
+1.普通函数 ->1.形成私有作用域 2.形参赋值 3.预解释 4.代码从上往下执行
+所有的函数都是内置Functon类实例
+
+2.普通的对象 fn instanceof  Object->true
+   函数像普通对象一样定义属性和方法
+
+3.构造函数
+  类:实例,原型,constructor
+instanceof 检测一个对象是否属于这个类
+           检测一个对象是否在另一个对象的原型链上
+Function instanceof Object-> true
+=>Function.__proto__.__protot__ == Object.prototype
+Object instanceof Function ->true
+=>Object.__proto__ == Function.prototype
+
+Function.prototype上三个方法:call,apply,bind 共同作用:改变点前面方法的this关键字
+call的语法:
+   fn.call([this],parameter1,parameter2.....);
+
+call的作用:
+    1.把点前面方法fn的this关键字变成第一个参数
+    2.从第二参数开始依次把参数传给fn
+    3.让点前面方法fn运行
+
+ 严格模式
+    相当于定了一个规范
+    1)能让js代码更加严谨,更加安全,更加高效
+    2)能提交编译器编译的代码的速度
+    3)跟未来的浏览器或者未来的js语法接轨
+ 严格模式并非所有浏览器都支持,用之前自己测试下,看哪些浏览器支持 IE10及以上浏览器才支持
+
+ 开启严格模式
+ 'use strict'
+
+ 严格模式下:
+ call方法的规律:不传是undefined ,其他传啥是啥
+ 非严格模式下:
+ call方法的规律:
+    1)null,undefined,不传是window
+    2)基本类型的数据是它的包装对象,其他的传啥就是啥
+

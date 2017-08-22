@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //'use strict';//整个脚本起作用
+
+    function fn(){
+        'use strict';//只对当前的fn函数起作用
+        console.log(this);
+    }
+    fn.call();//undefined
+    fn.call(null);//null
+    fn.call(undefined);//undefined
+    fn.call(10);//10
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function fn1(){
+        alert(1);
+    }
+    function fn2(){
+        alert(2);
+    }
+    //fn1.call(fn2);
+    //1.call运行时call里的this是fn1
+   /* Function.prototype.call = function(){
+        //this->fn1
+        //1.让fn1里的this关键字变成fn2 =>1.让this里的this关键字变成fn2
+        //2.让fn1() =>让this();
+    }*/
+
+    //2.call即是原型上的call方法,也是Function类的实例
+        fn1.call.call.call.call.call(fn2);
+    //console.log(fn1.call == Function.prototype.call);
+      console.log(fn1.call.call.call.call == Function.prototype.call);
+      //Function.prototype.call.call(fn2);
+
+    //最后一个call运行时,call里this指是Function.prototype.call
+    /*Function.prototype.call = function(){
+        //点前面的call方法是this
+        //1.让点前面的方法里的this关键字变成fn2->this->fn2
+        //2.让点前面的方法运行->this()->fn2()
+    }*/
+
+
+</script>
+</body>
+</html>

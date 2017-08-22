@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body></body>
+</html>
+<script>
+    var num = 1; var obj = {num:2};
+    obj.fn = (function(num){
+       this.num = num*2;
+        num++;
+        return function(n){
+            this.num+=n;
+            num++;
+            console.log(num);
+        }
+    })(obj.num);
+    var fn = obj.fn;
+    fn(10);//4
+    obj.fn(20);//5
+    console.log(num,obj.num);//14,22
+</script>

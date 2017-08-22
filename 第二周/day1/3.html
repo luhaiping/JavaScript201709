@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        var num = 10;
+        this.x = 30;
+        alert(num++);
+    }
+    Fn.prototype.showX = function(){
+        console.log(this.x);
+    }
+    var f = new Fn();
+    Fn.showX = function(){ //Fn当成对象存在
+        console.log("aa");
+    };
+    f.showX();//30
+    new Fn().showX();//30
+    new Fn.showX();//aa
+
+</script>
+</body>
+</html>

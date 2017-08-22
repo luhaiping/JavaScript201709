@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   var ary = [];//字面量的方式
+//    var ary = new Array(1);//构造函数的方式
+    function fn(x,y){
+        return x+y;
+    }
+    //var fn = new Function("x","y","return x+y");
+    //所有的函数都是Function类的实例
+    //console.log(fn(10,20));
+   // instanceof 判断某个对象是否属于这个类
+   console.log(ary instanceof  Array);
+   console.log(fn instanceof  Function);//true
+   console.log(fn instanceof  Object);//true
+    fn.a = "10";
+    fn.b = function(){console.log('b')};
+    fn.b();
+
+
+</script>
+</body>
+</html>
