@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        ul {
+            width: 500px;
+            margin: 0 auto;
+        }
+        ul li{
+            list-style: none;
+            height: 40px;
+            line-height: 40px;
+            border-bottom:1px dashed #ddd
+        }
+
+    </style>
+</head>
+<body>
+<ul id="oUl">
+    <li>随着社会的发展，保护当事人自身权益的机制越来越完善</li>
+    <li>然而公共利益受到侵害谁来保障</li>
+    <li>公共利益无人管的“公地悲剧”现象如何避免</li>
+</ul>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var jsonObj = null;
+    var xhr = new XMLHttpRequest();
+    xhr.open("get","data.json",false);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4 && /^2\d{2}$/.test( xhr.status)){
+            jsonObj = utils.toJSON(xhr.responseText);
+        }
+
+    }
+    xhr.send(null);
+    var oUl = document.getElementById("oUl");
+    var oLis = oUl.getElementsByTagName("li");
+    for(var i = 0;i<oLis.length;i++){
+        oLis[i].onmouseover = function(){
+            this.style.backgroundColor = "pink"
+        }
+        oLis[i].onmouseout = function(){
+            this.style.backgroundColor = "";
+        }
+    }
+
+
+//    console.log(jsonObj);
+    //1.字符串拼接的方式(工作中最常用的一种方式)
+//    var str = '';
+//    for(var i = 0;i<jsonObj.length;i++){
+//
+//        //创建li并且累加在一起
+//        str += "<li>"+jsonObj[i].new+"</li>";
+//    }
+//    //console.log(str);
+//
+//     oUl.innerHTML  += str;//oUl.innerHTML = oUl.innerHTML+str
+    //弊端是之前所有绑定的效果都没了
+    //优点:浏览器只会渲染一次  回流一次
+
+    //2.动态创建的方式
+    for(var i = 0;i<jsonObj.length;i++){
+        var oLi = document.createElement("li");
+        oLi.innerHTML = jsonObj[i].new;
+        oUl.appendChild(oLi);
+    }
+    //弊端:引发6次回流
+    //优点:保存了以前绑定的效果
+
+    //3.文档碎片的方式
+    var frg = document.createDocumentFragment();//创建了一个文档碎片
+    for(var i = 0;i<jsonObj.length;i++){
+        var oLi = document.createElement("li");
+        oLi.innerHTML = jsonObj[i].new;
+        frg.appendChild(oLi);
+    }
+    oUl.appendChild(frg);//只操作DOM结果一次,也就是只引发一次回流
+
+//    var oStyle = oDiv.style;
+//    oStyle.padding ="1px"; //回流+重绘
+//    oStyle.border = "1px solid red";//回流+重绘
+//    oStyle.borderColor = "green";//重绘
+
+
+
+
+
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    var ary = ["aa","张三","wendy"];
+    //按照字典里的顺序进行排序
+//    ary.sort(function(a,b){
+//        return b-a;
+//    })
+
+//    ary.sort(function(a,b){
+//        //localeCompare 只能对字符串进行比较
+//        return a.localeCompare(b);
+//    })
+//    console.log(ary);
+
+
+    //多维数组,数组里的每一项是复合类型的值,可以是数组,或者是对象
+    var ary = [
+        {name:"楚乔",age:18,score:90},//chu
+        {name:"宇文",age:20,score:85},//yu
+        {name:"燕洵",age:"21px",score:70},//yan
+        {name:"淳儿",age:17,score:30}//chun
+    ];
+    ary.sort(function(a,b){
+        //按照年龄比较
+       //return  parseFloat(a.age) - parseFloat(b.age)
+        //按照姓名比较
+        return a.name.localeCompare(b.name,'zh');
+    })
+   console.log(ary);
+// console.log("楚乔".localeCompare("宇文","zh"));
+
+//"a".localeCompare("b") ->-1
+//"b".localeCompare("a") ->1
+//"a".localeCompare("a") ->0
+
+   /* return 1 则整个数组反向排列相当于调用了reverse()
+   *  return -1或0 数组不发生改变
+   * */
+
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    try..catch..finally 捕获到异常(浏览器报错),处理兼容问题
+//    try{
+////       先执行try代码块的内容, 若报异常,catch语句能捕获到异常,并且走到catch代码块
+//    }catch(e){
+//       //报错了才会走到catch代码块里
+//    }finally{
+//       //不管上面是否异常,都走到finally里面
+//    }
+//
+    try{
+        throw new ReferenceError("引用错误");
+    }catch(e){//e是Error类的实例 表示错误信息对象
+        console.log(e.message);
+    }
+    console.log(1);
+
+     //手动抛出异常,中止代码运行
+    //throw new Error("a is not a function");
+   // throw new TypeError("类型错误");
+   // throw new RangeError("范围错误");
+   // throw new ReferenceError("引用错误");
+    function listToArray(oLis){
+        var ary = [];
+        try{
+            ary =  [].slice.call(oLis);
+        }catch(e){
+            for(var i = 0;i<oLis.length;i++){
+                ary[i] = oLis[i];
+            }
+        }
+        return ary;
+    }
+
+
+
+
+
+//console.log(new Error(" a is not a function"));
+
+</script>
+</body>
+</html>

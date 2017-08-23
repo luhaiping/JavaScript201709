@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //1.创建一个ajax对象
+    var xhr = new XMLHttpRequest();
+
+    //2.打开一个链接地址
+    //true异步 false同步
+    //open第一个参数指打开的方式,第二个参数指请求的链接地址,第三个参数确定是同步操作还是异步操作
+    xhr.open("get","data.json",false);
+
+    //3.监听请求的数据
+    //判断数据请求成功,请求成功后会返回给你状态码(请求状态码和网络状态码)
+    //请求状态码(xhr.readyState)返回4,并且网络状态码(xhr.status)返回的是2开头的三位数时,表示请求成功
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4 && /^2\d{2}$/.test(xhr.status) ){
+            //可以拿到JSON格式的字符串
+            console.log(xhr.responseText);
+        }
+    }
+
+    //4.发送请求
+    xhr.send(null);
+</script>
+</body>
+</html>

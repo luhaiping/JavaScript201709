@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //类数组和数组很相似,虽然不能直接调用数组上的方法,但是可以通过一种方式转换下,从而就能调用数组上所有的方法
+//    Array.prototype.pop = function(){
+//        var last = this[this.length-1];
+//        this.length--;
+//        return last;
+//
+//        //arguments里最后一个实参给删除
+//        var last =  arguments[arguments.length-1];
+//        arguments.length--;
+//    }
+//    var ary = [10,20,30];
+//    ary.pop();
+
+//    Array.prototype.slice = function(){
+//        //克隆数组
+//        var ary = [];
+//        for(var i = 0;i<this.length;i++){
+//            ary[i] = this[i];
+//        }
+//
+//        //克隆arguments
+//        var ary =[];
+//        for(var i = 0;i<arguments.length;i++) {
+//            ary[i] = arguments[i];
+//        }
+//    }
+    //只要把数组方法里this关键字变成arguments,这样arguments就能调用数组上所有的方法
+    function average(){
+//        ary.pop();
+//        var res = Array.prototype.pop.call(arguments);
+//        console.log(res);
+//        var ary = Array.prototype.slice.call(arguments,0);//类数组转换成数组
+//        console.log(ary instanceof  Array);
+//        console.log(arguments.length)
+        //思路3:
+//        Array.prototype.sort.call(arguments,function(a,b){return a-b});
+//        [].pop.call(arguments);
+//        [].shift.call(arguments);
+//        var res = (eval(Array.prototype.join.call(arguments, "+"))/arguments.length).toFixed(2);
+//        console.log(res);
+
+        //思路4:先把类数组转换成数组
+        var ary = [].slice.call(arguments);
+        ary.sort(function(a,b){return a-b});
+        ary.shift();
+        ary.pop();
+        return (eval(ary.join("+"))/ary.length).toFixed(2);
+    }
+
+
+    var res = average(20,10,15,33,13,17,98,87);
+    console.log(res);
+</script>
+</body>
+</html>

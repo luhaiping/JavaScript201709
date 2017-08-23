@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    去掉一个最高分,去掉一个最低分,求出平均分数
+<script>
+
+    function average(){
+        //思路1:
+        /*var min = Math.min.apply(null,arguments);
+        var max  = Math.max.apply(null,arguments);
+        var total = null;
+        for(var i = 0;i<arguments.length;i++){
+            total+= arguments[i];
+        }
+        var res = (total-min-max)/(arguments.length-2);
+        return  res.toFixed(2)*/
+
+        //思路2:先排序,去掉头尾,中间加起来然后求平均数
+//        arguments.sort(function(a,b){
+//            return a-b;
+//        }) 不是数组不能调用数组上的方法
+    //toFixed() 设置保留到小数点后面几位
+        var ary = [];
+        for(var i = 0;i<arguments.length;i++){
+            ary[i] = arguments[i];
+        }
+         ary.sort(function(a,b){return a-b});
+         ary.pop();
+         ary.shift();
+       return  (eval(ary.join("+"))/ary.length).toFixed(2);
+    }
+    var res = average(20,10,15,33,13,17,98,87);
+    console.log(res);
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+
+</ul>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //类数组:1.是数字属性名,并且从0开始依次递增 2.有length属性
+    var oLis = document.getElementsByTagName("li");//li元素的集合
+//    console.log(typeof  oLis);
+//    console.dir(oLis);
+   // console.dir(oLis);
+//    var ary = [].slice.call(oLis);
+//    console.dir(ary);
+    //[].slice.call(oLis) IE6~IE8不支持
+
+    //IE6~IE8解决的办法
+//    var ary = [];
+//    for(var i = 0;i<oLis.length;i++){
+//        ary[i] = oLis[i];
+//    }
+//    console.log(ary);
+
+    console.log(utils.listToArray(oLis));
+
+</script>

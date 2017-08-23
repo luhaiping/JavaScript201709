@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="utils.js"></script>
+<script>
+    var obj1 = {"name":"lucy","age":18,"score":30};//JSON格式的对象
+    var obj2 = [
+        {"name":"楚乔","age":18,"score":90},
+        {"name":"宇文","age":20,"score":85},
+        {"name":"燕洵","age":"21px","score":70},
+        {"name":"淳儿","age":17,"score":30}
+    ];
+    var obj3 = [ //二维数组
+        [11,"aa",2],
+        [2,"b",3],
+        [34,45,12]
+    ]
+    var str = "a";
+    var str = '{"name":"楚乔","age":18,"score":90}';//JSON格式的字符串 --后台返回的数据一般都是JSON格式的字符串
+
+
+    //es5提供了window的属性JSON,它是一个对象
+    console.log("JSON" in window);//IE6~IE7不支持
+//    JSON.parse() ->将JSON格式的字符串转化成JSON格式的对象
+//    JSON.stringify()->将JSON格式的对象转化成JSON格式的字符串
+
+//    var jsonStr = JSON.parse(str);
+//    var jsonObj = JSON.stringify(jsonStr);
+//    try{
+//          JSON.parse(str);//标准浏览器写法
+//    }catch(e){
+//        //ie6~7不支持,则处理方案如下:
+//         eval("("+str+")");//  '({"name":"楚乔","age":18,"score":90})'
+//
+//    }
+    console.log(utils.toJSON(str));
+
+
+
+</script>
+</body>
+</html>
