@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj = {};
+    function fn(callback){
+        var res = null;
+        var ary = [];
+        for(var i = 0;i<4;i++){//回调函数执行的次数由条件来决定
+            res =  callback.call(obj,5,10);//没有返回值,结果是undefined,
+            ary.push(res);
+        }
+        return ary; //通常情况下在数组这边,若回调函数有返回值,则会把返回值保存下来,作为fn的返回值
+    }
+    fn(callback);
+
+    function callback(n,m){
+        console.log(this);
+        // console.log(this+n+m);
+       return n+m;
+    }
+
+</script>
+
+</body>
+</html>

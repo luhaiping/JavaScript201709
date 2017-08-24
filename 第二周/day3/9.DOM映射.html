@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="oUl">
+    <li>1111</li>
+    <li>2222</li>
+    <li>3333</li>
+</ul>
+</body>
+</html>
+<script>
+    //JS获取的元素和页面的DOM元素存在一一对应的关系,指的是DOM映射
+    var oUl = document.getElementById("oUl");
+    var oLis = document.getElementsByTagName("li");
+    //console.log(oLis.length);//3
+
+//    var li1 = document.createElement("li");
+//    oUl.appendChild(li1);
+
+//   oLis[0];//第一个li
+//    oUl.appendChild(oLis[0]);//若DOM元素存在则表示把这个存在的元素移动到最后的位置,若不存才表示添加
+//    console.log(oLis.length);
+
+    //document.querySelectorAll 称为staticNodeList 不存在映射关系
+    var liAll = document.querySelectorAll("li");
+    console.log(liAll.length);
+    var str = "<li>4444</li>";
+    oUl.innerHTML+=str;
+    console.log(liAll.length);
+
+
+
+
+</script>

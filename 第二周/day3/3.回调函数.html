@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * 回调函数:把一个函数(A)的定义阶段,作为参数,传给另一个函数(B),这个函数A就称为回调函数,A是在B里面执行的
+    *1.回调函数有没有参数
+    *2.回调函数执行多少次->取决于条件
+    *3.回调函数有没有返回值
+    *4.回调函数里的this问题
+    *
+    * */
+    function a(){
+        console.log(1);
+    }
+
+    function b(m){
+      m() ;
+    }
+    b(a);//a是b的回调函数
+
+//    function fn(a,b){
+//        return a-b
+//    }
+//    var ary = [1,5,13,7];
+//    ary.sort(fn);
+//    console.log(ary);
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        ul li{
+            line-height: 40px;
+            border-bottom:1px dashed #ddd;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul id="oUl">
+    <li>1111</li>
+    <li>2222</li>
+</ul>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //1.获取数据
+    var resData = null;
+    var xhr = new XMLHttpRequest();
+    xhr.open("get","data.json",false);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 &&/^2\d{2}$/.test(xhr.status)){
+            resData =  utils.toJSON(xhr.responseText)
+        }
+    }
+    xhr.send(null);
+
+    //2.绑定数据
+    //->字符串绑定的方式
+    //数组里有几个对象就得有几条数据,相当于就得创建几个li
+//    var str = "";
+       var oUl = document.getElementById("oUl");
+//    for(var i = 0;i<resData.length;i++){
+//        //resData[i]["new"]//获取每条数据里new属性里的信息
+//        str += "<li>"+resData[i]["new"]+"</li>"
+//    }
+//    //oUl.innerHTML = oUl.innerHTML+str;
+//    oUl.innerHTML+=str;
+
+    //->动态创建的方式
+    var frg = document.createDocumentFragment();//文档碎片
+   for(var i = 0;i<resData.length;i++){
+       var oLi = document.createElement("li");
+       oLi.innerHTML = resData[i]['new'];
+       //oUl.appendChild(oLi);//引发多次回流
+       frg.appendChild(oLi);//先放在文档碎片里
+   }
+    oUl.appendChild(frg);//引发一次回流
+
+
+
+
+
+
+
+
+
+</script>

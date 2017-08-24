@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //ary.forEach(callback,context);
+    //callback执行次数->ary.length
+    //callback的参数 -> item数组的每一项,index每一项的索引,ary数组本身
+    //没有返回值
+    //forEach没传第二个参数,回调函数里的this是window,若传了,回调函数里的this则是context
+    var ary = [13,15,20,45];
+    Array.prototype.myForEach = function(callback,context){
+        //this指的是谁 是调用myForEach的数组
+        context = context || window;  //以后callback运行时改变回调函数的this
+        //浏览器性能优化
+        if([].forEach){//浏览器支持forEach方法
+            this.forEach(callback,context);
+            return;
+        }
+        //确定callback执行的次数
+        for(var i = 0;i<this.length;i++){
+            //this[i]数组的每一项 i指索引 this 指的是原数组本身
+            callback.call(context,this[i],i,this);
+        }
+    }
+//    var obj ={}
+//    ary.myForEach(function(item){
+//        console.log(this);
+//    },obj)
+
+
+
+</script>
+
+</body>
+</html>

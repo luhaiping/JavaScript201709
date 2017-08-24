@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary1 = [13,15,20,45];
+    //map 比forEach多了一步,有返回值,并且把返回值都放在一个新的数组里,新的数组作为map方法的返回
+    Array.prototype.myMap = function(callback,context){
+        context = context ||window;
+        if([].map){//标准浏览器支持map方法
+            return this.map(callback,context);
+
+        }
+        var ary = [];//用来存放回调函数的返回值
+        var res = null;//接收回调函数运行完的返回值
+        for(var i = 0;i<this.length;i++){
+            res = callback.call(context,this[i],i,this);
+            ary.push(res);
+        }
+        return ary;
+    }
+    var obj = {};
+    var res = ary1.myMap(function(item){
+        console.log(this);
+        return item+2
+    },obj);
+    console.log(res);
+</script>
+</body>
+</html>

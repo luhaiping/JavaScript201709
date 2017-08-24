@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary = [1,2];
+    var ary2 = ["a","b","c"];
+    /*
+    * 回调函数执行两次 ,取决于调用map方法数组的长度
+    * 回调函数每次的返回值会放入一个数组里,最终这个数组作为map方法的返回值
+    * 回调函数里的this默认是window,可以通过设置map方法的第二个参数,改变回调函数里的this
+    * */
+    var res = ary.map(function(item){
+        return this[item];//第一次时 item=1 ary2[1] 第二次是 item =2 ary2[2]
+    },ary2);
+    console.log(res);//["b","c"];
+
+    //map回调函数
+    // 回调函数 第一次执行时 把数组ary的第一项,还有第一项的索引,还有数组本身传给了回调函数
+    // 回调函数 第二次执行时 把数组ary的第二项,还有第二项的索引,还有数组本身传给了回调函数
+</script>
+</body>
+</html>

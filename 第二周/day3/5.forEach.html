@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //forEach()遍历数组,从而对数组的每一项进行操作
+    /*
+    * forEach
+    * 1.回调函数有三个参数 1.item 数组的每一项 2.index每一项的索引 3.ary数组本身
+    * 2.回调函数没有返回值 ,forEach也没有返回值
+    * 3.回调函数里默认this是window,通过forEach第二个参数可以改变回调函数里的this
+    *
+    * */
+    var ary = [15,20,30,16,18];
+    var obj = {};
+    var res = ary.forEach(function(item,index,ary){
+//        arguments[0];//数组的每一项
+//        arguments[1]; //每一项的索引
+//        arguments[2];//数组本身
+       // console.log(item,index);
+          console.log(this);
+    },obj);
+    console.log(res);
+
+
+
+</script>
+
+</body>
+</html>

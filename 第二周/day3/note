@@ -1,0 +1,45 @@
+1.求平均数 ->类数组可以通过call去调用数组上的方法
+Array.prototype.slice.call(arguments,0);
+Array.prototype.sort.call(arguments,function(a,b){return a-b});
+简写写法:
+[].pop.call(arguments);
+
+2.类数组:参数集合arguments和元素集合
+参数集合arguments 通过call调用数组方法slice转换成数组没有兼容性问题
+元素集合 通过call调用数组方法slice转换成数组 有兼容性问题 IE6~IE8不支持
+
+3.处理兼容性问题
+捕获浏览器的异常,从而进行相应的处理
+try{
+  默认先走try里面,当浏览器不支持时,就会报错,但是这种错误不会在控制台抛出,而是被catch给捕获到,从而走到catch语句里
+}catch(e){
+   在catch里重新写套方案来兼容不支持的浏览器
+}
+
+try{
+    [].slice.call(oLis);
+}catch(e){
+    var ary =[];
+    for(var i = 0;i<oLis.length;i++){
+        ary.push(oLis[i])
+    }
+}
+
+4.在sort里比较多维数组里的内容
+5.JSON是一种数据格式,是对其他数据类型一种严格的规定
+6.ajax 四步骤
+    1.创建一个Ajax对象
+    2.打开一个链接地址
+    3.监听请求数据
+    4.发送请求
+7.数据绑定
+
+    document.createElement("li");
+    document.createDocumentFragment();//文档碎片
+    父标签.appendChild(ele)
+    父标签.insertBefore(newEle,oldEle)
+    父标签.replaceChild(newEle,oldEle)
+    父标签.removeChild(ele);
+    ele.cloneNode(true)
+    ele.getAttribute("zhufeng");//获取某个元素属性的值
+    ele.setAttribute("zhufeng","peixun");//设置某个元素属性和值

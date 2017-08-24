@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <Style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            width: 300px;
+            margin: 0 auto;
+            list-style: none;
+            border:3px solid green;
+            border-radius: 10px;
+        }
+        ul li{
+            line-height: 40px;
+            border-bottom: 1px dashed #ddd;
+            padding-left: 10px;
+            font-size: 20px;
+        }
+    </Style>
+</head>
+<body>
+<ul id="list">
+    <li>4</li>
+    <li>9</li>
+    <li>3</li>
+    <li>15</li>
+    <li>2</li>
+</ul>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //1.获取元素
+    var oUl = document.getElementById("list");
+    var oLis = oUl.getElementsByTagName("li");
+
+   //2.把类数组oLis转换成数组,然后排序
+    var ary = utils.listToArray(oLis);
+
+    //3.数组的里每个li进行排序,排序的依据是每个li里的内容
+    ary.sort(function(a,b){
+       return a.innerHTML - b.innerHTML
+    });
+
+    //4.排序的效果在页面上显示出来(移动ul下的li,使其排序的顺序跟数组里每个li的顺序一样)
+    var frg = document.createDocumentFragment();
+    for(var  i= 0;i<ary.length;i++){
+         frg.appendChild(ary[i]);
+    }
+    oUl.appendChild(frg);
+
+</script>
