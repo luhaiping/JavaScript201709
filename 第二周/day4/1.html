@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+   // var reg  = /^\d{2,3}$/;//出现0-9之间的数字1次或多次
+//   var reg = /2\w8/;//字符中有连续的三个字符:2和8之间有个常用的字符[A-za-z0-9_]
+//    var str = "aaa2312a888";
+//    console.log(reg.test(str));
+
+//    var reg = /\s+/;
+//    var str = "a    a ";
+//    console.log(reg.test(str));
+
+//    var reg = /^\.$/;
+//    var str = ".";
+//   console.log(reg.test(str));
+
+    //[]
+   // var reg =/^[A-Z]$/i;
+   //var reg = /^[17-85]$/;//1或7-8之间或5
+   //var reg = /^[\w+.*?]$/;//->\w或+或.或*或?
+    //var reg = /^[^\dabc_]$/;
+   //var reg =  /[\u0041-\u005A]/;//->A-Z  有些没法表示的字符可以用16进制来表示
+   //console.log(reg.test("b"));
+    //第一个中文对应的ASCII值 \u4e00
+    //最后一个中文对应的ASCII值 \u9fa5
+    //var reg= /^[\u4e00-\u9fa5]{2,5}$/;//匹配中文字符2个到5个
+   //console.log(reg.test("张三"));
+
+    //var reg = /^18|19$/;/*1811111 3333319 1819  18 19 以18开头或以19结尾*/
+   //var reg = /^(18|19)$/;//只能是18或19
+   var reg = /(\w)(\d)\2\1/;//\1,\2代表分组引用,没有分组则没有意义 \1和第一个分组内容相同,\2和第二个分组内容相同
+   console.log(reg.test("a55a"));
+
+    //->11位手机号码,第一位是以1开头
+    var reg1=/^1\d{10}$/;
+
+    //->前17位是数字,最后一位是数字或X
+    var reg2 =/^\d{17}(\d|X)$/;
+   var reg3 = /^\d{17}[\dX]$/;
+
+</script>
+</body>
+</html>
