@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str = "14800";
+    var a = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"];
+    var reg = /\d/g;
+    var res = str.replace(reg,function($0,$1){
+        //第一个参数匹配的内容  $0
+        //第二个参数匹配内容的索引 $1
+        //第三个参数是原字符串 $2
+        //匹配的字符刚好是数组a里对应中文数字的索引
+        return a[arguments[0]]
+    })
+    console.log(res);
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

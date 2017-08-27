@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    var reg = /\d+/g;
+//    var str1 = "111a22b33c44d55e";//->112a23b34c45d56e
+//    //console.log(str1.match(reg));
+//    //var res = str.replace("2","zhufeng");
+//    var res = str1.replace(reg,function(item,index,str){
+//        //1.每次匹配的内容
+//        //2.匹配内容的索引
+//        //3.字符串本身
+//
+//        return parseInt(item)+1;
+//    })
+//    console.log(res);
+
+
+    //->将字符串中的数字拿数组相应的中文数字替换
+    var str = "14800";
+    var a = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"];
+    var reg = /\d/g;
+    var res = str.replace(reg,function(){
+        //console.log(arguments[0]);//匹配到的数字刚好是数组里相应中文数字的索引
+        return a[arguments[0]]
+    });
+    console.log(res);
+
+</script>
+
+</body>
+</html>

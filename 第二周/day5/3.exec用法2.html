@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //exec更擅长于处理分组,能把分组的内容提取出来
+    var reg =/(\d+)([A-Za-z])/g;
+    var str = "11a@22b!33c";
+    console.log(reg.exec(str));
+    //console.log(reg.exec(str));
+    //调用了exec方法后才能通过这种方式捕获到分组的内容
+    console.log(RegExp.$1);//第一个分组的内容
+    console.log(RegExp.$2);//第二个分组的内容
+
+    /*
+    * 加了()后,exec的返回值变化成如下:
+    * 第一个参数还是匹配的内容
+    * 第二个参数开始分组的内容
+    * ......
+    * 倒数第二个参数是匹配字符的索引
+    * 倒数一次参数是原字符串
+    *
+    * */
+
+</script>
+</body>
+</html>

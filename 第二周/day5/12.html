@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //获取地址栏中的参数并放入对象中
+    var str = "http://www.baidu.com?id=557131028857&name=zhufeng&age=8";
+   //obj = {id:557131028857,name:zhufeng,age:8}
+    var reg = /([^?&=]+)=([^?&=]+)/g;//=左右两边捕获不是?&=的一个到多个字符
+    str.match(reg);//["id=557131028857", "name=zhufeng", "age=8"]
+    var obj = {};
+   str.replace(reg,function($0,$1,$2){
+        //console.log($1,$2);
+       obj[$1] = $2;
+   })
+    console.log(obj);
+
+    var str = "<div class='aaa' id='bbb'>顾龙飞aaaa</div><p>好好学习,天天向上</p>";
+    //排除法,排除哪些字符
+    var reg = /<[^<>]+>/g;
+    console.log(str.replace(reg, ""));//顾龙飞aaaa好好学习,天天向上
+
+
+</script>
+</body>
+</html>

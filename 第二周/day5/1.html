@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //->以1开头的11位的手机号码
+    var reg = /^1\d{10}$/;
+    //console.log(reg.test("13262923930"));
+
+    //->前17位是数字,最后一位是数字或者X
+    var reg = /^\d{17}(\d|X)$/;
+    var reg = /^\d{17}[\dX]$/
+
+    //->有效数字的正则 整数,0,小数
+    /*
+    * +或-可有可无(出现0次或1次)
+    * 可以是一位整数或者多位的整数,但多位的整数不能以0开头
+    * 小数部分可有可无,如有小数部分,.后面得是一位或多位的数字
+    *
+    * */
+    var reg = /^[+-]?(?:\d|[1-9]\d+)(?:\.\d+)?$/;//?:匹配不捕获
+    console.log(reg.exec("55.43"));
+
+    //->验证邮箱  123@qq.com 123-aa@qq.com   aa123@qq.com.cn aa_123@qq.cn.com  123@-.com  _-@qq.com
+    /*
+    * 以数字,字母,_开头,其他的字符可以是数字,字母,_,-,.,出现0到多次
+    * 然后@
+    * 然后数字,字母,_,-出现一次或多次
+    * 然后邮箱域名,2~5字母,整个邮箱域名出现1到2次
+    * */
+    var reg = /^(\w[.\w-]*)@([\w-]+)(\.[A-Za-z]{2,5}){1,2}$/;
+    console.log(reg.test("Rang.shang@outlook.com"));
+
+
+</script>
+</body>
+</html>

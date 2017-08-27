@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var reg = /\d+/g;
+    var str = "11a22b33c44d55e";//->23456
+    var res = str.replace(reg,"a");
+//    console.log(res);
+    //replace(parameter1,parameter2)
+    // parameter1是正则表达式或字符串
+    // parameter2是字符串或回调函数(自己去设定替换的规则)
+     //回调函数的考虑方向:1.有没有参数 2.有没有返回值3.执行次数
+    var res = str.replace(reg,function(){
+        //和exec方法运行后返回的数组的每项的值代表的含义是一样的
+        //arguments的参数
+        //第一个参数表示匹配的内容
+        //第二个参数表示匹配内容的索引
+        //第三个参数表示字符串本身
+        //执行的次数是由匹配的次数决定的
+        //返回值可有可无 若有返回值 每次用返回值覆盖匹配的内容,最后replace返回一个替换后的新的字符串
+        return parseInt(arguments[0])+1;
+       // console.log(arguments);
+    })
+    console.log(res);
+   // var str = "11a22b33c44d55e"
+    //1 ->"12a22b33c44d55e"
+    //2 ->"12a23b33c44d55e"
+    //3->"12a23b34c44d55e"
+    //4 ->"12a23b34c45d55e"
+    //5->"12a23b34c45d56e"
+</script>
+</body>
+</html>

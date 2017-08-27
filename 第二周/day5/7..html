@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str = "my name is {0},i am {1},i come from {2}";
+    var ary = ["珠峰培训",8,"beijing"];
+    var reg = /{(\d)}/g;
+    var res =  str.replace(reg,function($0,$1){
+        //正则里有分组,则回调函数里的参数会发生如下:
+        //1.第一个参数是匹配的内容
+        //2.从第二个参数开始时分组的内容 ....
+        //3.倒数第二个是匹配字符的索引 index
+        //4.倒数第一个是原字符串 str
+        //console.log(ary[$1]);
+        return ary[$1];//->ary[arguments[1]]
+    })
+    console.log(res);
+
+
+</script>
+
+</body>
+</html>

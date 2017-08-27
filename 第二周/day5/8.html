@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    //敏感词替换 池子 珠峰培训 珠峰群众
+    var str ="由于大家比较喜欢看80后脱口秀池子的表演,所以想把池子请到珠峰培训来表演下,但是由于费用比较高,需要把珠峰群众的工资降低以凑得上池子的演出费,珠峰群众表示非常不满意!";
+    var reg = /池子|珠峰培训|珠峰群众/g;
+    var res = str.replace(reg,function($0){
+        //console.log($0);
+        var str = "";
+        for(var i = 0;i<$0.length;i++){
+            str+="*"
+        }
+        return str;
+    });
+    console.log(res);
+
+
+
+
+
+</script>
+</body>
+</html>

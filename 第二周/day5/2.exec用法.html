@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //正则特征:懒惰性和贪婪性
+    //var reg = /\d{1,2}/; //?在量词后面表示非贪婪匹配
+    //var str = "2016zhufeng2017";
+   // var res = reg.exec(str);
+    /*
+    * 第一项:捕获的内容  res[0]->2016
+    * 第二项:捕获内容的起始索引  res["index"]
+    * 第三项:原字符串 res["input"]
+    * */
+
+//    var reg = /\d+/g;//g表示全文查找,会把匹配的内容,全部捕获到
+//    var str = "2016zhufeng2017";
+//    //reg.lastIndex决定了在字符串里开始查找的索引(查找字符串的起始索引)
+//    //每运行exec方法只会捕获一次匹配的内容
+//    console.log(reg.lastIndex);//0
+//    console.log(reg.exec(str));
+//    console.log(reg.lastIndex);//4
+//    console.log(reg.exec(str));
+//    console.log(reg.lastIndex);
+//    console.log(reg.exec(str));//捕获不到内容时,返回为null
+//    console.log(reg.lastIndex);//0
+//    console.log(reg.exec(str));
+
+
+    //封装allExec 获取到所有捕获的内容,并且放在一个数组里返回
+
+    RegExp.prototype.allExec = function(str){
+        if(!this.global) return this.exec(str); //判断是否加g
+        //this ->指的是正则的实例
+        var res = this.exec(str);
+        var ary = [];//放捕获的内容
+        while(res){//是否有捕获的内容,若没有捕获的内容res的值为null,则会退出while循环
+            ary[ary.length] = res[0];
+            res = this.exec(str);
+        }
+        return ary;
+    }
+
+   var reg = /\d+/g;
+   var str = "2016zhufeng2017";
+//    console.log(reg.global);//true
+//    console.log(reg.allExec(str));
+    console.log(str.match(reg));//一次性能把匹配的内容捕获到并放在数组里返回
+
+
+
+</script>
+</body>
+</html>
