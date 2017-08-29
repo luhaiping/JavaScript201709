@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function F(){
+        this.x = 10;
+        this.y = 20
+    }
+    F.prototype.fn = function(){};
+    function S(){
+        F.call(this);
+    }
+    //父类的私有属性不要污染子类的原型,就要借助下中间的空类解决这个问题
+    function Temp(){
+    }
+    Temp.prototype = F.prototype;//把父类的原型地址赋值给Temp的prototype属性
+    S.prototype = new Temp();//S.prototype.__proto__== F.prototype
+   // S.prototype = F.prototype; //导致互相污染,互相影响 ,因为是指向的一个内存空间,这种错的
+    S.prototype.constructor = S;
+    var s = new S();
+    console.dir(s);
+
+</script>
+
+</body>
+</html>

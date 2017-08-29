@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function myCreate(obj){
+        //obj指的是父类的原型
+        function Temp(){
+        }
+        Temp.prototype = obj;
+        return new Temp();
+    }
+    function F(){
+        this.x = 10;
+        this.y = 20
+    }
+    F.prototype.fn = function(){};
+    function S(){
+        F.call(this);
+    }
+    S.prototype = myCreate(F.prototype);
+    var s = new S();
+    console.dir(s);
+
+
+
+</script>
+
+</body>
+</html>

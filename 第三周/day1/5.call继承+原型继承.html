@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+最优的继承方案:父类私有的属性和方法拿到子类私有上  父类公有的属性和方法,直接通过__proto__查找到就行
+-->
+<script>
+    //call继承是专门用来实现继承父类私有的属性 ->把父类的this改成子类的this,相当于就在子类的实例上添加这些属性
+    function F(){
+        this.x = 10;
+        this.y = 20;
+    }
+    F.prototype.fn = function(){console.log(this.x)};
+    function S(){
+        F.call(this);
+    }
+    S.prototype = new F();
+    var s = new S();
+    console.dir(s);
+    //F.call(this) 实现继承父类私有的  S.prototype = new F();实现继承父类公有的
+    //结果->引起子类实例上和原型上都有父类私有的属性 解决办法:把子类原型上的父类私有的属性删了即可->只要父类原型上的属性和方法即可 避免污染子类原型问题
+</script>
+</body>
+</html>

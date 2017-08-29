@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function F(){
+        this.name = "lily";
+        this.age = 20;
+
+    }
+    var  f = new F();
+    F.fn = function(){
+
+    }
+    //instanceof 检测某个对象是否在这个类的原型链上
+    //函数的三种角色 1.普通函数  2.构造函数(类):实例,原型,constructor 3.普通对象 添加属性和方法
+    function fn(){
+
+    }
+//    console.log(fn instanceof  Function)
+    console.log(Function instanceof  Object);
+    console.log(Object instanceof  Function);
+
+    /*Function.__proto__ == Function.prototype;
+    Function.__proto__.__proto__ == Object.prototype
+    Object.__proto__ == Function.prototype*/
+
+
+
+</script>
+
+</body>
+</html>

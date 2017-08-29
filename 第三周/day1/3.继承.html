@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function F(){
+        this.x = 10;
+        this.y = 20
+    }
+    F.prototype.fn = function(){
+        console.log(this.x);
+    }
+    function S(){
+        this.z = 30;
+    }
+    S.prototype = new F();//把S类的默认原型对象改了,所以要constructor改回来
+    //子类原型上会有父类私有的属性,相当于把子类的原型给污染了
+    S.prototype.x = 40;
+    S.prototype.constructor = S;
+    var s = new S;
+   // console.dir(s);
+    //s.fn();
+    var f = new F;
+    console.log(f.x);//10
+</script>
+
+</body>
+</html>

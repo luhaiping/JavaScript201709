@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //(5).plus(10).minus(3); ->12
+    Number.prototype.plus = function(n){
+       n = Number(n);
+        if(isNaN(n)){
+            throw new Error("参数错误");
+        }
+        return this+n;
+    };
+    Number.prototype.minus = function (n) {
+        n = Number(n);
+        if (isNaN(n)) {
+            throw new Error("参数错误")
+        }
+        return this - n;
+    };
+    console.log((5).plus(10).minus(3))
+    //封装一个方法,判断是否是公有的属性
+
+    function F(){
+        this.x = 10;
+        this.y = 20
+    }
+    F.prototype.fn = function(){
+        console.log(this.x);
+    }
+    var f = new F();
+    function hasPublicProperty(obj,attr){
+      return   attr in obj&&!obj.hasOwnProperty(attr);//是obj的属性并且不是私有的
+    }
+    console.log(hasPublicProperty(f, "x"));
+
+
+</script>
+</body>
+</html>
