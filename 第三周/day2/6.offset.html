@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin:0
+        }
+        div{
+            padding: 10px;
+            border:15px solid black;
+            margin: 20px;
+
+        }
+        .outer{
+            width: 300px;
+            height: 300px;
+            background: green;
+            position: relative;
+
+        }
+        .center{
+            width: 200px;
+            height: 200px;
+            background: peru;
+            position: relative;
+
+        }
+        .inner{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="outer" id="outer">
+    <div class="center" id="center">
+        <div class="inner" id="inner"></div>
+    </div>
+</div>
+<script>
+    var outer = document.getElementById("outer");
+    var center = document.getElementById("center");
+    var inner = document.getElementById("inner");
+    //offsetLeft(左偏移) offsetTop(上偏移) offsetParent(参照物);
+    //默认情况下,元素是相对于body偏移,默认参照物是body
+
+//    console.log(inner.offsetLeft + center.clientLeft + center.offsetLeft + outer.clientLeft + outer.offsetLeft);
+    //封装一个方法:求ele到body左边的距离和上边的距离
+    //自己到自己参照物的距离+自己参照物到他的参照物的距离....直到找到body,body的参照物为null
+//    console.log(document.body.offsetLeft);
+
+    function offset(ele){
+        var l = ele.offsetLeft;
+        var t = ele.offsetTop;
+        var p = ele.offsetParent;
+        while(p){
+            //获取浏览器信息 navigator.userAgent
+           /* if(navigator.userAgent.indexOf("MSIE 8.0")==-1){//不是ie8浏览器
+                l+= p.offsetLeft+ p.clientLeft;
+                t+= p.offsetTop+ p.clientTop;
+            }else{
+                l+= p.offsetLeft;
+                t+= p.offsetTop
+            }*/
+            if(!/MSIE 8\.0/.test(navigator.userAgent)){//不是ie8浏览器
+                l+=  p.clientLeft;
+                t+=  p.clientTop;
+            }
+            l+= p.offsetLeft;
+            t+= p.offsetTop;
+            p = p.offsetParent;
+        }
+        return {
+            l:l,t:t
+        }
+    }
+    console.log(offset(inner).l);
+
+</script>
+</body>
+</html>

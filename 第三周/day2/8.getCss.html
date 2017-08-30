@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            color: red;
+            font-size: 20px;
+        }
+        #div1:before{/*把伪类里的内容添加到div所有内容的前面*/
+            content:"111";
+            color: green;
+        }
+        #div1:after{/*把伪类里的内容添加到div所有内容的后面*/
+            content:"222";
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" >珠峰培训</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+   // window.getComputedStyle(oDiv, null) //返回值是一个css样式结合,是一个对象
+   // console.log(window.getComputedStyle(oDiv, ":before")['color']);
+    //console.log(window.getComputedStyle(oDiv, null)['color']);
+
+    //console.log(oDiv.currentStyle['color']);
+    /**
+     *
+     * @param ele  元素
+     * @param attr  css样式属性
+     */
+    function getCss(ele,attr){
+        var res= null;
+//        try{
+//            res = window.getComputedStyle(ele,null)[attr];//标准浏览器
+//        }catch(e){
+//            res = ele.currentStyle[attr];//IE6-8浏览器
+//        }
+
+
+        if(typeof  getComputedStyle == "function"){
+            res = window.getComputedStyle(ele,null)[attr];
+        }else{
+            res = ele.currentStyle[attr]
+        }
+        return res;
+    }
+    getCss(oDiv, "color");
+    console.log(getCss(oDiv, "fontSize"));
+</script>

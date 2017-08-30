@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //找出字符串中出现字母次数最多的字符和相应的次数
+    var str = "aaaccccabbddAAABBB";
+    //1.利用对象不重名的特征,把每个字母及其相应的次数保存在一个对象里
+    var obj = {};
+    for(var i = 0;i<str.length;i++){
+        var cur =str[i];
+        if(obj[cur]){
+            obj[cur] = obj[cur]+1;//obj[cur]++;
+        }else{
+            obj[cur] = 1;
+        }
+    }
+
+    console.log(obj);
+
+    //2.假设法
+    var max = 0;
+    var maxStr = "";
+    for(var attr in obj){
+       if(obj[attr]>max){
+           max = obj[attr];
+           maxStr = attr;
+       }else if(obj[attr] == max){
+           maxStr+=","+attr;
+       }
+    }
+    console.log(max,maxStr);
+
+
+</script>
+
+</body>
+</html>

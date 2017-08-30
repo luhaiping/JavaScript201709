@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100.6px;
+            height: 100px;
+            border:15px solid red;
+            padding: 10px;
+            /*margin:20px;*/
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body style="height: 1000px;">
+<div id="div1">
+    朝鲜最高领导人金正恩现场指导了朝鲜人民军战略军中远程战略弹道导弹发射训练，并表示训练是对美韩军演的武力示威，同时是对日本的历史上的侵略行为的报复。金正恩还表示，今后要以太平洋为目标，多进行弹道火箭发射训练。报道称，负责有事时打击太平洋美军基地任务的朝鲜人民军战略军火星炮兵部队参加训练，弹道导弹型号为新装备的“火星12”型。
+</div>
+<script>
+    var oDiv = document.getElementById("div1");
+    //console.log(oDiv.scrollHeight);
+    //console.log(document.documentElement.clientHeight || document.body.clientHeight);
+//    console.log(document.documentElement.scrollHeight || document.body.scrollHeight);
+    oDiv.clientWidth = 200;
+    console.log(oDiv.clientWidth);
+
+</script>
+</body>
+</html>

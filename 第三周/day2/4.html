@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //格式化时间 ->2017年08月30日 10时54分30秒
+    var str = "2017-08-30   10:54:30";
+    var tempStr = "{0}年{1}月{2}日 {3}时{4}分{5}秒";
+
+    //1.把时间字符串里的数字提取出来
+
+        var reg = /\d+/g;
+        var ary = str.match(reg);//["2017", "08", "30", "10", "54", "30"]
+    //console.log(str.split(/[-:\s]+/g));
+   // console.log(str.split(/-|:|\s+/g));//低版本浏览器里面参数是正则兼容性不好
+
+    //2.用提取出来的数字替换模板字符串里的模板
+        tempStr = tempStr.replace(/{(\d)}/g,function($0,$1){
+//            console.log($0,$1);
+            //ary[$1];
+            //取出数组中相应的项,然后替换匹配的内容
+            return ary[$1];
+        })
+    console.log(tempStr)
+
+</script>
+
+</body>
+</html>

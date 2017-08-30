@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            color: red;
+            font-size: 20px;
+            padding:10px 20px;
+            position: absolute;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" >珠峰培训</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    /**
+     *
+     * @param ele  元素
+     * @param attr  css样式属性
+     */
+    function getCss(ele,attr){
+        var res= null;
+        if("getComputedStyle" in window){
+            res = window.getComputedStyle(ele,null)[attr];
+        }else{
+            res = ele.currentStyle[attr]
+        }
+        //width|height|paddingLeft|marginLeft|left|right|top|bottom
+        //把带单位的值(有效数+单位(px|rem|em|pt)),去掉单位,最终返回都是不带单位并且是数值
+        var reg =/^[+-]?((?:\d|[1-9]\d+)(?:\.\d+)?)(?:px|rem|em|pt)?$/i;
+        return reg.test(res)?parseFloat(res):res;
+    }
+    console.log(getCss(oDiv, "color"));
+    console.log(getCss(oDiv, "padding"));
+    console.log(getCss(oDiv, "fontSize"));
+    console.log(getCss(oDiv, "z-index"));
+</script>

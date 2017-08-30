@@ -1,0 +1,69 @@
+1.正则 设定字符串的规则
+是否匹配 test
+把匹配的内容拎出来 exec()   match() replace() split()
+
+css盒子模型:width+height+padding+margin+border
+js盒子的模型:通过js的属性和方法,可以获取CSS盒子模型里相关属性的值
+
+1.client系列(跟溢出的无关)
+    clientWidth/clientHeight/clientLeft/clientTop
+    clientWidth = width+padding(左右)
+    clientHeight = height+padding(上下)
+    clientLeft = 左边框
+    clientTop = 上边框
+2.offset系列(跟溢出内容无关)
+    offsetWidth = width+padding(左右)+border(左右) = clientWidth+border(左右)
+    offsetHeight= height+padding(上下)+border(上下)=clientHeight+border(上下)
+
+    offsetLeft:左偏移
+    offsetTop:上偏移
+    offsetParent:参照物
+3.scroll系列
+    scrollWidth:"约等于" 真实内容的宽度(包含溢出的内容)+左padding
+    scrollHeight:"约等于" 真实内容的高度(包含溢出的内容)+上padding
+
+    1.不同浏览器得出的结果不一样,受各个浏览器行高的影响
+    2.对同一个浏览器来说,加了overflow属性以后得到值也不一样
+
+    scrollLeft:横向滚动条卷出的宽度
+    scrollTop:纵向滚动条卷出的高度
+
+    //获得一屏内容
+    document.documentElement.clientHeight||document.body.clientHeight
+
+    若没有超过一屏 clientHeight和scrollHeight值一样
+    //获得整个文档的内容(超过一屏)
+    document.documentElement.scrollHeight||document.body.scrollHeight
+
+    document.compatMode -> "CSS1Compat"  标准兼容模式开启
+    document.compatMode->  "BackCompat"  标准兼容模式关闭(IE的怪异模式)
+
+   1. 一共是13个属性 ,除了scrollLeft/scrollTop即能读又能写,其他11个的只能获取值,不能设置值
+   2.所有这些属性获取的值是整数,没法获取小数,如果是小数则会四舍五入后再计算
+   3.所有这些属性获取的值没有单位
+
+1.参照物 : 默认参照物是body
+  自己设置: 已经定位的元素都有可能当成参照物,最终选最近的已经定位的祖先元素为参照物
+  已经定位元素:position:absolute|relative(优先)|fixed
+2.偏移量(offsetLeft/offsetTop): 当前元素(从外边框开始)到参照物(内边框)的距离
+需要:不管参照物是什么?求当前元素到body的偏移量
+
+3.获取任意css样式,不管是行内式还是内嵌式,还是外链式
+
+window.getComputedStyle(oDiv, null)['color'] -标准浏览器
+oDiv.currentStyle['color'] -IE浏览器
+
+处理浏览器兼容问题
+1.try...cache(e){}...
+2.属性方式
+    1)"getComputedStyle" in window
+    2)window.getComputedStyle
+3.判断类型
+    typeof  getComputedStyle == "function";
+    准确的数据类型Array,RegExp ->instanceof -> ary instanceof Array
+4.通过判断浏览器信息
+    navigator.userAgent.indexOf("MSIE 8.0")==-1
+    /MSIE [6-8]\.0/.test(navigator.userAgent)
+
+
+

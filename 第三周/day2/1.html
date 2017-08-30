@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //懒惰性
+    var reg = /(\d)+/g;
+    var str = "2015zhufeng2016";
+    //会修改lastIndex值  lastIndex值作为开始查找内容的索引
+    //->reg.lastIndex 0
+       console.log(reg.exec(str));//只会捕获一次匹配的内容
+//    //->reg.lastIndex 4
+       console.log(reg.exec(str));
+//    //->reg.lastIndex 5
+//    console.log(reg.exec(str));//null
+    //->reg.lastIndex 0
+
+    //把所有匹配的内容放在数组里返回
+    RegExp.prototype.allExec = function(str){
+        //this -> 正则表达式
+        if(!reg.global) return this.exec(str);
+        var ary = [];
+        var res = this.exec(str);
+        while(res){
+            ary[ary.length] = res[0];
+            res = this.exec(str);
+        }
+        return ary;
+    }
+//    console.log(reg.allExec(str));
+    console.log(str.match(reg));
+
+    var reg = /(\d)/g;
+    var str = "12345"; //"23456";
+    //str.replace([str|reg],[str|function])
+   var res =  str.replace(reg,function($0,$1){
+       //若正则有分组,则从第二项开始是分组的内容
+        //第一个参数匹配的内容
+        //第二个参数匹配的内容索引
+        //第三个参数是原字符串
+        //回调函数执行次数->匹配的次数
+        //return 可写可不写 写return ,用return后面的值替换匹配的内容
+        return parseInt($0)+1;
+        //第一次 "22345"
+        //第二次 "23345"
+        //第三次 "23445"
+        //第四次 "23455"
+        //第五次 "23456"   全部替换完的字符串作为replace的返回值
+    })
+    console.log(res);
+</script>
+
+</body>
+</html>
