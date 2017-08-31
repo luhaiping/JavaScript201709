@@ -72,9 +72,28 @@ var utils = (function(){
         var reg = /^[+-]?(?:\d+(?:\.\d+)?)(?:px|pt|rem|em)?$/i;
         return  reg.test(res)?parseFloat(res):res;
     }
+
+    /**
+     *
+     * @param attr  10个属性
+     * @param value 设置scrollLeft和scrollTop值
+     *
+     */
+    function win(attr,value){
+        if(typeof  value =="undefined"){
+            //第二个参数没传就获取下值
+            return document.documentElement[attr]||document.body[attr]
+        }else{
+            //第二参数传了,则需要设置
+            document.documentElement[attr] =value;
+            document.body[attr] = value;
+        }
+    }
     return {
         listToArray:listToArray,
         toJSON:toJSON,
-        getCss:getCss
+        getCss:getCss,
+        offset:offset,
+        win:win
     }
 })()

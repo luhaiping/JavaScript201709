@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img{
+            width: 200px;
+            height: 200px;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 1000px;"></div>
+<img src="img2/default.gif"  realImg = "img2/41.jpg" />
+
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var oImg = document.getElementsByTagName('img')[0];
+    var imgT = utils.offset(oImg).t+oImg.offsetHeight;
+
+    window.onscroll= function(){
+       //浏览器底边框到body的上偏移
+        var clientH = utils.win("clientHeight");
+        var scrollT = utils.win("scrollTop");
+        var winT = clientH+scrollT;
+        if(winT>=imgT){//浏览器底边框到body的上偏移>图片底边框到body上偏移时
+            if(oImg.loaded) return;
+            //显示图片的操作
+            var tempImg = new Image();//1.创建了一个图片对象
+            tempImg.src = oImg.getAttribute("realImg");//2.把真实图片地址赋给图片对象的Src属性,让其在后台加载
+            tempImg.onload = function(){//3.加载成功时触发
+                oImg.src = this.src;//4.把真实的图片的地址赋给img的src属性
+                oImg.loaded = true;//避免重复加载
+                tempImg = null;//释放内存
+
+            };
+            tempImg.onerror = function(){//加载错误时触发
+                oImg.loaded = true;
+                oImg.src = "img2/error.jpg";
+            }
+        }
+
+    }
+</script>

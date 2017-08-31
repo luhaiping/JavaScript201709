@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            background: #ccc;
+            text-align: center;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div>
+<img src="img2/default.gif"  realImg = "img2/4.jpg" />
+</div>
+</body>
+</html>
+<script>
+    //首屏相对于其他屏图片少个条件判断
+    var oImg = document.getElementsByTagName('img')[0];
+    window.setTimeout(function(){
+        var tempImg = new Image();
+        tempImg.src = oImg.getAttribute("realImg");
+        tempImg.onload = function(){
+            oImg.src = this.src;
+            tempImg = null;
+        };
+        tempImg.onerror = function(){
+            oImg.src = "img2/error.jpg";
+        }
+
+    },2000)
+</script>
