@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 200px;
+            height: 200px;
+            border:10px solid  red;
+            padding: 10px;
+            overflow: hidden;/*overflow-x:auto横向滚动条 overflow-y:auto纵向滚动条 overflow: auto;横向和纵向内容超出容器时出现滚动*/
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    《锦衣》这个文学剧本在2014年的时候写好的。早在2000年的时候，有一次我在澳大利亚演讲时曾使用过“锦衣”这个素材，因为这是我童年记忆中印象非常深刻的一个故事。这个故事是我母亲跟我讲的：有一位地主家的姑娘待字闺中，她母亲却经常在半夜听到这姑娘闺房中传出男女谈笑的声音，于是她母亲跑来问她女儿这是咋回事？女儿告诉母亲说，一到深夜，就有一个年轻帅气的小伙子来和她幽会，他穿着一身金光闪闪的衣服。母亲对她说这必是妖孽，要她在这小伙子下次来的时候把他的衣服藏起来。女儿听了母亲的话后，真的把小伙子的锦衣藏到了一个柜子里，后来小伙子很无奈地在天明时分走了。第二天，这姑娘打开衣柜一看，柜子里一地鸡毛。
+</div>
+<script>
+    var oDiv = document.getElementById("div1");
+    //每隔一段时间,就累加scrollTop值
+    //定时器写成0时也就默认时间,谷歌5ms~6ms IE 10ms~13ms
+//    var h = 0;
+//    window.setInterval(function(){
+//        h = oDiv.scrollTop++;
+//        if(h == oDiv.scrollTop){
+//            oDiv.scrollTop = 0;
+//        }
+//        //如果到最大值(累加前和累加后值相同),则从头开始
+//    },20)
+//返回调用setTimeout()才能达到setInterval效果
+   function move(){
+       var h = 0;
+       h = oDiv.scrollTop++;
+       if(h == oDiv.scrollTop){
+           oDiv.scrollTop = 0;
+       }
+       //arguments.callee方法本身 ->move
+       window.setTimeout(arguments.callee,20);//利用递归的思想,来实现反复调用方法本身
+   }
+   move();
+
+  //setTimeout([function],[interval])隔一段时间 只运行一次,方法只运行一次
+  //setInterval([function],[interval])每隔一段时间,运行下方法,若不手动停下来则运行无数次
+
+
+
+</script>
+
+</body>
+</html>

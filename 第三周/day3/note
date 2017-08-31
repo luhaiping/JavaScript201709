@@ -1,0 +1,55 @@
+1.js盒子模型:
+    1)client系列:
+      clientWidth:width+padding(左右)
+      clientHeight:height+padding(上下)
+      clientLeft:左边框
+      clientTop:上边框
+
+    2)offset系列
+      offsetWidth:width+padding(左右)+border(左右)=clientWidth+border(左右)
+      offsetHeight:height+padding(上下)+border(上下)=clientHeight+border(上下)
+
+      offsetLeft:左偏移
+      offsetTop:上偏移
+      offsetParent:参照物
+
+      默认情况下,是相对于body进行偏移
+      修改参照物:position:absolute|relative|fixed
+      最终找最近的已经定位的祖先元素
+      需求:不管参照物是谁,求出当前元素距离body的偏移 ->封装offset(ele)
+
+    3)scroll系列
+      scrollWidth:约等于真实内容的宽度(包含溢出的内容)+左padding
+      scrollHeight:约等于真实内容的高度(包含溢出的内容)+上padding
+      "约等于":1.同一个浏览器,是否设置overflow属性,最终结果不一样
+              2.不同的浏览器scrollWidth/scrollHeight值不一样
+
+      scrollLeft:横向滚动条卷去的内容
+      scrollTop:纵向滚动条卷去的内容
+
+2.获取任意的css样式
+ 1)window.getComputedStyle(ele,null)->方法,返回值:css样式的集合
+ 2)ele.currentStyle->属性  结果->css样式的集合
+ 3)升级1:width|height|padding|margin|left|right|bottom|top ....这些属性获取的结果类似于100px(左边是数值右边单位),把它的单位去掉并且转换成数类型,若不是这种结果还是原值返回
+ 4)升级2  IE6-8浏览器获取值和起作用值不是一个,在IE下得去filter的值
+ ->alpha(opacity =70)->把这个数值70获取再除以100返回,得到和opacity结果一样的值
+
+3.处理浏览器兼容
+ 1)属性的方式
+  1.window.getComputedStyle
+  2."getComputedStyle" in window
+ 2)检测数据类型
+   typeof getComputedStyle =="function";
+   arry instanceof Array ->精确的检测出数据类型
+ 3)浏览器信息检测-IE浏览器
+   window.navigator.userAgent.indexOf("MSIE 8.0");
+   /MSIE [6-8]\.0/.test(navigator.userAgent)
+ 4)try...catch(e)... ->可以捕获异常信息,从而按照另外一种方式处理
+
+4.scrollLeft/scrollTop
+  scrollTop 纵向滚动条卷出去的高度 ->内容卷出去的高度
+  scrollLeft 横向滚动条卷出去的宽度->内容卷出去的宽度
+  scrollTop和scrollLeft 是13个属性中唯一的能写的两个属性,有最大值和最小值
+  scrollTop最小值是0
+  scrollTop最大值指内容能卷出去的最大高度
+  scrollTop=真实高度-一屏高度 = oDiv.scrollHeight-oDiv.clientHeight

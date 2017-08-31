@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            color: red;
+            font-size: 30px;
+            opacity: 0.5;
+            filter: alpha(opacity = 50);
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰培训</div>
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    function getCss(ele,attr){
+        var res = null;
+        if(typeof getComputedStyle =="function"){
+            res = window.getComputedStyle(ele,null)[attr];
+        }else{
+            if(attr=="opacity"){
+                //1.获取的是filter属性
+                res = ele.currentStyle.filter;//alpha(opacity =70);
+                var reg = /^alpha\(opacity\s*=\s*(\d+(?:\.\d+)?)\)$/;
+                //2.若匹配则把有效数部分取出来并除以100转化成0-1之间的小数
+                //若不匹配则返回1
+                //test ,exec运行之后能直接通过RegExp.$1这种方式获取分组里的内容
+                res = reg.test(res) ? RegExp.$1/100 : 1;
+
+            }else{
+                res =  ele.currentStyle[attr];
+            }
+
+        }
+        var reg = /^[+-]?(?:\d+(?:\.\d+)?)(?:px|pt|rem|em)?$/i;
+        return  reg.test(res)?parseFloat(res):res;
+    }
+    console.log(getCss(oDiv, "opacity"));//->0.7
+
+
+</script>
