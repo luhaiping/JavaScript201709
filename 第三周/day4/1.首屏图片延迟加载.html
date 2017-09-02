@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<img src="img2/default.gif" realImg = "img2/31.jpg"/>
+</body>
+</html>
+<script>
+    //首屏图片加载,等首屏其他内容加载完(自己设定一个时间)之后,再把真实的图片显示出来
+    var oImg = document.getElementsByTagName("img")[0];
+    window.setTimeout(function(){
+        var tempImg = new Image();
+        tempImg.src = oImg.getAttribute("realImg");
+        tempImg.onload = function(){
+            oImg.src = this.src;
+            tempImg = null;
+        }
+        tempImg.onerror = function(){
+            oImg.src= "img2/error.gif";
+        }
+    },3000);
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0
+        }
+        html,body{
+            height: 500%;
+            background: -webkit-linear-gradient(top,palegreen,plum,palegoldenrod,paleturquoise,peachpuff,peru);/*线性渐变*/
+            background: linear-gradient(top,palegreen,plum,palegoldenrod,paleturquoise,peachpuff,peru);
+        }
+        #top{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background: palegreen;
+            border-radius: 50%;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            text-align: center;
+            font-size: 30px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="top">top</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var oTop = document.getElementById("top");
+    function btnDisplay(){
+        var clientH = utils.win("clientHeight");
+        var scrollT = utils.win("scrollTop");
+        if(scrollT>clientH){
+            oTop.style.display = "block";
+        }else{
+            oTop.style.display = "none";
+        }
+    };
+    window.onscroll = btnDisplay;//方法名即代表方法本身
+    oTop.onclick = function(){
+        //规定好时间,在一定时间内完成总距离,每隔一段时间完成固定的步长
+        //总时间 duration 3000ms
+        //总距离 target utils.win("scrollTop")
+        //间隔时间 interval  15ms
+        //step 运动的次数(走的步数) = 总时间/间隔时间
+        //->走的步数*step(每步走的距离)  = 总的距离
+        //->总时间/间隔时间 *step = 总距离  step = 间隔时间/总时间*总距离
+        //->step = interval/duration*target
+        this.style.display = "none";
+        //把滚轮事件绑定的行为清除
+        window.onscroll = null;
+        var duration = 3000;//总时间
+        var interval = 15;//间隔时间
+        var target = utils.win("scrollTop");
+        var step = interval/duration*target;
+        var timer = window.setInterval(function(){
+            //每隔15ms往回走step距离,获取下上次走完的距离-step
+            var curTop = utils.win("scrollTop");//上次走完的距离
+            if(curTop == 0){//滚动条到达顶端
+                window.clearInterval(timer);
+                timer = null;
+                window.onscroll = btnDisplay;//重新绑定上这个行为
+            }
+            curTop-=step;
+            utils.win("scrollTop",curTop);
+        },interval)
+
+    }
+</script>

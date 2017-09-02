@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 1000px"></div>
+<img src="img2/default.gif" realImg ="img2/1.jpg"/>
+<img src="img2/default.gif" realImg ="img2/2.jpg"/>
+<img src="img2/default.gif" realImg ="img2/3.jpg"/>
+<img src="img2/default.gif" realImg ="img2/4.jpg"/>
+<img src="img2/default.gif" realImg ="img2/5.jpg"/>
+<img src="img2/default.gif" realImg ="img2/6.jpg"/>
+<img src="img2/default.gif" realImg ="img2/7.jpg"/>
+<img src="img2/default.gif" realImg ="img2/8.jpg"/>
+<img src="img2/default.gif" realImg ="img2/9.jpg"/>
+<img src="img2/default.gif" realImg ="img2/10.jpg"/>
+
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+var oImgs = document.getElementsByTagName("img");
+window.onscroll = function(){
+    //2.浏览器底边框到body的上偏移
+    var winT = utils.win("clientHeight")+utils.win("scrollTop");
+    //1.每张图片底边框到body的上偏移
+     for(var i =0;i<oImgs.length;i++){
+         var oImg = oImgs[i];
+         var imgT = utils.offset(oImg).t+oImg.offsetHeight;
+         //3.对每张图片进行条件判断
+         if(winT>=imgT){
+            //4.对这图片进行显示图片的操作
+             lazyImg(oImg);//实参 一定要放在闭包里,否则获取的永远是最后一个img
+         }
+     }
+};
+    function lazyImg(oImg){//形参
+        if(oImg.loaded) return;
+        var tempImg = new Image();
+        tempImg.src = oImg.getAttribute("realImg");
+        tempImg.onload = function(){
+            oImg.src = this.src;
+            tempImg = null;//释放内存
+            oImg.loaded = true;//避免重复加载
+        };
+        tempImg.onerror = function(){
+            oImg.src = "img2/error.gif";
+            oImg.loaded  = true;
+        };
+    }
+</script>

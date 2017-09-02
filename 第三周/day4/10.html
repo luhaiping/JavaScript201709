@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="wrap">
+    <div class="  box1 box2 box3 box4  ">111</div>
+    <div class="box1 box2 box3 box11">222</div>
+    <div class="box1 box2">333</div>
+    <div class="box1">444</div>
+</div>
+</body>
+</html>
+<script>
+   //获取wrap下所有类名是box1的元素?
+    var wrap = document.getElementById("wrap");
+    var eles = wrap.getElementsByTagName("div");
+    var ary = []
+    //var reg = /(^| +)box2( +|$)/g;
+    var curClass = "box2";
+    var reg =new RegExp("(^| +)"+curClass+"( +|$)");//不能加g,加g会修改lastIndex
+    for(var i = 0;i<eles.length;i++){
+        if(reg.test(eles[i].className)){
+            ary.push(eles[i]);
+        }
+    }
+    console.log(ary);
+
+
+
+</script>

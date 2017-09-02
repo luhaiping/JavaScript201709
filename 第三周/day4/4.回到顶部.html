@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0
+    }
+    html,body{
+        height: 500%;
+        background: -webkit-linear-gradient(top,palegreen,plum,palegoldenrod,paleturquoise,peachpuff,peru);/*线性渐变*/
+        background: linear-gradient(top,palegreen,plum,palegoldenrod,paleturquoise,peachpuff,peru);
+    }
+    #top{
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        background: palegreen;
+        border-radius: 50%;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        text-align: center;
+        font-size: 30px;
+        cursor: pointer;
+        display: none;
+    }
+</style>
+</head>
+<body>
+<div id="top">top</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    //top按钮显示或隐藏也是在滚轮事件下发生
+    var oTop = document.getElementById("top");
+
+    window.onscroll = function(){
+        //滚动条卷出去的高度>一屏的高度 时 显示top按钮,否则就隐藏
+          var scrollT = utils.win("scrollTop");
+          var clinetH = utils.win("clientHeight");
+        if(scrollT>clinetH){
+            oTop.style.display = "block";
+        }else{
+            oTop.style.display = "none";
+        }
+    }
+    oTop.onclick = function(){
+        //每隔一段时间,滚动条往上走固定的步长 (匀速运动)
+        //总时间 5000ms,间隔时间 15ms,总路程 scrollTop  单步长step
+        //间隔时间(interval)/总时间(duration) = 单步长(step)/总路程(target)
+        //走的步数 = 总时间/间隔时间 总路程 = 单步长*走的步数
+        //总路程 = 单步长*总时间/间隔时间
+        //单步长 = 间隔时间/总时间*总路程
+        //step = interval/duration*target;
+
+        var duration = 1000;//总时间
+        var interval = 15;//间隔时间
+        var target = utils.win("scrollTop");//页面卷出去的高度
+        var step = interval/duration*target;//单步长
+        //每隔一段时间,往回走单步长 =>上次走完的路程 - 单步长
+        var timer = window.setInterval(function(){
+            //每次重新获取下scrollTop值相当于获取的是上次走完的路程
+            var curTop = utils.win("scrollTop");
+            if(curTop==0){
+                window.clearInterval(timer);
+                timer = null;
+            }
+            curTop-=step;//仅仅改变的是变量的值,没有改变scrollTop值,所以滚动条不会发生改变
+            utils.win("scrollTop",curTop);
+        },interval);
+
+
+
+    }
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 1000px"></div>
+<img src="img2/default.gif" realImg = "img2/3.jpg"/>
+<div style="height: 1000px"></div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var oImg = document.getElementsByTagName("img")[0];
+    var imgT = utils.offset(oImg).t+oImg.offsetHeight;
+    window.onscroll = function(){//滚动条发生改变时,则会触发这个事件
+        var winT = utils.win("clientHeight")+utils.win("scrollTop");
+        if(winT>=imgT){
+            //执行显示图片的步骤
+           lazyImg();
+        }
+
+    }
+    function lazyImg(){
+        if(oImg.loaded) return;
+        var tempImg = new Image();
+        tempImg.src = oImg.getAttribute("realImg");
+        tempImg.onload = function(){
+            oImg.src = this.src;
+            oImg.loaded = true;
+        };
+        tempImg.onerror = function(){
+            oImg.src = "img2/error.gif";
+            oImg.loaded = true;
+        }
+    }
+
+</script>

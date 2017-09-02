@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="box">
+    <div class="  box1 box2 box3 box4  ">111</div>
+    <div class="box1 box2 box3">222</div>
+    <div class="box1 box2">333</div>
+    <div class="box1">444</div>
+</div>
+</body>
+</html>
+<script>
+    var oBox = document.getElementById("box");
+    var oDivs = oBox.getElementsByClassName(" box1 box2 box4  ");
+    //一个一个类名去查找,拥有一个类名元素查找完后再从这个结果中去查找有另一个类名的元素.....
+    /**
+     * 查找parent下,类名是strClass(形参) 的所有的元素
+     * @param strClass 类名:可以是一个,可以是多个
+     * @param parent 范围(context),默认是document
+     * @return 是把匹配元素放在数组里返回
+     */
+    function getByClass(strClass,parent){
+        parent = parent||document;
+        //1.拆分传进来的类名,把拆分后的类名放入数组中
+        //var reg = /(^ +| +$)/g; //->去掉首尾空格
+        var aryClass = strClass.replace(/(^ +)|( +$)/g,"").split(/\s+/g);
+       //2.获取parent下所有的元素
+        var eles = parent.getElementsByTagName('*');
+        //3.一个一个的取出所有的类名,分别查看所有的元素是否有这个类名
+        for(var i = 0;i<aryClass.length;i++){
+            var curClass = aryClass[i];//box1
+            var ary = [];
+            var reg = new RegExp("(^| +)"+curClass+"( +|$)");
+            //4.把所有的元素获取到
+            for(var k = 0;k<eles.length;k++){
+                //5.用curClass和所有元素的类名匹配,看是否有这个
+                if(reg.test(eles[k].className)){
+                    ary.push(eles[k]);
+                }
+            }
+            //下次查找时从这次保存里数组找出匹配另一个类名的一些元素
+            eles = ary;
+        }
+        return eles;
+    }
+    console.log(getByClass("    box3    ", oBox));
+    //getByClass("box1 ");
+</script>

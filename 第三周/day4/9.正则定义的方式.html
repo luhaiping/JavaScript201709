@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var name = "zhufeng";
+    //var reg = /\d+name+\d+/g;//字面量的方式不能表示变量,只能表示name字符本身
+    var reg = new RegExp("\\d+"+name+"+\\d+","g");//实例创建的方式
+    console.log(reg.test("2016zhufeng2017"));
+    //reg.test("2016zhufeng2017");
+
+    //区别:1.实例创建的方式需要转义,要写两个\
+    //     2.字面量的方式不能代表变量,实例创建的方式可以
+</script>
+
+</body>
+</html>
