@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="wrap">
+    <div class="  box1 box2 box3 box4  "></div>
+    <div class="box1 box2 box3"></div>
+    <div class="box2 box1 "></div>
+    <div class="box1"></div>
+    <div class=" box1"></div>
+    <div class="  box1 "></div>
+    <p class="box11 aa"></p>
+    <span class="1box12"></span>
+</div>
+
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    function byOneClass(strClass, context) {
+        if (typeof document.getElementsByClassName == "function") {//浏览器支持这个方法的方式
+            return utils.listToArray(context.getElementsByClassName(strClass));//元素集合
+        }
+        context = context || document;
+        var eles = context.getElementsByTagName("*");
+        var ary = [];
+        var reg = new RegExp("(^| +)" + strClass + "( +|$)");//要么边界是它自己,要么边界是一到多个空格
+        for (var i = 0; i < eles.length; i++) {
+            if (reg.test(eles[i].className)) {
+                ary[ary.length] = eles[i];
+            }
+        }
+        return ary;
+    }
+    var wrap = document.getElementById("wrap");
+    byOneClass("box1", wrap);
+</script>

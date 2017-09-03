@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            opacity: 0.5;
+            filter:alpha(opacity=50);
+            position: absolute;
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">珠峰</div>
+
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    var oDiv  = document.getElementById("div1");
+    /*oDiv.style.width = "200px";
+    oDiv.style.color = "blue";
+    oDiv.style.cssFloat = "right";//cssFloat标准浏览器  styleFloat IE浏览器
+    oDiv.style.styleFloat = "right";
+    oDiv.style.opacity = "0.8";
+    oDiv.style.filter = "alpha(opacity = 80)";
+    console.dir(oDiv);*/
+//    var oA  = document.getElementById("oA");
+//    oDiv.style.height = 2*oA.offsetHeight+"px";
+    /**
+     * 设置CSS样式
+     * @param ele 当前元素
+     * @param attr css属性
+     * @param value css属性值
+     */
+    function setCss(ele,attr,value){
+        //1.对浮动的处理
+        if(attr=="float"){
+            ele.style.cssFloat = value;
+            ele.style.styleFloat = value;
+            return;
+        }
+        //2.对透明度处理
+        if(attr =="opacity"){
+            ele.style.opacity = value;
+            ele.style.filter = "alpha(opacity = "+value*100+")";
+            return;
+        }
+
+        //3.对单位的处理 width|height|margin|padding|right|left|top|bottom|marginLeft|paddingRight
+        var reg = /^width|height|((margin|padding)?|(right|left|top|bottom)?)$/i;
+        if(reg.test(attr)){
+            //判断属性值value是否添加单位,若没有,则添加
+            if(!isNaN(value)){//是有效数才添加单位
+                value  = value+"px";
+            }
+        }
+        ele.style[attr] = value;
+    }
+
+    /**
+     *
+     * @param ele 当前元素
+     * @param option 对象类型
+     */
+    function setGroup(ele,option){
+        if(!(Object.prototype.toString.call(option) == "[object Object]")) return;
+        for(var attr in option){
+            setCss(ele,attr,option[attr]);
+        }
+    }
+//    getCss(oDiv,"color")
+//    setCss(oDiv,'margin',"20px");
+//    setGroup(oDiv,{
+//        width:300,
+//        height:400,
+//        opacity:0.1,
+//        color:"pink"
+//    })
+
+//    utils.css(oDiv,{
+//        width:300,
+//        height:400,
+//        opacity:0.1,
+//        color:"pink"
+//    });
+//    console.log(utils.css(oDiv, "width"));
+//    utils.css(oDiv,"width",800)
+
+</script>

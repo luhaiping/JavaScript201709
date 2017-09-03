@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+getComputedStyle 直接操作当作的是变量,若没有则会报错
+ 直接操作会报错->if(getComputedStyle) typeof getComputedStyle typeof getElementsByClassName
+ 属性的写法:
+window.getComputedStyle 当成属性操作,若没有则是undefined,不会报错
+document.getElementsByClassName 若没有则是undefined
+Array.prototype.map
+
+->  "getComputedStyle" in window
+->  "getElementsByClassName" in document
+->  "map" in Array.prototype
+
+->typeof 相对于属性检测,typeof检测更加严格,不仅仅存在,还得是function类型的
+例如typeof document.getElementsByClassName =="function"
+typeof更多用于检测基本类型的数据
+
+->对对象类型的细分类型的检测(缺陷:必须得知道是什么细分类,例如Array,RegExp,Date) instanceof   ary instanceof Array 前面的对象在后面类的原型链上,则就返回为true
+
+->若不知道对象的细分类型 则用最精准的检测数据类型的方式
+Object.prototype.toString.call(ele);
+Object.prototype.toString.call(null) ->"[object Null]"
+Object.prototype.toString.call(undefined) ->"[object Undefined]"
+Object.prototype.toString.call(5) ->"[object Number]"
+Object.prototype.toString.call("a") ->"[object String]"
+Object.prototype.toString.call(true) ->"[object Boolean]";
+Object.prototype.toString.call(/\d/) ->"[object RegExp]"
+Object.prototype.toString.call([1]) ->"[object Array]"
+Object.prototype.toString.call({})->"[object Object]"
+
+function Person(){
+}
+var p = new Person();
+
+//自定义类检测出结果Object.prototype.toString.call(p)-> "[object Object]"
+
+<script>
+
+    if(window.getComputedStyle){
+        console.log(1);
+    }else{
+        console.log(2);
+    }
+
+</script>
+
+</body>
+</html>

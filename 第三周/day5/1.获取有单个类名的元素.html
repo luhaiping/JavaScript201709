@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="wrap">
+    <div class="  box1 box2 box3 box4  "></div>
+    <div class="box1 box2 box3"></div>
+    <div class="box2 box1 "></div>
+    <div class="box1"></div>
+    <div class=" box1"></div>
+    <div class="  box1 "></div>
+    <p class="box11 aa"></p>
+    <span class="1box12"></span>
+</div>
+</body>
+</html>
+<script>
+    //需求:把有类名是box1所有的元素查找出来并数组中返回
+    /***
+     *
+     * @param strClass  一个类名
+     * @param context   表示范围(可选) 默认值document
+     */
+    function byOneClass(strClass,context){
+        context = context||document;
+        //1.获取context下所有的元素
+        var eles = context.getElementsByTagName("*");
+        var ary = [];
+        //2.获取到每个元素的类名
+        //var reg = /(^| +)box1( +|$)/;//把类名在字符串中存在的多种情况都考虑到
+        //var reg = /(^| +)strClass( +|$)/;->不行的,strClass是代表字符本身
+        //->若包含变量,则用实例化的方式定义正则
+        var reg = new RegExp("(^| +)"+strClass+"( +|$)");
+        for(var  i = 0;i<eles.length;i++){
+            //3.若有这个类名则把这个元素放入数组中
+            if(reg.test(eles[i].className)){
+                ary[ary.length] = eles[i];
+            }
+        }
+        return ary;
+
+    }
+
+    var wrap = document.getElementById("wrap");
+    byOneClass("box1",wrap);
+
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="wrap">
+    <div class="  box1 box2 box3 box4  "></div>
+    <div class="box1 box2 box3"></div>
+    <div class="box2 box1 "></div>
+    <div class="box1"></div>
+    <div class=" box1"></div>
+    <div class="  box1 "></div>
+    <p class="box11 aa"></p>
+    <span class="1box12"></span>
+</div>
+</body>
+</html>
+<script src="utils.js"></script>
+<script>
+    /**
+     *
+     * @param strClass 一个或多个类名
+     * @param context  范围(上下文) 可选 默认是document
+     */
+    //把多个类名拆分,一个一个类名的处理
+    function getByClass(strClass,context){
+        context = context||document;
+        //var reg = /(^ +)|( +$)/g;
+
+        var eles = context.getElementsByTagName("*");
+        var reg = /^ +| +$/g;//去掉首尾空格
+        var aryClass = strClass.replace(reg,"").split(/ +/g);//放了所有类名
+        for(var j = 0;j<aryClass.length;j++){//所有的类名
+            var curClass = aryClass[j];//每个类名
+            var ary = [];//只是保存当次匹配到的元素
+            var reg = new RegExp("(^| +)"+curClass+"( +|$)");
+            for(var i = 0;i<eles.length;i++){//所有的元素
+                if(reg.test(eles[i].className)){
+                    ary.push(eles[i]);
+                }
+            }
+            eles = ary;//总是从上次结果中查找,所以每次结果都得保存下来
+        }
+        return eles;
+    }
+    var wrap = document.getElementById("wrap");
+    //console.log(getByClass(" box3 box4 box1 ", wrap));
+    //console.log(utils.getByClass("box3 box4 box1", wrap));
+    var div2 = wrap.getElementsByTagName("div")[1];
+    //console.log(utils.hasClass(div2, "box4"));
+   // utils.addClass(div2,"aa")
+    utils.removeClass(div2,"box2 box3")
+
+
+</script>

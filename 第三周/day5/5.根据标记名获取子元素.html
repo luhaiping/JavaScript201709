@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box *{
+            font-size: 30px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div>111</div>
+        <div>222</div>
+        <p>333</p>
+        <p>444</p>
+    </div>
+</body>
+</html>
+<script>
+    /**
+     *
+     * @param context 上下文
+     * @param tagName 标记名,必须是字符串类型
+     * @return ary  查找到的内容放入数组中返回
+     */
+    function getChildren(context,tagName){
+        var ary = [];
+        var eles = context.getElementsByTagName("*");//获取所有的子元素
+        //1.检测参数是否正确
+        if(typeof tagName =="string"){
+            for(var i = 0;i<eles.length;i++){
+                var ele = eles[i];
+                //判断元素的标记名是否和传进来的参数相同
+                if(ele.nodeName.toLowerCase() == tagName.toLowerCase()){
+                    ary.push(ele);
+                }
+            }
+
+        }else{
+            //把所有的子元素取出放入数组中返回
+            for(var i = 0;i<eles.length;i++){
+                ary.push(eles[i]);
+            }
+        }
+        return ary;
+    }
+    var oBox = document.getElementById("box");
+    console.log(getChildren(oBox,"a"));
+
+</script>

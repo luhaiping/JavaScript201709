@@ -1,0 +1,44 @@
+操作类名:
+getByClass
+思路:1.先把类名首尾空格去掉,然后按照一到多个空格拆分成数组里的每一项
+    2.把指定范围下所有元素的类名获取到
+    3.拿每个类名跟所有元素的类名匹配下
+      第一次没有问题
+      从第二次开始就有可能出现重复元素
+      如何解决?
+      每次应该都是从上次结果中再查找出有另一个类名的一些元素
+      第一次时,上次的结果->获取到的所有的元素
+      第二次时,上次的结果->第一次找到的元素
+      第三次时,上次的结果->第二次找到的元素
+
+hasClass  判断是否有类名?
+addClass  添加类名
+removeClass 删除类名
+
+节点属性:
+getChildren("div",context);获取某个元素下所有标记名是div的元素
+prev(ele) 获取ele的相邻哥哥元素节点
+prevAll(ele) 获取ele所有的哥哥元素节点
+next(ele)获取ele的相邻弟弟元素节点
+nextAll(ele) 获取ele所有的弟弟元素节点
+siblings(ele) 获取ele所有的兄弟元素节点
+firstChild(ele) 获取ele的第一个子元素节点
+lastChild(ele) 获取ele的最后一个子元素节点
+index(ele) 获取ele的索引
+
+动态操作:
+append(parent,ele); 添加到parent内容的末尾位置
+prepend(parent,ele); 添加parent内容的开始位置
+insertBefore(newEle,oldEle);插入到某个元素的前面
+insertAfter(newEle,oldEle);插入到某个元素的后面
+
+操作css样式:
+getCss(ele,attr) 获取某个css样式
+setCss(ele,attr,value) 设置某个css样式
+setGroup(ele,opt) 批量设置css样式
+css()  css全家桶  自动根据参数个数选择上面的方法
+
+
+
+
+
