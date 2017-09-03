@@ -28,7 +28,7 @@
      */
     function getChildren(context,tagName){
         var ary = [];
-        var eles = context.getElementsByTagName("*");//获取所有的子元素
+        var eles = context.getElementsByTagName("*");
         //1.检测参数是否正确
         if(typeof tagName =="string"){
             for(var i = 0;i<eles.length;i++){
@@ -40,7 +40,7 @@
             }
 
         }else{
-            //把所有的子元素取出放入数组中返回
+            //把所有的元素取出放入数组中返回
             for(var i = 0;i<eles.length;i++){
                 ary.push(eles[i]);
             }
