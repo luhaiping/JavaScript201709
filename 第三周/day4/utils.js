@@ -73,7 +73,7 @@ var utils = (function () {
         }
         //1.对单位的处理
         //若获取值是->左边是数值,右边是单位,则把单位去掉并转化成数类型
-        var reg = /^[+-](?:\d+(?:\.\d+)?)(?:px|rem|pt|em)?$/i;
+        var reg = /^[+-]?(?:\d+(?:\.\d+)?)(?:px|rem|pt|em)?$/i;
         return reg.test(res)?parseFloat(res):res;
     }
 
