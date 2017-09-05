@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            overflow-x: hidden;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="js/utils.js"></script>
+<script>
+    //配合定时器,每隔一段时间,运动固定的步长(速度)
+    var oDiv = document.getElementById("div1");
+    var target = utils.win("clientWidth")-oDiv.offsetWidth;
+    var timer = window.setInterval(function(){
+        var curL = utils.css(oDiv,"left");//获取样式
+        if(curL>=target){
+            clearInterval(timer);
+            timer = null;
+            utils.css(oDiv,"left",target);//设置样式
+            return;
+        }
+        curL+=10;
+        utils.css(oDiv,"left",curL);
+    },13)
+</script>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:1060px ;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        #box ul{
+            width: 200px;
+            margin: 0 5px;
+            list-style: none;
+            float: left;
+        }
+        #box ul li{
+            margin-bottom: 10px;
+            background:#ccc url(img/default.gif) no-repeat center center;
+        }
+        #box ul li img{
+            width: 100%;
+            border:0;
+            display: none;
+        }
+        #top{
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+            background: palegreen;
+            color: #fff;
+            font-size: 30px;
+            text-align: center;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<div id="top">top</div>
+</body>
+</html>
+<script src="js/utils.js"></script>
+<script>
+    var oBox = document.getElementById("box");
+    var oUl = oBox.getElementsByTagName("ul");
+    var oImgs = oBox.getElementsByTagName("img");
+    var data = [
+        {"imgSrc":"img/1.jpg","text":111},
+        {"imgSrc":"img/2.jpg","text":222},
+        {"imgSrc":"img/3.jpg"},
+        {"imgSrc":"img/4.jpg"},
+        {"imgSrc":"img/5.jpg"},
+        {"imgSrc":"img/6.jpg"},
+        {"imgSrc":"img/7.jpg"},
+        {"imgSrc":"img/8.jpg"},
+        {"imgSrc":"img/9.jpg"},
+        {"imgSrc":"img/10.jpg"}
+    ]
+    function createLi(){
+        var oLi = document.createElement("li");
+        //随机的获取这10张图片的索引,通过索引再取出图片
+        //索引0-9  data[utils.rnd(0,9)].imgSrc
+        oLi.innerHTML = "<img src='' realImg='"+data[utils.rnd(0,9)].imgSrc+"'>";
+        oLi.style.height = utils.rnd(80,200)+"px";
+        return oLi;
+    }
+    function li50(){
+        var aUl = utils.listToArray(oUl);
+        //往最短的ul里添加内容
+        for(var i = 0;i<50;i++){
+            //1.先排序ul(因为每次添加完li标签后,ul的高度都会发生改变)
+            aUl.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            });
+            //2.创建li标签
+            var oLi = createLi();
+
+            //3.往最短的ul标签里添加内容
+            aUl[0].appendChild(oLi);
+        }
+    }
+    li50();
+    window.setTimeout(showImg,1000);
+    function showImg(){
+        var winT = utils.win("clientHeight")+utils.win('scrollTop');
+        for(var i = 0;i<oImgs.length;i++){
+            var oImg = oImgs[i];
+            var imgT = utils.offset(oImg).t+oImg.offsetHeight;
+            if(winT>=imgT){
+                lazyImg(oImg);
+            }
+
+        }
+    }
+    function lazyImg(oImg){
+        if(oImg.loaded) return;
+        var tempImg = new Image();
+        tempImg.src = oImg.getAttribute("realImg");
+        tempImg.onload = function(){
+            oImg.src = this.src;
+            oImg.style.display = "block";
+            tempImg  = null;
+            oImg.loaded  = true;//避免重复加载
+            oImg.parentNode.style.height =oImg.offsetHeight+"px";//为了防止图片变形
+        };
+        tempImg.onerror = function(){
+            oImg.loaded = true;
+        }
+    }
+
+    function btnDisplay(){
+        //控制top按钮显示和隐藏
+        var scrollT = utils.win("scrollTop");
+        var clientT = utils.win("clientHeight");
+        if(scrollT>=clientT){
+            oTop.style.display = "block";
+        }else{
+            oTop.style.display = "none";
+        }
+    }
+    function iscroll(){
+            btnDisplay();
+            var scrollBottom = utils.win("scrollHeight");//整个文档的高度
+            if(utils.win("clientHeight")+utils.win("scrollTop")>scrollBottom-300){//无限创建li
+                li50();
+                showImg();//其他屏执行延迟加载
+            }
+
+    }
+    var oTop = document.getElementById("top");
+    window.onscroll = iscroll;
+    oTop.onclick = function(){
+        this.style.display = "none";
+        window.onscroll = null;
+        var duration = 1000;
+        var target = utils.win("scrollTop");
+        var interval = 17;
+        var step = interval/duration*target;
+        var timer = window.setInterval(function(){
+            //每次先获取下现在滚动条到顶部的距离
+            var curT = utils.win("scrollTop");
+            if(curT==0){
+                clearInterval(timer);
+                window.onscroll = iscroll;
+            }
+            curT-=step;
+            utils.win("scrollTop",curT);
+        },interval)
+    }
+</script>
