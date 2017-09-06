@@ -251,5 +251,5 @@
         }
         ele.timer = window.setInterval(_move,15);
     }
-    window.animte = move;
+    window.animate = move;
 })()
