@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script src="js/utils.js"></script>
+<script>
+    //限时的匀速运动,在规定的时间内,按照指定的步长,运动到目的地
+    //已经走的时间 times
+    //总时间  duration
+    //起始位置 begin
+    //目标位置 target
+    //总路程 target-begin
+    //已走的路程 times/duration*change
+    //当前位置 times/duration*change+begin
+    function Linear(t,b,c,d){
+        return t/d*c+b;
+    }
+    function move(ele,attr,duration,target){
+        clearInterval(ele.timer);
+        var times = 0;
+        var begin = utils.css(ele,attr);
+        var change = target - begin;
+        function _move(){
+            times+=15;//已走的时间
+            //边界判断
+            if(times>=duration){
+                clearInterval(ele.timer);
+                ele.timer = null;
+                utils.css(ele,attr,target);
+                return;
+            }
+            var curPos = Linear(times,begin,change,duration);
+            utils.css(ele,attr,curPos);
+        }
+        ele.timer = window.setInterval(_move,15);
+
+    }
+    var oDiv = document.getElementById("div1");
+//    oDiv.onclick = function(){
+//        move(oDiv,"top",1000,600)
+//    }
+    move(oDiv,"opacity",2000,1)
+
+
+
+</script>
