@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+//    jQuery.extend({ //跟jQuery类有关->核心方法(私有的方法)
+//        aa:function(){
+//            console.log("珠峰第九期")
+//        }
+//    })
+//    $.aa();
+//    jQuery.fn.extend({ //跟jQuery原型,实例有关,公有的方法
+//        changeTab:function(){
+//            console.log("这是封装好的选项卡")
+//        }
+//    })
+//    $().changeTab();
+    var resData = null;
+    $.ajax({
+        type:"get",//post,delete,put
+        async:false,//true 异步 false 同步
+        url:"json/banner.json",
+        dataType:"json",//响应的数据格式处理 "html","text","jsonp"
+        beforeSend:function(){//发送前做的事情
+
+        },
+        success:function(res){
+            resData = res;//json格式的对象
+        },
+        error:function(xhr,error){
+
+        },
+        complete:function(){//请求成功或失败后的回调函数
+
+        }
+    })
+
+</script>

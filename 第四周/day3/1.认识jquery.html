@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    //jquery 是原生js封装的前端类库
+    //jquery的版本
+    //1.xx.xx 兼容ie6-ie8
+    //2.xx.xx 不兼容ie6-ie8 精简版的jquery库(zepto.js移动端开发)
+    //3.xx.xx 不兼容ie6~ie8 完善版的jquery库 新增了一些api,摒弃了一些api
+
+    //jquery用法
+    //selector 选择器  context上下文,范围
+//    var jQuery = function( selector, context ) {
+//
+//        return new jQuery.fn.init( selector, context );
+//    }
+
+    //不用new运行构造函数,只需要运行jQuery()->jQuery类的实例(jquery对象)
+
+    window.jQuery = window.$ = jQuery;
+    //console.log(jQuery);
+   // console.log(jQuery("#div1"));//jquery对象
+
+</script>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li>111</li>
+        <li class="a1">22</li>
+        <p>0000</p>
+        <li>33</li>
+        <li>
+            <ul>
+                <li>444</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<p class="op">
+    <a href="###">珠峰培训</a>
+</p>
+<input type="text" value="xm" />
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    //链式写法 -返回的是个jquery的实例
+    $(".a1").next().css("color","red"); //相邻的弟弟元素节点 $(".a1+li")
+//    $(".a1+li").css('color',"red");
+    $(".a1").nextAll() //所有的弟弟元素节点 $(".a1~li")
+    $(".a1").prev().css({"background":"pink","font-size":"20px"})
+    $(".a1").prevAll()
+    $(".a1").parent();//父元素节点
+    console.log($(".a1").parents("div"));
+    console.log($(".a1").siblings().length);
+
+
+    //children() filter() find()
+    //children() 查找的是子元素
+    //filter() 统计查找
+    //find() 查找的是后代元素
+    $("#div1>ul").children("li");//->$("#div1>ul>li")
+    $("#div1>ul").filter(".a1");
+    console.log($("#div1>ul").find("li").length);
+
+    //jquery链式写法
+    //toggleClass()没有就添加,有就移除
+    $("#div1>ul").toggleClass("list").children("li").css("background",'orange');
+
+    //$(".op").html("<span>111</span>");//返回值是字符串
+    //$(".op").text()
+    //$(".op").append("<span>1111</span>")
+    //$(".op").prepend("<span>1111</span>")
+    //$("<span>1111</span>").prependTo(".op");
+
+    $("input[type='text']").val("xxxx");//用来获取表单元素的值
+
+    //尺寸
+    $("#div1").width();
+    $("#div1").height();
+    $("#div1").innerWidth();//clientWidth
+    $("#div1").innerHeight();//clientHeight
+    $("#div1").outerWidth();//offsetWidth
+    $("#div1").outerHeight();//offsetHeight
+    $("#div1").outerHeight(true);//offsetHeight+margin
+
+
+
+
+
+
+
+
+</script>

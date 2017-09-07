@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">11111111</div>
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+//    $("#div1").on("click",function(){
+////        console.log(this); 原生js对象
+//        $(this).css("background","green");
+//    })
+//
+//    $("#div1").on("mouseover",function(){
+//        $(this).stop().animate({width:400,height:500},1000)
+//    })
+
+//    $("#div1").on("click mouseover",function(e){//on绑定事件
+//        if(e.type=="click"){
+//            $(this).css("background","green");
+//        }else if(e.type=="mouseover"){
+//            $(this).stop().animate({width:400,height:500},1000)
+//        }
+//
+//    })
+//    $("#div1").off("click");//移除事件
+
+    $("#div1").one("click",function(){//只能点击一次
+       alert($(this).html());
+    })
+
+
+
+
+
+</script>

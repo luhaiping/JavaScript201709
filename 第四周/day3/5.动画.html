@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        input{
+            position: absolute;
+            left: 45%;
+        }
+        #div1{
+            width: 60px;
+            height: 60px;
+            background: red;
+            position: absolute;
+            left: 45%;
+            top: 600px;
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="操作"/>
+<div id="div1"></div>
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    $("input[type='button']").on("click",function(){
+        var $oDiv = $("#div1");
+//        if($oDiv.is(":visible")){//是否是显示的
+//            //$oDiv.hide(600);
+//            $oDiv.slideUp(600);//收起
+//        }else{
+//            //$oDiv.show(600);
+//            $oDiv.slideDown(600)//下拉
+//        }
+//        $oDiv.toggle(600)
+        //$oDiv.slideToggle(600);
+        //$oDiv.fadeTo('slow',0.3)
+        //自定义动画
+//        $oDiv.animate({
+//            top:600
+//        },1000,function(){
+//            this.style.backgroundColor="green";
+//        })
+//        $oDiv.stop().animate({//结束上一个动画效果,并且从当前位置执行另一个动画效果
+//            top:300
+//        },1000,function(){
+//            $oDiv.stop().animate({
+//                left:500
+//            },1000)
+//        })
+        $oDiv.slideUp(600).delay(1000).slideDown(600)//delay 延迟
+    })
+</script>

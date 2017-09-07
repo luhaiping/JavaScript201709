@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li class="a1 zhufenga1">111</li>
+        <p>0000</p>
+        <li class="peixun">222</li>
+        <li class="a1 zhufengpeixun a1">333</li>
+    </ul>
+</div>
+<div class="div2">
+    <p></p>
+</div>
+<div>
+    <p></p>
+    <span></span>
+</div>
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    /*( function( global, factory ) {
+
+        "use strict";
+
+
+    } )( window, function( window, noGlobal ) {
+
+        window.jQuery = window.$ = jQuery;
+    } );*/
+    //console.log($==jQuery);
+   // jQuery()
+    //var $oDiv = $("#div1");//jquery对象
+    //jquery强大部分在于选择器这块
+    //console.log($(".a1"));
+
+    //->选择器
+    $("#div1>ul")
+    console.log($(".a1+*"));
+//    console.log($(".a1~*"));
+    //console.log($("ul li:first-child"));
+    console.log($("ul li:not('.a1')"));
+    console.log($("ul li[class*='peixun']").length);
+    console.log($("ul :nth-child(3)"));//ul 下的第一个子元素
+    console.log($("div :only-child").length);
+    $("ul","#div1")
+</script>
