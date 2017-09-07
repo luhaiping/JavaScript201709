@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">
+    <p></p>
+</div>
+<script src="js/utils.js"></script>
+<script>
+    var oDiv = document.getElementById("div1");
+    var oP = utils.children(oDiv,"p");
+    console.log(oP.length);
+    var p = document.createElement("p");
+    oDiv.appendChild(p);
+    console.log(oP.length);
+</script>
+</body>
+</html>
