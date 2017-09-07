@@ -196,10 +196,10 @@ var utils = (function () {
      */
 
     function getByClass(strClass,context){
-        if(document.getElementsByClassName){
-           return listToArray(document.getElementsByClassName(strClass));
-        }
         context = context||document;
+        if(document.getElementsByClassName){
+           return listToArray(context.getElementsByClassName(strClass));
+        }       
         var eles = context.getElementsByTagName("*");
         var aryClass = strClass.replace(/(^ +)|( +$)/g,"").split(/ +/g);
         for(var i = 0;i<aryClass.length;i++){
