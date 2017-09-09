@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 306px;
+            margin: 20px auto;
+        }
+
+        .container ul {
+            overflow: hidden;
+
+        }
+
+        .container ul li {
+            width: 100px;
+            border-left: 1px solid rgb(255, 255, 255);
+            border-top: 1px solid rgb(255, 255, 255);
+            border-right: 1px solid rgb(255, 255, 255);
+            line-height: 40px;
+            text-align: center;
+            float: left;
+            background: rgb(255, 252, 158);
+            color: rgb(80, 80, 80);
+            cursor: pointer;
+        }
+
+        .container div {
+            border: 1px solid rgb(255, 255, 255);
+            height: 200px;
+            display: none;
+            padding-top: 30px;
+        }
+
+        .container ul li.selectedLi {
+            background: rgb(255, 241, 0);
+            border-top: 5px solid rgb(252, 209, 22);
+        }
+
+        .container div.selectedDiv {
+            display: block;
+            background: rgb(255, 241, 0);
+            text-align: center;
+            border-top: 1px solid rgb(255, 241, 0);
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul>
+        <li class="selectedLi">HTML</li>
+        <li>JavaScript</li>
+        <li>Node.js</li>
+    </ul>
+    <div class="selectedDiv">
+        <p>html</p>
+        <p>css</p>
+        <p>bootstrap</p>
+    </div>
+    <div>
+        <p>JavaScript</p>
+        <p>jQuery</p>
+        <p>Vue.js</p>
+    </div>
+    <div>
+        <p>node.js</p>
+        <p>Express</p>
+        <p>Mongodb</p>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    var $oLis = $(".container>ul>li");
+//    var ary = [10,20,30]
+//    $.each(ary,function(index,item){//遍历的对象可以是数组,对象,jq对象
+//        console.log(item);
+//    });
+
+//    $oLis.each(function(index,item){//遍历的是jq对象,jq原型上的方法,得用jq实例去调用
+//      $(item).on("click",function(){
+//
+//      })
+//
+//    })
+    $oLis.on("click",function(){//jquery自己会帮我遍历每个元素并且绑定事件
+       // this//原生js对象
+        $(this).addClass("selectedLi").siblings("li").removeClass("selectedLi");
+        //获取当前点击元素的索引
+        var index = $(this).index();//索引
+        var $oUl = $(this).parent();//父元素
+        var $oDivs = $oUl.siblings("div");
+        //eq(n) 找到索引是n的jq对象
+        $oDivs.eq(index).addClass("selectedDiv").siblings("div").removeClass("selectedDiv");
+
+
+    })
+
+
+
+
+
+</script>

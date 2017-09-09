@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //柯里化函数:js预处理的思想->利用作用域不销毁的机制,在不销毁的作用域里,把预先要处理的内容处理好,然后返回一个小函数,在小函数里,对之前处理好的内容进行相关的操作
+    /**
+     * @param :参数可以有n多个,但是第一个参数context指是上下文,从第二个参数开始是传给方法的实参
+     * @return 小函数
+     */
+    Function.prototype.myBind = function(context){
+        //1.->判断下浏览器是否支持bind方法,若支持用bind方法,不支持再把bind方式实现的逻辑处理下
+//        if("bind" in Function.prototype){
+//            //this指实例
+//            return  this.bind.apply(this,arguments);
+//
+//        }
+
+        //->重新封装bind方法
+        //预先处理好的内容有实例this和其他参数
+        var outerArg = [].slice.call(arguments,1);//从第二个参数开始把所有的参数放在数组里
+        var _this = this; //实例fn
+        return function(){
+            //小函数运行时的参数获取到并转化成数组
+            var innerArg = [].slice.call(arguments,0);
+            return _this.apply(context,outerArg.concat(innerArg));
+        }
+
+    };
+
+    function fn(n,m,a,b){
+        //arguments
+        console.log(arguments);
+        return this+n+m+a+b;
+
+    }
+    var obj = {};
+    //var res = fn.call(obj,10,5);//散列式
+    //var res = fn.apply(obj,[10,5]);//打包方式
+    //var res = fn.bind(obj,10,5);//返回一个处理好的函数的定义 兼容性问题:ie6~ie8不支持
+    //var res= fn.myBind(obj,10,5)
+    var res  = fn.myBind(obj,10,5);
+    console.log(res(20,50));
+    //1.bind方法里在小函数运行之前预先处理的事情:
+    //->1.获取bind方法里从第二个开始的所有的参数并转化成数组
+    //->2.保存调用bind方法的实例fn
+
+    //2.小函数运行时,
+    //->1.让fn运行,fn里this关键字变成第一个参数obj
+    //->2.把所有的实参(实参分为两部分:bind方法运行时从第二个开始的参数和res(小函数)运行时的实参)都传给了fn
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /**
+     *
+     * @param context 必须传的
+     */
+    Function.prototype.myBind = function(context){
+        //this->实例
+        if("bind" in Function.prototype){//浏览器支持的情况
+            //this.bind()
+            return this.bind.apply(this,arguments)
+        }
+        //自己封装的
+        var outerArg = [].slice.call(arguments,1);
+        var _this = this;
+        return function(){
+            //让实例运行,并且实例里的this关键字变成context,把所有的参数放在数组里一起传给实例
+            var innerArg = [].slice.call(arguments,0);
+           return  _this.apply(context,outerArg.concat(innerArg));//需要实例运行后的返回结果
+        }
+
+    }
+    function fn(n,m){
+        return this+n+m
+    }
+    var res = fn.bind(null,10,5);
+    console.log(res());
+</script>
+</body>
+</html>

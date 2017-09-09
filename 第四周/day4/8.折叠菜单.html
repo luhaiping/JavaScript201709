@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        .box{
+            width: 200px;
+            margin: 20px auto;
+        }
+        .list>li>h3{
+            background: #ddd;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 20px;
+            font-weight: normal;
+        }
+        .list>li{
+            border-bottom:1px solid #ccc ;
+            font-size: 16px;
+        }
+        .list>li>ul{
+            display: none;
+        }
+        .list>li>ul>li{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #ccc;
+            font-size: 16px;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="list">
+        <li>
+            <h3>哲学</h3>
+            <ul>
+                <li>科学技术哲学</li>
+                <li>美学</li>
+                <li>伦理学</li>
+                <li>外国哲学</li>
+                <li>中国哲学</li>
+            </ul>
+        </li>
+        <li>
+            <h3>经济学</h3>
+            <ul>
+                <li>应用经济学</li>
+                <li>国民经济学</li>
+                <li>产业经济学</li>
+            </ul>
+        </li>
+        <li>
+            <h3>教育学</h3>
+            <ul>
+                <li>应用心理学</li>
+                <li>教育学原理</li>
+                <li>学前教育学</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    var $h3 = $(".list>li>h3");
+    $h3.on("click",function(){
+        var $oUl = $(this).next();
+        //展开slideDown 收起来用slideUp
+        if($oUl.is(':visible')){///判断ul是否是显示的
+            $oUl.slideUp(600);//收起来相当于隐藏
+
+        }else{
+            //slideDown展开相当于显示
+            $oUl.slideDown(600).parent().siblings("li").children("ul").slideUp(600);
+
+        }
+
+    })
+</script>

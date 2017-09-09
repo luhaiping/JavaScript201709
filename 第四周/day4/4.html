@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    (function(){
+        //1.属性和检测的类型保存在对象
+        var numObj = {
+            isNum :"Number",
+            isStr:"String",
+            isBoo:"Boolean",
+            isUndefined:"Undefined",
+            isNull:"Null",
+            isObj :"Object",
+            isArray:"Array",
+            isFunction:"Function",
+            isReg:"RegExp",
+            isDate :"Date"
+        };
+        var toolType = {};
+        for(var attr in numObj){
+            //属性值是个函数,但是返回这个函数之前有预先需要处理的东西,所以把这个函数作为另一个函数的返回值
+            //预先要把对应的检测类型传进去
+            toolType[attr]=isType(numObj[attr]);
+        }
+        function isType(){
+            var outerArg = arguments[0];
+            return function(){
+                //1.检测的内容
+                var innerArg  = arguments[0];
+                //2.需要检测内容的结果是否和设定的检测类型相匹配
+                var reg = new RegExp("^\\[object "+outerArg+"\\]$","i");
+                return reg.test(Object.prototype.toString.call(innerArg))
+            }
+        }
+        window.$type = toolType;//暴露在全局下
+    }) () ;
+    $type.isArray(1)//->false
+
+</script>
+</body>
+</html>

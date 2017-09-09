@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script>
+//        window.onload = function(){ //页面上所有的内容(DOM结构,图片,js文件....)加载完后执行这里的代码
+//            var oDiv= document.getElementById("div1");
+//            console.log(oDiv);
+//        }
+//        window.onload = function(){
+//            console.log(1);
+//        }
+//        window.onload = function(){
+//            console.log(2);
+//        }
+
+//        $(document).ready(function(){ //所有的DOM结构加载完之后执行这里的代码
+//            console.log(1);
+//        })
+//        $(document).ready(function(){ //所有的DOM结构加载完之后执行这里的代码
+//            console.log(2);
+//        })
+        //语法糖
+        $(function(){//是$(document).ready(function(){})
+            console.log($("#div1"));
+        })
+
+
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+
+<script>
+//   $() //空jq对象
+//   console.log($("#div1")); //jq对象(类数组) ,并非是把DOM结构直接获取到
+    //jq和原生js互换
+//    $("#div1")[0]
+//    $("#div1").get(0)
+    var oDiv = document.getElementById("div1");
+    oDiv.style.width = "100px";
+//    $(oDiv)//原生js->jquery
+    $("#div1")[0].style.width = "200px";
+
+    //jquery方法的操作
+//    $.ajax()
+//    $.isArray()
+//
+//    $().css()
+//    $().html()
+
+
+
+</script>
+</body>
+</html>
