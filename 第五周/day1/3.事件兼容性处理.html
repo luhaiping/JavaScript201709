@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html,body{
+            height: 200%;
+        }
+    </style>
+</head>
+<body >
+
+<script>
+    document.body.onclick = function(e){
+        e = e||window.event;
+        console.dir(e);
+        e.type //事件类型  "click"
+        e.clientX  //到可视窗口左端的距离
+        e.clientY  //到可视窗口顶端的距离
+        //以下属性是存在兼容性问题
+        //e.pageX //到文档左端的距离
+        //e.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft)//在ie下获取的方式
+       // e.pageY//到文档顶端的距离
+       // e.clientY+(document.documentElement.scrollTop||document.body.scrollTop);//在ie下获取的方式
+        e.pageX = e.pageX || (e.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft));
+        e.pageY = e.pageY||(e.clientY+(document.documentElement.scrollTop||document.body.scrollTop));
+
+        //e.target  //事件源  标准浏览器
+        //e.srcElement //事件源 IE浏览器
+        e.target = e.target || e.srcElement;
+
+        //e.preventDefault();//阻止默认行为
+        if(e.preventDefault){
+            e.preventDefault();//标准浏览器
+        }else{
+            e.returnValue = false;//ie浏览器下阻止默认行为的方式
+        }
+        //e.stopPropagation 阻止事件传播
+        if(e.stopPropagation){
+            e.stopPropagation();//标准
+        }else{
+            e.cancelBubble = true;//IE
+        }
+
+
+    }
+</script>
+</body>
+</html>

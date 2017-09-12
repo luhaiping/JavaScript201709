@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 300px;
+            height: 300px;
+            margin:  0  auto;
+            background: palegreen;
+        }
+        p{
+            width: 200px;
+            height: 200px;
+            margin:  0  auto;
+            background: paleturquoise;
+        }
+        a{
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin:  0  auto;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>
+        <a href="http://www.zhufengpeixun.cn">珠峰培训</a>
+    </p>
+
+</div>
+</body>
+</html>
+
+<script>
+    var oA = document.getElementsByTagName("a")[0];
+    function fn(e){
+        e = e||window.event;
+        e.preventDefault? e.preventDefault(): e.returnValue = false;
+        //e.target.nodeName //e.target.tagName 事件源 当前点击的元素
+        alert(this.nodeName);
+    }
+    //事件传播:冒泡和捕获
+    //由内往外->事件冒泡
+    //DOM0级事件绑定和IE浏览器都是事件冒泡
+    //由外往里 ->事件捕获,标准浏览器可以设置这两个阶段
+    var eles = document.getElementsByTagName("*");
+    for(var i = 0;i<eles.length;i++){
+//        eles[i].onclick = fn;
+        eles[i].addEventListener("click",fn,false);//true 捕获 false冒泡
+    }
+    //事件传播 当前元素的点击事件触发时会传播给绑定了点击事件的父标签,也就是说绑定了点击事件的父标签,它的点击事件也会被触发
+</script>

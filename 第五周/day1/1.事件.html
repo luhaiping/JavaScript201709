@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+//    document.body.onclick = function(){
+//        alert(1);
+//    }
+//    document.body.onclick = function(){
+//        alert(2);
+//    }
+//    $(document).ready(function(){
+//
+//    })
+    //DOM2级事件绑定
+//    document.body.addEventListener("click",function(){
+//        alert(1);
+//    },false);
+//    document.body.addEventListener("click",function(){
+//        alert(2);
+//    },false);
+//    document.addEventListener("DOMContentLoaded",function(){
+//        alert(1);
+//    },false)
+
+   document.onkeydown= function(e){
+       //想知道到底按下的键是哪个,得通过键码才能知道
+       //console.log(arguments[0]); //keyboardEvent 键盘事件对象
+       //console.log(e);
+        e = e||window.event;
+        console.log(e.keyCode);
+       //左键 37
+       //上键 38
+       //右键39
+       //下键 40
+       //后退键(backspace) 8
+       //删除键 del 46
+       //enter键 13
+       //空格键space键 32
+      }
+
+
+
+
+//    document.onkeypress = function(e){ //iE浏览器不支持
+//        console.log(e);
+//    }
+//    document.body.onclick = function(e){
+//        console.log(window.event);//MouseEvent 鼠标事件对象
+//    }
+
+</script>

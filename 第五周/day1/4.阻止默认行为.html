@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<a href="http://www.zhufengpeixun.cn">珠峰培训</a>
+</body>
+</html>
+<script>
+    //阻止点击a标签时链接到其他页面上
+    var oA = document.getElementsByTagName("a")[0];
+//    oA.onclick = function(e){
+//        e = e||window.event;
+//        //e.preventDefault? e.preventDefault(): e.returnValue=false;
+//        return false;
+//    }
+
+    oA.addEventListener("click",function(e){
+//        return false; //DOM2级事件绑定不能通过return false阻止必须通过下面的
+        e.preventDefault? e.preventDefault(): e.returnValue=false;
+    },false)
+</script>

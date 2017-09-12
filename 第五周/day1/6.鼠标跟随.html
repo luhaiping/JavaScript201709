@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 300px;
+            height: 300px;
+            background: green;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+        #mask{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    /*
+    * 需求:
+    * 划过div时,在鼠标坐标位置创建一个div遮罩层(id=mask)
+    * 鼠标在div上移动时,遮罩层随之移动
+    * 划出div时,去掉遮罩层
+    * */
+    var oDiv = document.getElementById("div1");
+    oDiv.onmouseenter=function(e){
+        e = e||window.event;
+        var oMask = document.createElement("div");
+        oMask.id = "mask";
+        oMask.style.left = e.clientX-this.offsetLeft+"px";
+        oMask.style.top = e.clientY-this.offsetTop+"px";
+        this.appendChild(oMask);
+//        oMask.onmouseover = function(e){
+//            e = e||window.event;
+//            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+//        }
+
+        //1.在父盒子里,子盒子会事件传播
+        //2.事件冒泡被阻止掉了,但是从红盒子到绿盒子时,绿盒子的mouseover事件会被触发,这个是mouseover本身事件的问题
+        // 用mouseenter事件 代替mouseover事件,能解决上面两个问题
+        //mouseenter问题,若子盒子在父盒子外面,还是会事件传播,不能让子盒子跑到父盒子的外面去
+    };
+
+    oDiv.onmousemove = function(){
+
+    }
+    oDiv.onmouseout = function(){
+
+    }
+
+</script>

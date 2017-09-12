@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #lBox, #rBox {
+            width: 430px;
+            height: 430px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px #ccc; /*x轴方向偏移 y轴方向偏移 模糊半径  扩展半径 阴影颜色*/
+            position: absolute;
+            left: 100px;
+            top: 30px;
+        }
+
+        #lBox {
+            background: url(img/1.jpg) no-repeat;
+        }
+
+        #rBox {
+            left: 560px;
+            overflow: hidden;
+            display: none;
+        }
+        #rBox img{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #mask {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: yellow;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="lBox">
+    <p id="mask"></p>
+</div>
+<div id="rBox">
+    <img src="img/2.jpg" alt=""/>
+</div>
+</body>
+</html>
+<script>
+    var lBox = document.getElementById("lBox");
+    var oMask = document.getElementById("mask");
+    var rBox = document.getElementById("rBox");
+    var oImg = rBox.getElementsByTagName("img")[0];
+    lBox.onmouseenter = function (e) {
+        e = e || window.event;
+        oMask.style.display = rBox.style.display ="block";
+        oMask.style.left = e.clientX - this.offsetLeft - oMask.offsetWidth / 2 + "px";
+        oMask.style.top = e.clientY - this.offsetTop - oMask.offsetHeight / 2 + "px";
+
+    };
+    lBox.onmousemove = function (e) {
+        e = e || window.event;
+        var x = e.clientX - this.offsetLeft - oMask.offsetWidth / 2;
+        var y = e.clientY - this.offsetTop - oMask.offsetHeight / 2;
+        var rSide = this.offsetWidth - oMask.offsetWidth;
+        var tSide = this.offsetHeight - oMask.offsetHeight;
+        x = x < 0 ? 0 : (x > rSide ? rSide : x);
+        y = y < 0 ? 0 : (y > tSide ? tSide : y);
+        oMask.style.left = x + "px";
+        oMask.style.top = y + "px";
+
+        //遮罩层移动的距离/最大移动的距离 = 右图片移动的距离/最大移动的距离
+//        x/rSide = ?/(rBox.offsetWidth-oImg.offsetWidth);
+//        ? = x/rSide*(rBox.offsetWidth-oImg.offsetWidth)
+        oImg.style.left =  x/rSide*(rBox.offsetWidth-oImg.offsetWidth)+"px";
+        oImg.style.top = y/tSide*(rBox.offsetHeight-oImg.offsetHeight)+"px";
+    };
+    lBox.onmouseleave = function () {
+        oMask.style.display = rBox.style.display = "none";
+    }
+</script>
