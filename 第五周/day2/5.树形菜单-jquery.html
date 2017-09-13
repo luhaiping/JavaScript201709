@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .box{
+            width: 500px;
+            background: -webkit-linear-gradient(-45deg,lightblue,lightpink,lightcyan,lightgoldenrodyellow,lightblue);
+            background: linear-gradient(-45deg,lightblue,lightpink,lightcyan,lightgoldenrodyellow,lightblue);
+        }
+        .box li{
+            line-height: 40px;
+        }
+        .box li span{
+            display: block;
+        }
+        .box li span.close:before{
+            content: "+";  /*收起*/
+            color: red;
+            font-weight: bold;
+            font-size: 20px;
+
+        }
+        .box li span.open:before{
+            content: "-";/*展开*/
+            color: red;
+            font-weight: bold;
+            font-size: 30px;
+
+        }
+    </style>
+
+</head>
+<body>
+<ul class="box" id="box">
+    <li><span>第一级菜单</span>
+        <ul>
+            <li><span>第二级菜单</span>
+                <ul>
+                    <li><span>第三级菜单</span>
+                        <ul>
+                            <li><span>第四级菜单</span></li>
+                            <li><span>第四级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+            </li>
+            <li><span>第二级菜单</span>
+
+                <ul>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+
+            </li>
+            <li><span>第二级菜单</span></li>
+            <li><span>第二级菜单</span></li>
+        </ul>
+    </li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+</ul>
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function(){
+    //1.DOM结构加载完成后执行里面的代码 2.形成一个闭包
+        var $oBox = $(".box");
+        var $oSpans = $(".box").find("span");
+        $oSpans.each(function(index,item){
+            var $oUl = $(item).next("ul");
+            if($oUl&&$oUl.length>0){
+                $oUl.hide();
+                item.className="close";
+            }else{
+                $oUl.show();
+                item.className="open";
+            }
+        });
+        $oBox.on("click","span",function(){
+            var $oUl = $(this).next("ul");
+            if($oUl&&$oUl.length>0){
+                if(!$oUl.is(":visible")){//不是显示的
+                    this.className = "open";
+                    $oUl.show();
+                }else{
+                    this.className = "close";
+                    $oUl.hide();
+                    var $oUls = $oUl.find("ul");
+                    $oUls.each(function(index,item){
+                        var $prev = $(item).prev("span");
+                        $(item).hide();
+                        $prev[0].className = "close";
+                    })
+                }
+            }
+        })
+    })
+</script>

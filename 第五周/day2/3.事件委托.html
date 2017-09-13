@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="list">
+    <li>1111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+    <p>6666</p>
+</ul>
+<script>
+    //事件冒泡:由内往外 ->到顶级父标签结束
+    //事件捕获:由外往内 ->从顶级父标签开始
+
+    //利用事件传播机制,给顶级父标签绑定同一个事件,子元素的事件被触发时,最终也触发顶级元素的事件,是一种高性能解决事件绑定的方案,效果比一个一个的绑定高好多倍
+    //如何确定当前点击的元素是哪个?通过事件源判断,然后再进行相应的操作
+    //2.能解决动态创建元素的问题
+    var oUl = document.getElementById("list");
+    oUl.onclick = function(e){
+        e = e||window.event;
+        e.target =  e.target || e.srcElement;//事件源
+//        console.log(e.target);
+        if(e.target.nodeName.toLowerCase()=="li"){
+            console.log(e.target.innerHTML);
+        }
+    }
+
+
+
+    //->传统做法
+//    var oLis = oUl.getElementsByTagName("li");
+//    for(var i = 0;i<oLis.length;i++){
+//        oLis[i].onclick = function(){
+//            console.log(this.innerHTML);
+//        }
+//    }
+    //若操作的动态的数据,动态新创建的元素不会绑定之前的事件
+    var oLi = document.createElement("li");
+    oLi.innerHTML = "新添加的内容";
+   oUl.appendChild(oLi);
+</script>
+</body>
+</html>

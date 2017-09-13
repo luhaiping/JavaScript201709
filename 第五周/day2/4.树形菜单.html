@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .box{
+            width: 500px;
+            background: -webkit-linear-gradient(-45deg,lightblue,lightpink,lightcyan,lightgoldenrodyellow,lightblue);
+            background: linear-gradient(-45deg,lightblue,lightpink,lightcyan,lightgoldenrodyellow,lightblue);
+        }
+        .box li{
+            line-height: 40px;
+        }
+        .box li span{
+            display: block;
+        }
+        .box li span.close:before{
+            content: "+";  /*收起*/
+            color: red;
+            font-weight: bold;
+            font-size: 20px;
+
+        }
+        .box li span.open:before{
+            content: "-";/*展开*/
+            color: red;
+            font-weight: bold;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+<body>
+<ul class="box" id="box">
+    <li><span>第一级菜单</span>
+        <ul>
+            <li><span>第二级菜单</span>
+                <ul>
+                    <li><span>第三级菜单</span>
+                        <ul>
+                            <li><span>第四级菜单</span></li>
+                            <li><span>第四级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+            </li>
+            <li><span>第二级菜单</span>
+
+                <ul>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+
+            </li>
+            <li><span>第二级菜单</span></li>
+            <li><span>第二级菜单</span></li>
+        </ul>
+    </li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+</ul>
+</body>
+</html>
+<script>
+    //初始化 把所有span相邻的ul标签设成隐藏,span标签添加相应的符号
+    var oBox = document.getElementById("box");
+    var oSpans = oBox.getElementsByTagName("span");
+    for(var i = 0;i<oSpans.length;i++){
+        var oSpan = oSpans[i];
+        var next = oSpan.nextElementSibling;
+        if(next&&next.nodeName.toLowerCase()=="ul"){
+            next.style.display = "none";
+            oSpan.className = "close";
+        }else{
+            oSpan.className = "open";
+        }
+    }
+    oBox.onclick = function(e){
+        e = e||window.event;
+        e.target = e.target|| e.srcElement;//事件源
+        //判断事件源的标记名是否是span标签
+        if(e.target.nodeName.toLowerCase()=="span"){
+            var oUl = e.target.nextElementSibling;
+            //若相邻的ul标签是隐藏的,就该显示,若是显示则隐藏
+            if(oUl&&oUl.nodeName.toLowerCase()=="ul"){
+                if(oUl.style.display=="none"){
+                    e.target.className="open";//展开 -
+                    oUl.style.display ="block";//显示
+                }else{
+                    e.target.className="close";//收起 +
+                    oUl.style.display ="none";//隐藏
+                    var oUls = oUl.getElementsByTagName("ul");
+                    for(var i = 0;i<oUls.length;i++){
+                        oUls[i].style.display = "none";
+                        oUls[i].previousElementSibling.className="close";
+                    }
+                }
+            }
+        }
+
+    }
+
+</script>
