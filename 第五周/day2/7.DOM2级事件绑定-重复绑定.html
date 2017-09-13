@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    function processThis(fn,ele){
+        return function (e) {fn.call(ele, e)};
+    }
+
+    function on(ele, type, fn) {
+        if (ele.addEventListener) {
+            ele.addEventListener(type, fn, false);
+        } else {
+            //根据事件类型保存在不同的自定义属性上
+            if(!ele["myBind"+type]){//先判断下是否存在,再去创建,否则会丢之前存的方法
+                ele["myBind"+type] = [];
+            }
+            var a = ele["myBind"+type];
+            for(var i = 0;i< a.length;i++){
+                if(a[i].photo ==fn){
+                    return;//避免重复绑定
+                }
+            }
+            var fnTemp = processThis(fn,ele);//处理this关键字
+            fnTemp.photo = fn;//起个标识
+            a.push(fnTemp);
+            ele.attachEvent("on" + type, fnTemp);
+        }
+    }
+    function off(ele, type, fn) {
+        if (ele.removeEventListener) {
+            ele.removeEventListener(type, fn, false);
+        } else {
+            var a = ele["myBind"+type];
+            if(a.length>0){
+                for(var i = 0;i< a.length;i++){
+                    if(a[i].photo == fn){//对传进来相应的方法解绑
+                        ele.detachEvent("on" + type, a[i]);
+                    }
+                }
+            }
+
+
+        }
+    }
+    function fn1(e) {
+        alert(1);
+    }
+    function fn2(e) {
+        alert(2);
+    }
+    var oDiv = document.getElementById("div1");
+    on(oDiv, "click", fn1);
+    on(oDiv,"mouseover",fn1);
+//    on(oDiv, "click", fn2);
+//    off(oDiv,"click",fn1);
+
+</script>
+</body>
+</html>

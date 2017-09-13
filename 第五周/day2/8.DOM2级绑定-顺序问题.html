@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    function processThis(fn,ele){
+        return function(e){
+            fn.call(ele,e);
+        }
+    }
+    var oDiv = document.getElementById("div1");
+    function on(ele,type,fn){
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn,false);
+        }else{
+            //根据事件类型自定义属性
+            if(!ele["myBind"+type]){
+                ele["myBind"+type] = [];
+                ele.attachEvent("on"+type,processThis(run,ele)); //run只会执行一次
+            }
+            var a = ele["myBind"+type];
+            for(var i = 0;i< a.length;i++){
+                if(a[i]==fn){
+                    return;
+                }
+            }
+            a.push(fn);
+
+
+        }
+    }
+    function run(e){
+       var type = e.type;
+       var a =  this["myBind"+type];
+        for(var i = 0;i< a.length;i++){
+            //a[i]();//方法里的this是数组a
+            if(typeof a[i]=="function"){
+                a[i].call(this,e);
+            }else{
+                a.splice(i,1);
+                i--;
+            }
+
+        }
+    }
+
+    function off(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+        }else{
+            var a = ele["myBind"+type];
+            if(a.length>0){
+                for(var i = 0;i< a.length;i++){
+                    if(a[i]==fn){
+                       a[i] =null;
+                    }
+                }
+            }
+
+        }
+    }
+    function fn1(e){
+        alert(this);
+    }
+
+    function fn2(){
+        alert(2);
+    }
+    var count = 0;
+    function fn3(){
+        count++;
+        if(count==2){
+            off(oDiv,"click",fn1);
+            off(oDiv,"click",fn2);
+            off(oDiv,"click",fn3)
+        }
+        alert(3);
+    }
+    function fn4(){
+        alert(4);
+    }
+    function fn5(){
+        alert(5);
+    }
+//    var a = [fn1,fn2,fn3,fn4,fn5];
+//
+//    function run(){//中介程序池
+//        for(var i = 0;i< a.length;i++){
+//            a[i]();
+//        }
+//    }
+//    oDiv.attachEvent("onclick",run);
+    on(oDiv,"click",fn1);
+    on(oDiv,"click",fn1);
+    on(oDiv,"click",fn2);
+    on(oDiv,"click",fn3);
+    on(oDiv,"click",fn4);
+    on(oDiv,"click",fn5);
+
+</script>
