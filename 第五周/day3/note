@@ -1,0 +1,13 @@
+DOM2级事件的兼容性问题
+1.绑定(解绑)方式不同
+2.IE下this是window
+3.IE下没有解决重复绑定
+4.IE下顺序是乱序
+5.事件对象:标准浏览器是通过事件传参的方式给绑定的方法 IE上是保存在window.event上
+6.事件源获取方式不同:标准浏览器 e.target IE浏览器e.srcElement
+7.IE下e.pageX和e.pageY不支持
+    e.pageX = e.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft);
+    e.pageY = e.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
+8.阻止默认行为:标准浏览器 e.preventDefault() IE e.returnValue = false
+9.阻止事件传播:标准浏览器 e.stopPropagation() IE e.cancelBubble = true
+10.IE下没有捕获阶段,只有冒泡阶段

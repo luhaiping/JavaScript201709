@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+</body>
+</html>
+<script>
+    var oDiv = document.getElementById("div1");
+    function fn1(){
+        alert(1);
+    }
+    function fn2(){
+        alert(2)
+    }
+    function on(ele,type,fn){
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn,false);
+        }else{
+            //根据事件类型分别存在不同的自定义属性上
+            if(!ele["myBind"+type]){
+                ele["myBind"+type] = [];
+            }
+            var a = ele["myBind"+type];
+            for(var i = 0;i< a.length;i++){
+                if(a[i].photo ==fn){
+                   return;//解决重复绑定问题
+                }
+            }
+            var fnTemp = function(){fn.call(ele)};//包装方法
+            fnTemp.photo = fn;//表示的作用
+            ele["myBind"+type].push(fnTemp);
+            ele.attachEvent("on"+type,fnTemp);
+        }
+    }
+    //1.包装的方法fnTemp在off里没法拿到,因此得需要存在一个ele的自定义属性上
+    //2.刚开始时得先判断下ele的自定义属性是否存在,若不存在才去赋值,否则每次都重新赋值会丢失之前存的方法
+    //3.off方法遍历ele["myBind"],只要执行off方法一遍,则把所有绑定的方法全移除
+    //->有问题 执行一次应该是移除指定绑定的方法
+    //->解决  把原来传进来的方法保存在包装方法的自定义属性photo上,这样到off方法就可以获取包装方法photo属性值从而进行判断
+
+    function off(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+        }else{
+           var a = ele["myBind"+type];
+           for(var i = 0;i<a.length;i++){
+               if(a[i].photo == fn ){
+                   ele.detachEvent("on"+type,a[i])
+               }
+           }
+        }
+    }
+    //对同一个行为绑定相同的方法是属于重复绑定的问题
+    //事件类型不同,肯定不是重复
+    on(oDiv,"click",fn1);
+    on(oDiv,"mouseover",fn1);
+    on(oDiv,"click",fn2);
+//    off(oDiv,"click",fn1);
+</script>

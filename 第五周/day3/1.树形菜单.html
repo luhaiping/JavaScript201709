@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+        .box{
+            width: 500px;
+            background: -webkit-linear-gradient(-45deg,lightblue,lightgoldenrodyellow,lightcyan,lightgray,lightsalmon);
+            background: linear-gradient(-45deg,lightblue,lightgoldenrodyellow,lightcyan,lightgray,lightsalmon);
+        }
+        .box li{
+            line-height: 40px;
+            list-style: none;
+        }
+        .box li span{
+            display: block;
+        }
+        .box li span.close:before{
+            content: "+";
+            font-size: 25px;
+            color: red;
+        }
+        .box li span.open:before{
+            content: "-";
+            font-size: 30px;
+            color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+<ul class="box" id="box">
+    <li><span>第一级菜单</span>
+        <ul>
+            <li><span>第二级菜单</span>
+                <ul>
+                    <li><span>第三级菜单</span>
+                        <ul>
+                            <li><span>第四级菜单</span></li>
+                            <li><span>第四级菜单</span></li>
+                        </ul>
+                    </li>
+                    <li><span>第三级菜单</span></li>
+                    <li><span>第三级菜单</span></li>
+                </ul>
+            </li>
+            <li><span>第二级菜单</span></li>
+            <li><span>第二级菜单</span></li>
+        </ul>
+    </li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+    <li><span>第一级菜单</span></li>
+</ul>
+<script>
+    //事件委托:利用事件传播的机制
+    //默认所有的ul标签都是隐藏的,先获取span标签,再获取ul标签
+    var oBox = document.getElementById("box");
+    var oSpans = oBox.getElementsByTagName("span");
+    for(var i = 0;i<oSpans.length;i++){
+        var oSpan = oSpans[i];
+        var next = oSpan.nextElementSibling;
+      if(next&&next.nodeName.toLowerCase()=="ul"){
+          next.style.display = "none";
+          oSpan.className = "close";
+      }else{
+          oSpan.className = "open";
+      }
+    }
+    oBox.onclick = function(e){
+        e = e||window.event;
+        var target = e.target|| e.srcElement;//事件源
+        if(target.nodeName.toLowerCase()=="span"){
+            //获取相邻的ul标签,若是隐藏的,则显示,若是显示则隐藏
+            var oUl = target.nextElementSibling;
+            if(oUl&&oUl.nodeName.toLowerCase()=="ul"){
+                if(oUl.style.display =="none"){
+                    target.className = "open";
+                    oUl.style.display = "block";
+                }else{
+                    target.className = "close";
+                    oUl.style.display = "none";
+                    var oUls = oUl.getElementsByTagName("ul");
+                    for(var i = 0;i<oUls.length;i++){
+                        oUls[i].style.display = "none";
+                        oUls[i].previousElementSibling.className ="close";
+                    }
+                }
+            }
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    function fn1(e){
+        alert(1);
+    }
+    function fn2(){
+        alert(2)
+    }
+    function fn3(){
+        alert(3)
+    }
+    function fn4(){
+        alert(4)
+    }
+    function fn5(){
+        alert(5)
+    }
+    function fn6(){
+        alert(6)
+    }
+    function fn7(){
+        alert(7)
+    }
+    function fn8(){
+        alert(8)
+    }
+    function fn9(){
+        alert(9)
+    }
+    function fn10(){
+        alert(10)
+    }
+    function fn11(){
+        alert(11)
+    }
+    function fn12(){
+        alert(12)
+    }
+    var oDiv = document.getElementById("div1");
+    function  on(ele,type,fn){
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn,false);
+        }else{
+            //定义的这个数组还是定义在ele上,并且根据事件类型分别定义不同的自定义属性
+            if(!ele["myBind"+type]){//这里的代码只会执行一次
+                ele["myBind"+type] = [];
+                ele.attachEvent("on"+type,function(){//解决run方法重复执行的问题
+                    var e = window.event;
+                    run.call(ele,e)
+                });
+            }
+            var a = ele["myBind"+type];
+            for(var i = 0;i< a.length;i++){
+                if(a[i]==fn){//重复执行的问题
+                    return;
+                }
+            }
+            a.push(fn);
+        }
+    }
+    function run(e){
+       var type = e.type;
+       var a =  this["myBind"+type];//[null,fn2,fn3]
+        for(var i = 0;i< a.length;i++){
+            if(typeof a[i]=="function"){
+                a[i].call(this,e);
+            }else{
+                a.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    function off(ele,type,fn){
+        //不需要移除run方法,需要从数组里把fn这个去掉
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+        }else{
+           var a = ele["myBind"+type];
+            for(var i = 0;i< a.length;i++){
+                if(a[i]==fn){
+                    a[i] = null;//把方法去掉但不能把数组里的这一项都去掉,还空的这个位置
+                }
+            }
+        }
+    }
+    on(oDiv,"click",fn1);
+    on(oDiv,"click",fn2);
+    off(oDiv,"click",fn1);
+    on(oDiv,"click",fn3);
+    on(oDiv,"click",fn4);
+    on(oDiv,"click",fn5);
+    on(oDiv,"click",fn6);
+    on(oDiv,"click",fn7);
+//    on(oDiv,"click",fn8);
+//    on(oDiv,"click",fn9);
+//    on(oDiv,"click",fn10);
+//    on(oDiv,"click",fn11);
+//    on(oDiv,"click",fn12);
+
+    //思路:先不让绑定的这些方法执行,点击div元素时让中介方法run方法执行,在run方法再按照绑定的顺序,依次把绑定的方法执行
+
+    //1.执行on方法时,绑定不是fn1....fn12,绑定的是run方法
+    //2.把fn1...fn12这些方法放在run方法里
+    //3.点击div时会执行run方法,在run方法里把fn1...fn12这些方法执行
+
+    //1.run方法重复执行,run方法里的this关键字和事件对象
+    //2.fn1..fn12里的this关键字是ele,获取事件对象
+</script>
