@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            cursor: move;
+            border-radius: 50%;
+            /*background: -webkit-radial-gradient(circle,red,yellow);*/
+            /*background: radial-gradient(circle,red,yellow);/!*径向渐变*!/*/
+            background:-webkit-radial-gradient(circle,red 0%,red 20%,orange 20%,orange 40%,palegreen 40%,palegreen 60%,lawngreen 60%,lawngreen 100%);
+            background:radial-gradient(circle,red 0%,red 20%,orange 20%,orange 40%,palegreen 40%,palegreen 60%,lawngreen 60%,lawngreen 100%);
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="event.js"></script>
+<script>
+    //按下时拖拽开始
+    //按照并移动拖拽进行中
+    //鼠标松开拖拽结束
+    var oDiv = document.getElementById("div1");
+    on(oDiv,"mousedown",down);
+    function down(e){
+        this.x = this.offsetLeft;//盒子的位置
+        this.y = this.offsetTop;
+        this.mx = e.clientX;
+        this.my = e.clientY;
+        if(this.setCapture){
+            this.setCapture();
+            on(oDiv,"mousemove",move);
+            on(oDiv,"mouseup",up);
+        }else{
+            var _this = this;
+            this.MOVE =function(e){move.call(_this,e)};
+            this.UP = function(e){up.call(_this,e)};
+            on(document,"mousemove",this.MOVE);
+            on(document,"mouseup",this.UP);
+        }
+        clearTimeout(this.flyTimer);//清除定时器,否则会出现动画积累问题
+        clearTimeout(this.dropTimer);
+
+    }
+    function move(e){
+        //设置盒子当前的位置 = 原来的位置+鼠标移动的距离(现在鼠标的坐标-按下时鼠标的坐标)
+        this.style.left = this.x + (e.clientX-this.mx)+"px";
+        this.style.top = this.y +(e.clientY-this.my)+"px";
+        //this.prev 保存上一次鼠标的坐标
+        if(!this.prev){
+            this.prev = this.mx;
+        }
+        this.speed = e.clientX - this.prev;
+        this.prev = e.clientX;
+    }
+    function up(){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            off(oDiv,"mousemove",move);
+            off(oDiv,"mouseup",up);
+        }else{
+            off(document,"mousemove",this.MOVE);
+            off(document,"mouseup",this.UP);
+        }
+         fly.call(this);
+         drop.call(this);
+
+    }
+
+    //把松开鼠标时,最后一次鼠标移动的距离作为速度
+    function fly(){
+        clearTimeout(this.flyTimer);
+        var _this = this;
+        this.speed*=0.98;//值越大摩擦力越小,值越小摩擦力越大
+        var x = this.offsetLeft+this.speed;
+        var rSide = (document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth;
+        if(x>rSide){
+            x = rSide;
+            this.speed*=-1;
+        }else if(x<0){
+            x = 0;
+            this.speed*=-1;
+        }
+        this.style.left = x+"px";
+        //要设置条件不要无条件启动定时器
+        if(Math.abs(this.speed)>0.5){
+            this.flyTimer = window.setTimeout(function(){
+                fly.call(_this);
+            },30);
+        }
+    }
+    var g = 9.8;
+    var flag = 0;
+    function drop(){
+        clearTimeout(this.dropTimer);
+        var _this = this;
+        this.dropSpeed*=0.98;//摩擦力
+        if(!this.dropSpeed){
+            this.dropSpeed = g;
+        }else{
+            this.dropSpeed+=g;
+        }
+        var tSide =(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        var y = this.offsetTop+this.dropSpeed;
+        if(y>tSide){//连续执行这里代码两次,说明动画盒子已经停下来
+            this.style.top = tSide+"px";
+            this.dropSpeed*=-1;//往相反的方向运动
+            flag++;
+        }else{
+            flag = 0;
+            this.style.top = y+"px";
+        }
+        //设置启动定时器条件 动画停止时,不该再开启定时器
+        if(flag<2){
+            this.dropTimer = window.setTimeout(function(){
+                drop.call(_this);
+            },30)
+        }
+
+    }
+
+</script>
