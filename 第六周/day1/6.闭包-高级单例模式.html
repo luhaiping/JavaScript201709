@@ -57,8 +57,8 @@
         }
 
         function up(){
-            if(ele.releaseCapture){
-                ele.releaseCapture();
+            if(this.releaseCapture){
+                this.releaseCapture();
                 off(this,"mousemove",move);
                 off(this,"mouseup",up);
             }else{
