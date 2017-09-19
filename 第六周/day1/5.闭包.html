@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div{
+            width: 150px;
+            height: 150px;
+            background: pink;
+            border:1px solid orange;
+            position: absolute;
+            top:100px;
+            cursor: move;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" style="left: 100px">
+    <img src="img/4.png" alt="">
+</div>
+<div id="div2" style="left: 300px;">
+    <img src="img/5.png" alt="">
+</div>
+</body>
+</html>
+<script src="event2.js"></script>
+<script>
+    var eles = document.getElementsByTagName('div');
+    for(var i = 0;i<eles.length;i++){
+        var ele = eles[i];
+        ;(function(ele){
+            var x = null,y = null,mx = null,my = null;
+            var MOVE = null,UP = null;
+            on(ele,"mousedown",down);
+            function down(e){
+                x  = ele.offsetLeft;
+                y  = ele.offsetTop;
+                mx = e.clientX;
+                my = e.clientY;
+                if(ele.setCapture){
+                    on(ele,"mousemove",move);
+                    on(ele,"mouseup",up);
+                }else{
+                    MOVE = processThis(move,ele);
+                    UP = processThis(up,ele);
+                    on(document,"mousemove",MOVE);
+                    on(document,"mouseup",UP);
+                }
+                e.preventDefault();
+            }
+
+            function move(e){
+                ele.style.left = x+ (e.clientX-mx)+"px";
+                ele.style.top = y+(e.clientY-my)+"px";
+            }
+
+            function up(){
+                if(ele.releaseCapture){
+                    ele.releaseCapture();
+                    off(ele,"mousemove",move);
+                    off(ele,"mouseup",up);
+                }else{
+                    off(document,"mousemove",MOVE);
+                    off(document,"mousemove",UP);
+                }
+            }
+
+        })(ele)
+    }
+
+
+</script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">sls</div>
+<script>
+    function selfOn(ele,type,fn){//订阅过程
+        if(!ele[type]){
+            ele[type] = [];
+        }
+        var a = ele[type];
+        for(var i = 0;i< a.length;i++){
+            if(a[i]==fn){
+                return;
+            }
+        }
+        a.push(fn);
+    }
+    function fire(type){//发布过程 type事件标识
+        var a = this[type];
+        if(a){
+            for(var i = 0;i< a.length;i++){
+                if(typeof a[i]=="function"){
+                    a[i].call(this);
+                }
+            }
+        }
+
+    }
+
+    function selfOff(ele,type,fn){//取消订阅的过程
+        var a = ele[type];
+        if(a){
+            for(var i = 0;i< a.length;i++){
+                if(a[i]==fn){
+                    a[i]= null;
+                }
+            }
+        }
+
+    }
+
+
+    function fn1(){
+        alert("给红包")
+    }
+    function fn2(){
+        alert("喝喜酒")
+    }
+    function fn3(){
+        alert("抢新娘");
+    }
+    var sls = document.getElementById("div1");
+    //订阅过程:计划做事情的过程,把所有的方法放入程序池
+    //发布过程:计划的事情全部执行
+    //事件标识->结婚 ->selfMarry
+    //结婚这件事 订阅
+    selfOn(sls,"selfMarry",fn1);
+    selfOn(sls,"selfMarry",fn2);
+    selfOn(sls,"selfMarry",fn3);
+    selfOff(sls,"selfMarry",fn3);
+
+    //结婚这件事发生时 发布
+//    window.setTimeout(function(){//5秒以后结婚这件事发生
+//        fire.call(sls,"selfMarry");
+//    },5000);
+
+
+    function  paomian(){
+        alert("泡面")
+    }
+    function washing(){
+        alert("开水洗脸")
+    }
+
+    function play(){
+        alert("出去玩");
+    }
+    selfOn(sls,"selfBoiling",paomian);
+    selfOn(sls,"selfBoiling",washing);
+    selfOn(sls,"selfBoiling",play);
+    selfOff(sls,"selfBoiling",washing);
+
+    window.setTimeout(function(){
+        fire.call(sls,"selfBoiling");
+    },2000)
+
+
+</script>
+</body>
+</html>
