@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function EventEmitter(){//发射类
+
+    }
+    EventEmitter.prototype.on = function(type,fn){
+       if(!this["emitter"+type]){
+           this['emitter'+type] = [];
+       }
+       var a = this['emitter'+type];
+        for(var  i = 0;i< a.length;i++){
+            if(a[i]==fn){
+                return;
+            }
+        }
+        a.push(fn);
+    }
+    EventEmitter.prototype.fire = function(type,e){
+        var a = this["emitter"+type];
+        if(a){
+            for(var i = 0;i< a.length;i++){
+                if(typeof  a[i]=="function"){
+                    a[i].call(this,e);
+                }else{
+                    a.splice(i,1);
+                    i--;
+                }
+            }
+        }
+    }
+    EventEmitter.prototype.off = function(type,fn){
+        var a = this["emitter"+type];
+        if(a){
+            for(var i = 0;i< a.length;i++){
+                if(a[i]==fn){
+                    a[i] = null;
+                }
+            }
+        }
+    }
+    //事件标识 boiling 烧水
+    //订阅 列计划
+    //1.喝热水
+    //2.泡方便面
+    //3.洗个热水澡
+    //发布 把所列的计划全部实现了
+
+    function Kettle(){
+    }
+    Kettle.prototype = new EventEmitter();
+    Kettle.prototype.constructor = Kettle;
+    Kettle.prototype.fn = function(){
+        var that = this;
+        window.setTimeout(function(){
+            //把所有列的计划是实现了 通过调用fire方法
+            that.fire("boiling");
+        },2000);
+    }
+
+    var  k = new Kettle();
+    k.on("boiling",drink);
+    k.on("boiling",noodles);
+    k.on("boiling",shower);
+    k.fn();
+
+    function drink(){
+        alert("喝热水")
+    }
+    function noodles(){
+        alert("泡方便面")
+    }
+    function shower(){
+        alert("洗热水澡")
+    }
+
+</script>
+</body>
+</html>

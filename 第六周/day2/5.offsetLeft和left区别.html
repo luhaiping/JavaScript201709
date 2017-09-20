@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:100px;
+            top:100px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    var oDiv = document.getElementById("div1");
+    console.log(oDiv.offsetLeft);
+    //offsetLeft和left值区别
+    //offsetLeft 当前元素从外边框(包含margin)到参照物的内边框
+    //left 当前元素margin值以外到参照物内边框的距离
+</script>
+</body>
+</html>
