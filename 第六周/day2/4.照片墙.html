@@ -63,6 +63,7 @@
         drag.on("dragmove",hited);
         drag.on("dragup",changePos);
 
+
     }
     //订阅,事件标识,发布
     //有哪些功能,这些功能和哪个事件标识有关,绑定这个事件标识的这些功能在哪执行
@@ -126,7 +127,9 @@
             this.ele.t = short.t;
             short.l = temp.l;
             short.t = temp.t;
+            this.aHited = [];
         }else{
+
             goBack.call(this);
         }
     }
