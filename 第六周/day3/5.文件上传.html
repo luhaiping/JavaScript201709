@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" multiple accept="image/*" id="file1">
+<input type="button" value="确定" id="btn">
+<div id="div2"></div>
+</body>
+</html>
+<script>
+    var oFile = document.getElementById("file1");
+    var oBtn = document.getElementById("btn");
+    oBtn.onclick = function(){
+      var files = oFile.files;//获取到所有选择文件的信息
+      for(var  i = 0;i<files.length;i++){
+        showFile(files[i]);
+      }
+    };
+    var oDiv2 = document.getElementById("div2");
+    function showFile(file){
+        var type = file.type;
+        var size  = file.size;
+        var name = file.name
+        //1.判断下图片的类型
+          if(!/image\/\w+/.test(type)){
+              return;
+          }
+        //2.判断下选择的图片大小,通过情况下不超过50k
+        if(Math.round(size/1024)>50){
+            return;
+        }
+        //读取文件
+        if(typeof FileReader!="undefined"){//判断是否存在
+           var reader =  new FileReader(); //创建文件读取对象
+            //reader.readAsDataURL(file);// base64编码异步的操作
+            reader.readAsBinaryString(file);//二进制
+            reader.onload = function(){//读取成功时会触发onload事件
+                //this.result保存读取成功的数据
+                //console.log(this.result);
+                oDiv2.innerHTML+="<img src='data:image/jpeg;base64,"+btoa(this.result)+"'><p>图片名称:"+name+"</p><p>图片类型:"+type+"</p>"
+            }
+        }
+
+
+    }
+</script>

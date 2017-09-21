@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        div{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            left: 100px;
+            top:100px;
+            background: red;
+            cursor: move;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div><img src="img/1.png" alt=""></div>
+<div><img src="img/2.png" alt=""></div>
+<div><img src="img/3.png" alt=""></div>
+<div><img src="img/4.png" alt=""></div>
+</body>
+</html>
+<script src="event.js"></script>
+<script>
+    function EventEmitter(){
+
+    }
+    EventEmitter.prototype.on = function(type,fn){
+        if(!this["emitter"+type]){
+            this['emitter'+type] = [];
+        }
+        var a = this['emitter'+type];
+        for(var i = 0;i< a.length;i++){
+            if(a[i]==fn){
+                return;
+            }
+        }
+
+        a.push(fn);
+    };
+    EventEmitter.prototype.fire = function(type,e){
+        var a = this["emitter"+type];
+        if(a&& a.length>0){
+            for(var  i = 0;i< a.length;i++){
+                if(typeof a[i]=="function"){
+                    a[i].call(this,e);
+                }else{
+                    a.splice(i,1);
+                    i--;
+                }
+            }
+        }
+    };
+    EventEmitter.prototype.off = function(type,fn){
+        var a = this["emitter"+type];
+        if(a&& a.length>0){
+            for(var i = 0;i< a.length;i++){
+                if(a[i]==fn){
+                    a[i] = null;//假删除
+                }
+            }
+        }
+    };
+
+    function Drag(ele){
+       this.x = null;
+       this.y = null;
+       this.mx = null;
+       this.my = null;
+       this.ele = ele;
+       var DOWN =  processThis(this.down,this);
+       on(this.ele,"mousedown",DOWN);
+    }
+    Drag.prototype = new EventEmitter();
+    Drag.prototype.down = function(e){
+        this.x  = this.ele.offsetLeft;
+        this.y = this.ele.offsetTop;
+        this.mx = e.clientX;
+        this.my = e.clientY;
+        this.MOVE = processThis(this.move,this);
+        this.UP = processThis(this.up,this);
+        if(this.ele.setCapture){
+            this.ele.setCapture();
+            on(this.ele,"mousemove",this.MOVE);
+            on(this.ele,"mouseup", this.UP);
+        }else{
+           on(document,"mousemove",this.MOVE) ;
+           on(document,"mouseup",this.UP);
+        }
+        e.preventDefault();//1.阻止图片默认能拖拽 2.阻止图片的粘性效果
+        this.fire("dragdown",e);
+    };
+    Drag.prototype.move = function(e){
+        //现在盒子的位置 = 之前盒子的位置+鼠标移动的距离(现在鼠标的坐标-按下时鼠标的坐标)
+        this.ele.style.left = this.x +(e.clientX-this.mx)+"px";
+        this.ele.style.top = this.y+(e.clientY-this.my)+"px";
+        this.fire("dragmove",e);
+    };
+    Drag.prototype.up = function(e){
+        if(this.ele.releaseCapture){
+            this.ele.releaseCapture();
+            off(this.ele,"mousemove",this.MOVE);
+            off(this.ele,"mouseup",this.UP);
+        }else{
+            off(document,"mousemove",this.MOVE);
+            off(document,"mouseup",this.UP);
+        }
+        this.fire("dragup",e);
+    };
+
+
+    var oDivs = document.getElementsByTagName("div");
+    for(var i = 0;i<oDivs.length;i++){
+        var oDiv = oDivs[i];
+        var drag = new Drag(oDiv);
+        drag.on("dragdown",raduis);
+        drag.on("dragmove",dashed);
+        drag.on("dragup",bg)
+    }
+    function raduis(){
+        this.ele.style.borderRadius = "50%";
+    }
+
+    function bg(){
+        this.ele.style.backgroundColor = "green";
+    }
+    function dashed(){
+        this.ele.style.border = "3px dashed orange";
+    }
+    //自定义事件库  按下时(dragdown) 盒子成圆形  松开时(dragup) 盒子背景色变成绿色  移动时(dragmove)  盒子有个虚线框
+</script>

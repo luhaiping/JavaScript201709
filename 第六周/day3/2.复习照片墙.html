@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #list{
+            width: 480px;
+            padding: 5px;
+            height: 640px;
+            background: paleturquoise;
+            list-style: none;
+            margin:  20px auto;
+            position: relative;
+        }
+        #list li{
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+            background: yellow;
+            float: left;
+        }
+        #list li img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li><img src="img/1.png" alt=""></li>
+    <li><img src="img/2.png" alt=""></li>
+    <li><img src="img/3.png" alt=""></li>
+    <li><img src="img/4.png" alt=""></li>
+    <li><img src="img/5.png" alt=""></li>
+    <li><img src="img/6.png" alt=""></li>
+    <li><img src="img/7.png" alt=""></li>
+    <li><img src="img/8.png" alt=""></li>
+    <li><img src="img/9.png" alt=""></li>
+    <li><img src="img/10.png" alt=""></li>
+    <li><img src="img/11.png" alt=""></li>
+    <li><img src="img/12.png" alt=""></li>
+</ul>
+</body>
+</html>
+<script src="event.js"></script>
+<script src="drag.js"></script>
+<script src="utils.js"></script>
+<script src="tween.js"></script>
+<script>
+    var oUl = document.getElementById("list");
+    var oLis = oUl.getElementsByTagName("li");
+    for(var i = oLis.length-1;i>=0;i--){
+        var oLi = oLis[i];
+        oLi.style.left =(oLi.l = oLi.offsetLeft)+"px";
+        oLi.style.top  =(oLi.t = oLi.offsetTop)+"px";
+        oLi.style.position = "absolute";
+        oLi.style.margin = 0;
+        var drag = new Drag(oLi);
+        drag.on("dragdown",increaseIndex);
+        drag.on("dragmove",hited);
+        drag.on("dragup",changePos)
+    }
+    //按下时(dragdown)提高层级
+    //移动时(dragmove) 把碰撞上的盒子的背景色改成粉色,并且把碰撞上盒子保存下来
+    //松开时(dragup),当前盒子和碰撞上距离最短的盒子交换位置
+    var index = 0;
+    function increaseIndex(){
+        this.ele.style.zIndex = ++index;
+    }
+    function isHited(a,b){//a当前拖拽的盒子  b 比较盒子,是每个li
+        //四个方向没有撞上的情况
+         var left = b.offsetLeft+ b.offsetWidth< a.offsetLeft;
+         var top = b.offsetTop+ b.offsetHeight< a.offsetTop;
+         var right = a.offsetLeft+ a.offsetWidth< b.offsetLeft;
+         var bottom = a.offsetTop+ a.offsetHeight< b.offsetTop;
+        if(left||top||right||bottom){
+            return false;//没有撞上
+        }else{
+            return true;
+        }
+        //每次只要考虑两个方向 例如左上角盒子 考虑左边和上边
+        //若左边条件成立(没撞上) 上边条件有可能成立有可能不成立
+        //若左边条件成立(撞上) 上边条件一定是撞上了
+        //|| 条件成立,则把这一项返回,条件不成立才接着往下看
+        //整个方法,没撞上是返回false  ,撞上是返回true;
+    }
+    function hited(){
+        this.aHited = [];
+        for(var i = 0;i<oLis.length;i++){
+            var oLi = oLis[i];
+            if(this.ele ==oLi) continue;
+            if(isHited(this.ele,oLi)){
+                this.aHited.push(oLi);
+                oLi.style.backgroundColor = "pink";
+            }else{
+                oLi.style.backgroundColor = "";
+            }
+        }
+    }
+    function changePos(){
+        var a = this.aHited;//放了碰撞上的盒子
+        if(a&& a.length>0){
+            for(var i = 0;i< a.length;i++){
+                a[i].distance = Math.pow((this.ele.offsetLeft-a[i].offsetLeft),2)+Math.pow((this.ele.offsetTop-a[i].offsetTop),2);
+            }
+            //按照distance值对碰撞上的盒子进行排序
+            a.sort(function(a,b){
+                return a.distance - b.distance;
+            });
+            var short = a[0];
+            short.style.backgroundColor = "green";
+            short.style.zIndex = ++index;
+            animate(this.ele,{left:short.l,top:short.t},600,2);
+            animate(short,{left:this.ele.l,top:this.ele.t},600,2,function(){
+               for(var i = 0;i< a.length;i++){
+                   a[i].style.backgroundColor = "";
+               }
+            });
+            var temp ={l:short.l,t:short.t};
+            short.l = this.ele.l;
+            short.t = this.ele.t;
+            this.ele.l = temp.l;
+            this.ele.t = temp.t;
+            this.aHited = [];
+        }else{
+            goBack.call(this);
+            for(var i = 0;i<oLis.length;i++){
+                oLis[i].style.backgroundColor = "";
+            }
+        }
+    }
+    function goBack(){
+        animate(this.ele,{left:this.ele.l,top:this.ele.t},600,2);
+
+    }
+</script>
