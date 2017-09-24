@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 500px;
+            height: 300px;
+            border:1px solid  orange;
+           /* background: -o-linear-gradient(top,red,orange);
+            background: -ms-linear-gradient(top,red,orange);
+            background: -moz-linear-gradient(top,red,orange);*/
+            /*background: -webkit-linear-gradient(top,red 0%,red 10%,green 10%,green 50%,blue 50%,blue 70%);*/
+            /*background: linear-gradient(top,red 0%,red 10%,green 10%,green 50%,blue 50%,blue 70%);*/
+            background: -webkit-repeating-linear-gradient(top,red 0,red 10px,green 10px,green 30px,blue 30px,blue 50px);
+            background: repeating-linear-gradient(top,red 0,red 10px,green 10px,green 30px,blue 30px,blue 50px);
+        }
+        /*渐变过渡区 10%~70%
+        去掉渐变过渡区 每个颜色设置一个起始位置和结束位置
+        重复的线性渐变 repeating-linear-gradient
+        */
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

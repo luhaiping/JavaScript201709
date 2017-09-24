@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding:0
+        }
+        ul{
+            width: 300px;
+            margin: 100px auto;
+        }
+        ul li{
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background:orange;
+            border-radius: 50%;
+            margin:10px;
+            display: inline-block;
+            font-size: 30px;
+            text-align: center;
+        }
+       /*
+       通过结构筛选出这些元素
+       nth-child(n) 表示第几个子元素 n从1开始 括号里表示表达式例如2n,2n+1,n从0开始
+       nth-of-type(n) 同种类型(标记名相同)中的第几个子元素
+       */
+        /*ul li:nth-of-type(2){!*1.把所有的子元素按照标记名分类 2.再从同种标记名的子元素中找到第几个*!*/
+           /*background:palegreen;*/
+        /*}*/
+       /* ul li:nth-child(2){!*1.找到第二个子元素 2.看这个子元素的标记名是不是li*!
+            background: palegreen;
+        }*/
+        /*only-of-type同种类型的子元素只有一个*/
+        /*ul :only-of-type{
+            background: pink;
+        }*/
+       /* ul li:nth-child(even){!*2n 关键词even*!
+            background: palegreen;
+        }
+        ul li:nth-child(odd){!*2n+1 关键词odd*!
+            background: purple;
+        }*/
+
+        /*:empty 当前元素没有子元素(包括空格,换行),写注释没关系*/
+        /*ul li:empty{
+            background:red;
+        }*/
+        ul li:not(:nth-child(2)){
+            background: red;
+        }
+
+
+    </style>
+</head>
+<body>
+<ul>
+    <p>111</p>
+    <li></li>
+    <li> </li>
+    <li>
+
+    </li>
+    <li>4444</li>
+    <li><!--5--></li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+</body>
+</html>

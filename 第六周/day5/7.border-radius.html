@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        ul{
+            list-style: none;
+        }
+        ul li{
+            width: 100px;
+            height: 100px;
+            border:1px solid orange;
+            margin: 20px;
+        }
+
+        ul :nth-child(1){
+
+            /*border-radius: 10px 20px 30px 40px/40px 30px 20px 10px;*/
+            /*不写/表示水平半径和垂直半径是一样的*/
+            /*border-radius:10px 20px 30px 40px;!*上 右 下 左*!*/
+            /* border-radius: 10px 20px 40px;左上 (右上和左下) 右下*/
+            border-radius:  10px 40px;/*对角线方向*/
+        }
+        ul li:nth-child(2){
+
+            /*border-radius: 50%;!*相对于宽和高的百分比*!*/
+            /*border-radius: 200%;*/
+            border-radius:50px;
+        }
+        ul li:nth-child(3){
+            height: 30px;
+            border-radius: 50%;
+        }
+        ul li:nth-child(4){
+            width: 50px;
+            height: 50px;
+            border-radius: 50px 0 0 0;
+        }
+        ul li:nth-child(5){
+            border:10px solid green;
+            border-radius: 10px  60px;/*外圆的半径*/
+        }
+        /*内圆的半径 = 外圆半径-边框的值 <=0,则内圆这边就显示成直角*/
+    </style>
+</head>
+<body>
+<ul>
+    <li ></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

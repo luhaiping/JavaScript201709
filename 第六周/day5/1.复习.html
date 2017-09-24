@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*箭头函数注意事项
+    1.没有this,定义的函数的作用域里,外层的函数
+    2.不能使用arguments,使用rest参数
+    3.不能用call,apply,bind
+    4.不能当成构造函数,不能通过new去运行它
+     */
+//    function Fn(x,y){
+//        this.x = x;
+//        this.y = y;
+//    }
+//    Fn.prototype.a  = function(){
+//        console.log('a');
+//    }
+
+    class Fn {
+       constructor(x,y){
+           this.x = x;
+           this.y = y;
+       }
+       a(){//原型上的方法
+           console.log('a');
+       }
+       static  b(){ //静态方法或属性 都是Fn类上的方法或属性
+           console.log("b");
+       }
+    }
+
+    let f = new Fn(10,20);
+//    console.log(Fn.prototype == f.__proto__);
+    Fn.b();
+
+</script>

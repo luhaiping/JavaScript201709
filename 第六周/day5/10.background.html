@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        body{
+            /*background: url(img/baby.jpg) no-repeat;*/
+            /*background-attachment: fixed;!*背景图固定*!*/
+        }
+        ul li{
+            width: 200px;
+            height: 200px;
+            background: url(img/baby.jpg) no-repeat;
+            margin: 10px;
+            padding:10px;
+            border:20px solid rgba(80, 112, 225, 0.2);
+            display: inline-block;
+        }
+        ul li:nth-child(2){
+            /*background-origin: padding-box;默认值 从padding区域开始显示*!*/
+            /* background-clip: padding-box;从padding区域往外裁减*/
+            background-size:100% 100%; /*设置背景图的大小 百分比是相对于宽高的百分比*/
+            /*background-size:10px 10px*/
+        }
+        ul li:nth-child(3){
+            /*background-origin: border-box;从border区域开始显示*/
+            /*background-clip: border-box;默认值 从border区域往外裁减*/
+            background-size:contain;/*按照原始比例收缩,背景图显示完整,但是不一定铺满整个容器*/
+        }
+        ul li:nth-child(4){
+            /*background-origin: content-box;从内容区域开始显示*/
+            /*background-clip: content-box;从内容区域往外裁减*/
+            background-size:cover ;/*按照原比例收缩,背景图片不一定显示完整,但是一定铺满整个容器*/
+           /* -webkit-filter: grayscale(1);*/
+            /*-webkit-filter: saturate(4);*/
+            /*-webkit-filter: invert(1);*/
+            -webkit-filter: hue-rotate(30deg);
+        }
+        ul li:nth-child(5){
+            font-size: 100px;
+            background: url(img/hs.jpg) no-repeat;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body style="height: 1000px">
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li>珠峰</li>
+    </ul>
+
+</body>
+</html>

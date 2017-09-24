@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    class Father {
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+        a(){
+            console.log("a");
+        }
+        static  c(){ //不继承的,只能通过Father类去调用
+            console.log("c");
+        }
+    }
+    //es5最佳的实现继承方法-寄生式组合集合
+    //call拿到父类上私有的属性和方法
+    //son.prototype = Object.create(Father.prototype);
+
+    class Son extends  Father {
+        constructor(x,y,z){
+            super(x,y);//super父类的构造函数 运行之后,把父类的this改成子类,返回一个子类的实例
+            this.z = z;
+        }
+        b(){
+            console.log("b");
+        }
+    }
+    var s = new Son(10,20,30);
+    //console.log(s);
+    //console.log(s.__proto__.__proto__ == Father.prototype);
+    s.a();
+
+</script>

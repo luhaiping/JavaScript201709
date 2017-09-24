@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            height: 500px;
+            background: pink;
+            font-size: 60px;
+        }
+        #div2{
+            height: 500px;
+            background: orange;
+            font-size: 60px;
+        }
+        a{
+            display: block;
+        }
+        /*:target{!*仅对目标元素起作用,url地址后面hash值的那个元素*!*/
+            /*color: red;*/
+        /*}*/
+        #div1:target{/*针对目标元素是div1的元素*/
+           background: red;
+        }
+        #div2:target{/*针对目标元素是div2的元素*/
+            background: black;
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+<div id="div1">div1</div>
+<div id="div2">div2</div>
+<a href="#div1">点击a标签时定位到div1</a>
+<a href="#div2">点击a标签时定位到div2</a>
+</body>
+</html>

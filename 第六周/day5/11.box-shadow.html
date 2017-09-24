@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        ul li{
+            width: 200px;
+            height: 200px;
+            border:1px solid orange;
+            margin: 10px;
+            list-style: none;
+        }
+        ul li:nth-child(1){
+            box-shadow: 10px 0 10px 0 palegreen;
+        }
+        /*扩展半径 正->往外扩展 负->往内收缩*/
+        ul li:nth-child(2){
+            box-shadow: 15px 0 10px -5px palegreen;/*单阴影*/
+        }
+        ul li:nth-child(3){
+            /*多层阴影,后面阴影的偏移量得大于前面阴影的偏移量*/
+            box-shadow: 1px 1px 5px 0 #ffb2a6,2px 2px 5px 0 #53ff2d,4px 4px 7px 0 #fb77da,5px 5px 5px 0 #1fffe1;
+        }
+        ul li:nth-child(4){
+            /*内阴影,偏移量的方向和外阴影相反*/
+            box-shadow: 10px 10px 10px 0 orange inset;
+        }
+        ul li:nth-child(5){
+            /*文本阴影比盒子阴影少扩展*/
+            font-size: 60px;
+            text-shadow: 3px 0 10px #32cc2c;
+        }
+        ul li:nth-child(6){
+            font-size: 60px;
+            text-shadow: 5px 0 3px pink,7px 0 3px #cc7537,9px 0 3px #6193cc,10px 0 3px #faf02b,13px 0 3px orange;
+        }
+        ul li:nth-child(7){
+            font-size: 60px;
+            color: transparent;
+            -webkit-text-stroke: 2px blue;
+            font-family: "Microsoft YaHei UI";
+
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li>zhufeng</li>
+    <li>zhufeng</li>
+    <li>珠峰</li>
+</ul>
+</body>
+</html>

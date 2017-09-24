@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 500px;
+            height: 300px;
+            /*
+            at前面设置是径向渐变的水平半径和垂直半径
+            at后面设置是圆心的位置
+            */
+          /*  background: -webkit-radial-gradient(100px 100px at 100px 100px ,red 0%,red 30%,orange 30%,orange 50%,yellow 50%,yellow 100%);
+            background: radial-gradient(100px 100px at 100px 100px,red 0%,red 30%,orange 30%,orange 50%,yellow 50%,yellow 100%);*/
+
+
+            /*background: -webkit-radial-gradient(farthest-corner at 100px 100px ,red 0%,red 30%,orange 30%,orange 50%,yellow 50%,yellow 100%);*/
+            /*background: radial-gradient(farthest-corner at 100px 100px,red 0%,red 30%,orange 30%,orange 50%,yellow 50%,yellow 100%)*/
+
+            background: -webkit-repeating-radial-gradient(circle,red 0,red 10px,orange 10px,orange 20px,yellow 20px,yellow 30px);
+            background:  repeating-radial-gradient(circle,red 0,red 10px,orange 10px,orange 20px,yellow 20px,yellow 30px);
+
+
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
