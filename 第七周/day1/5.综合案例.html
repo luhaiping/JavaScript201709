@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        .box{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .box>img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .box ul {
+            width: 100%;
+            position: absolute;
+            bottom:10%;
+            text-align: center;
+            z-index: 11111;
+        }
+        .box ul li{
+            display: inline-block;
+            width: 110px;
+            height: 110px;
+            margin: 0 5px;
+            border:10px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .box ul li img{
+            width: 100%;
+            height: 100%;
+        }
+        :target{
+             z-index: 10;
+        }
+        #bg1:target{
+            animation:slideLeft 1s both;
+        }
+        @keyframes slideLeft {
+            0%{
+                transform: translate(-500px);
+            }
+            100%{
+                transform: translate(0,0);/*没有平移的位置*/
+            }
+        }
+        #bg2:target{
+            animation:slideUp 1s both;
+        }
+        @keyframes slideUp {
+            0%{
+                transform:translate(0,-500px);
+            }
+            100%{
+                transform: translate(0,0);
+            }
+        }
+        #bg3:target{
+            animation:zoomIn 1s both;
+        }
+        @keyframes zoomIn {
+            0%{
+                transform: scale(0.2);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+        #bg4:target{
+            animation:zoomOut 1s both;
+        }
+        @keyframes zoomOut {
+            0%{
+                transform: scale(2);
+            }
+            100%{
+                transform: scale(1);
+            }
+
+        }
+        #bg5:target{
+            animation:rotate 1s both;
+        }
+        @keyframes rotate {
+            0%{
+                transform: rotate(0deg) scale(0.2);
+            }
+            100%{
+                transform: rotate(360deg) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="images/1.jpg" alt="" id="bg1">
+    <img src="images/2.jpg" alt="" id="bg2">
+    <img src="images/3.jpg" alt="" id="bg3">
+    <img src="images/4.jpg" alt="" id="bg4">
+    <img src="images/5.jpg" alt="" id="bg5">
+    <ul>
+        <li><a href="#bg1"><img src="images/1.jpg" alt=""></a></li>
+        <li><a href="#bg2"><img src="images/2.jpg" alt=""></a></li>
+        <li><a href="#bg3"><img src="images/3.jpg" alt=""></a></li>
+        <li><a href="#bg4"><img src="images/4.jpg" alt=""></a></li>
+        <li><a href="#bg5"><img src="images/5.jpg" alt=""></a></li>
+    </ul>
+</div>
+</body>
+</html>

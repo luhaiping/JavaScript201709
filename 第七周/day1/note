@@ -1,0 +1,116 @@
+transition语法:
+当css属性值发生改变时,在一定时间内由起始值向结束值之间实现平滑过渡的效果
+transition属性起作用的条件:
+1.有起始值和结束值
+2.触发条件:伪类,js代码,媒体查询等
+
+transition细分属性
+transition-property:all|[attr] 过渡属性
+transition-duration:过渡时间 (必设)
+transition-delay :延迟时间 默认0s
+transition-timing-function:动画类型 ease(默认值) ease-in ease-out  ease-in-out linear
+
+transition 复合写法
+
+transition:all 1s 0s ease;
+->transition:1s;
+->transition:1s 1s; 所有的时间,延迟时间,动画类型设置值都一样
+
+若不一样,也要复合写法(不同属性设置完之后以逗号隔开)
+transition:width 1s,height 2s 1s;
+
+transition属性和animation属性的区别
+1.animation属性可以设置复杂的动画效果
+2.不需要触发条件
+
+animation帧动画实现的步骤:
+1.通过@keyframes声明帧动画(相当于规定好了动画运行的曲线)
+2.animation调用声明的帧动画
+@keyframes 动画名称move{
+    0%{  总时间的百分比
+    //css样式
+    }
+    50%{
+
+    }
+    100%{
+
+    }
+}
+
+animation-name:move  帧动画名称 (必设)
+animation-duration:1s 动画执行的时间 (必设)
+animation-delay:1s 延迟时间
+animation-timing-function 动画运行的速度 ease(默认值) ease-in ease-out linear
+animation-iteration-count :infinite(无数次)||1(默认) 动画执行的次数
+animation-direction:normal(默认)|reverse|alternate|alternate-reverse 动画运行的方向
+animation-play-state:running(运动的,默认值)||paused (停止)
+animation-fill-mode :none(默认值)|forwards(停留在最后一帧)|backwards(回到初始位置)|both(从第一帧开始,停留在最后一帧) 动画运行结束后的状态 (必设 通常情况为both)
+
+->复合写法
+animation: move 1s both;
+
+3D变形效果
+1.对变形元素的祖先标签(对最外层的元素)设置下 perspective:2000px; 视距(通常情况下设置 800px~2000px)
+2.对变形元素的父标签设置 transform-style:preserve-3d (所有的变形元素是在3D空间里展示)
+
+perspective:800px
+transform:perspective(800px);设置在变形元素
+
+3D变形的方法
+transform:translate3d(tx,ty,tz);
+transform:translateX(100px)
+transform:translateY(100px)
+transform:translateZ(100px) z轴上移动的距离  近大远小
+Z轴垂直于X轴和Y轴
+
+transform:scale3d(sx,sy,sz);
+transform:scaleX(0.5);
+transform:scaleY(0.5);
+transform:scaleZ(0.5) 在z轴上缩小0.5,必须配合着其他变形效果一起使用才有效果
+
+transform:rotate3d(rx,ry,rz,a); rx,ry,rz向量坐标 a角度
+transform:rotateX(45deg)->rotate3d(1,0,0,45deg); 围着X轴翻转
+transform:rotateY(45deg)->rotate3d(0,1,0,45deg); 围着Y轴翻转
+transform:rotateZ(45deg)->rotate3d(0,0,1,45deg); 围着Z轴旋转,效果等于rotate(),但是是在Z轴上
+
+1.复习CSS3属性 9月29日白天考
+2.复习照片墙例子 9月27日早上考
+3.30个例子明天晚上再练习练习 9月29日下午抽一些题考
+4.9月29日剩下时间开班会,找H5个人简历素材
+5.PC端项目 确定合作的项目(每人一个稍微复杂点的页面)和个人项目(3个页面) CSS和js部分处理逻辑效果,若有要造假数据,自己造,再完整整个逻辑
+
+参考网站
+招聘类的]
+拉钩网：http://www.lagou.com/
+猎聘网：http://www.liepin.com/
+
+[电商类的]
+京东：http://www.jd.com/
+美丽说：http://www.meilishuo.com/
+蘑菇街：http://www.mogujie.com/
+淘宝/天猫：https://www.taobao.com/
+
+[企业展示]
+小米：http://www.mi.com/
+百度：https://www.baidu.com/
+猎豹：http://www.liebao.cn/ (http://m.liebao.cn/)
+
+[微博类的]
+QQ空间：http://user.qzone.qq.com/
+新浪微博：http://weibo.com/
+
+[视频类的]
+腾讯视频：http://v.qq.com/
+爱奇艺：http://www.iqiyi.com/
+乐视体育：http://www.lesports.com/
+
+除了以上参考的网址，也可以自己选自己喜欢的网址来做；每一组项目不能重复,9月29日告诉我选择做的网站地址及页面
+
+
+
+
+
+
+
+

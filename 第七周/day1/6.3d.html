@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .wrap{
+            width: 150px;
+            height: 150px;
+            border:1px solid green;
+            margin: 100px auto;
+            perspective: 800px;/*视距*/
+            transform-style:preserve-3d;/*变形元素在3D空间展示*/
+        }
+        .item{
+            width: 100%;
+            height: 100%;
+            background: red;
+
+
+        }
+        .item:hover{
+            /*transform: perspective(800px) rotateY(45deg);*/
+            /*transform: translateZ(500px);*/
+            /*transform:scaleZ(5) rotateY(45deg);*/
+            /*transform:scale3d(1,1,5) rotateY(45deg);*/
+            /*transform:rotateX(-45deg);!*正->前翻 负->后翻*!*/
+            /*transform:rotateY(-45deg);!*正->往右 负->往左*!*/
+            /*transform:rotateZ(45deg);!*效果等于rotate(),但是是在Z轴*!*/
+            /*transform:rotateX(45deg) rotateY(45deg);*/
+            /*transform:rotate3d(1,0,0,45deg);*/
+
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="item"></div>
+</div>
+</body>
+</html>

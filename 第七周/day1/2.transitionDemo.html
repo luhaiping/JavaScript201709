@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background:#2d9cc3 url(images/img1.png) no-repeat center center;
+            margin: 50px auto;
+            border-radius: 50%;
+            box-shadow: 0 0 0 30px transparent;
+            -webkit-transition: box-shadow 0.5s;
+            -moz-transition: box-shadow 0.5s;
+            -ms-transition: box-shadow 0.5s;
+            -o-transition: box-shadow 0.5s;
+            transition: box-shadow 0.5s;
+        }
+        #div1:hover{
+            box-shadow: 0 0 0 0 rgba(255,255,255,0.5);
+        }
+    </style>
+</head>
+<body style="background: #2192bc">
+<!--
+1.是哪个属性值发生改变
+2.起始值和结束值
+3.在相应的位置增加transition属性
+
+//划过时是结束值  划出时是起始值
+box-shadow     扩展半径    颜色
+起始值             30px     transparent
+结束值             0        #fff
+-->
+<div id="div1"></div>
+</body>
+</html>

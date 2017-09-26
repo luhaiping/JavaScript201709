@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .wrap{
+            width: 150px;
+            height: 150px;
+            border:1px solid  orange;
+            margin: 100px auto;
+        }
+        .box{
+            width: 100%;
+            height: 100%;
+            background: red;
+            transition: 1s;
+
+        }
+        .box:hover{
+            /*transform: rotate(45deg);*/
+            /*transform: skew(45deg,45deg);*/
+            /*第一个参数水平倾斜:正->往左倾斜  负->往右倾斜
+              第二个参数垂直倾斜:正->往下倾斜 负->往上倾斜
+            */
+            /*transform:scale(0.5);!*<1 缩小 >1 放大*!*/
+            /*transform:translate(100px,100px)*/
+            /*transform-origin:top;*/
+            transform:  rotate(45deg) translate(100px);
+            /*多方法组合使用,通常情况下,会把translate方法写在最后,因为它会导致其他方法变形的基准点发生改变*/
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="box"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background:red;
+            position: absolute;
+            left: 100px;
+            top:100px;
+            opacity: 1;
+            transition: width 1s;/*transition动画执行了两次*/
+
+        }
+        #div1:hover{
+            width: 400px;
+            /*height:400px;*/
+           /* transition-property: width,height;
+            transition-duration:1s;
+            transition-delay: 0s;
+            transition-timing-function: cubic-bezier(.25,1.33,.92,-0.39);*/
+            /*transition:1s 1s;*/
+            /*transition:width 1s,height 2s 1s;*/
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var oDiv  = document.getElementById("div1");
+    oDiv.addEventListener("webkitTransitionEnd",function(){
+        console.log(2);
+    },false);
+    oDiv.addEventListener("transitionend",function(){
+        console.log(1);
+    },false);
+</script>
