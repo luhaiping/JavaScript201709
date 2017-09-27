@@ -1,0 +1,202 @@
+.banner{
+    width: 100%;
+    height: 640px;
+    background: url(../images/banner1.jpg) no-repeat center top;
+}
+.header{
+    position: relative;
+}
+.navWrap{
+    position: fixed;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 83px;
+    line-height: 83px;
+    background:rgba(0,0,0,0.5);
+}
+.nav{
+    width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+}
+.nav h1{
+    width: 325px;
+    height: 33px;
+    float: left;
+    background: url(../images/logo1.png) no-repeat;
+    margin-top: 25px;
+}
+.nav ul{
+    float: right;
+}
+.nav ul li{
+    float: left;
+    padding: 0 25px;
+}
+.nav ul li a{
+    font-size: 16px;
+    color: #fff;
+}
+.channel ul{
+    text-align: center;
+    padding: 30px 0;
+}
+.channel ul li{
+    display: inline-block;
+    padding: 0 25px;
+}
+.channel ul li span{
+    display: block;
+    font-size: 16px;
+    padding-top: 25px;
+}
+.slide{
+    height: 751px;
+    background: url(../images/slide-view.jpg) no-repeat center;
+    position: relative;
+}
+.slide ul{
+    width: 100%;
+    position: absolute;
+    bottom:5%;
+    text-align: center;
+}
+.slide ul li{
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    background: #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 10px;
+    box-shadow:  0 0 0 0 #00cc99;
+}
+.slide ul li a{
+    color: #333;
+}
+.slide ul li:hover{
+    background: #00cc99;
+    box-shadow:  0 0 0 30px transparent;
+    transition: box-shadow 1s;
+}
+.slide ul li:hover a{
+    color: #fff;
+}
+.service{
+    background: #eee;
+}
+.service ul{
+    padding: 30px 0;
+    text-align: center;
+}
+.service ul li{
+    display: inline-block;
+    width: 263px;
+    border-right:1px solid #fff;
+    background: #fff;
+    vertical-align: top;
+}
+.service ul li img{
+    width: 100%;
+}
+.service ul li h4{
+    font-size: 20px;
+    font-weight:bold;
+    padding: 10px 0;
+}
+.service ul li p{
+    font-size: 14px;
+    line-height: 25px;
+    padding: 0 10px;
+    text-align: left;
+}
+@media all and (max-width: 1000px) {
+    .nav{
+        width: 100%;
+    }
+    .nav h1 {
+        width: 135px;
+        height: 33px;
+        background: url(../images/logo2.png) no-repeat;
+        background-size:272px 33px;
+    }
+    .banner{
+        height: 465px;
+        background-size:1399px 465px;/*按照原比例缩放背景图*/
+    }
+    .channel ul li {
+        max-width: 16%;/*li最大的宽度是16%,超过16%,则显示16%的宽度,小于16%时显示自身内容的宽度*/
+        /*width: 16%;*/
+       /*padding:0 1%;*/
+    }
+    .channel li img{
+        /*width: 100%;*/
+        max-width: 100px;
+    }
+    .channel li:nth-child(1) img{
+        max-width: 80px;
+    }
+    .channel li:nth-child(2) img{
+        max-width: 50px;
+    }
+    .channel li:nth-child(3) img{
+        max-width: 50px;
+    }
+    .service ul li{
+        width: 30%;
+    }
+}
+@media all and (max-width: 750px) {
+    .nav ul li{
+        padding: 0 5px;
+    }
+}
+@media all and (max-width: 480px) {
+    .navWrap{
+        height: 50px;
+        line-height: 50px;
+    }
+    .nav ul {
+        width: 100%;
+        background: red;
+        display: none;
+    }
+    .nav ul li{
+        float: none;
+        padding: 0;
+    }
+    .nav>a{
+        display: block;
+        float: left;
+        height: 50px;
+    }
+    .nav h1{
+        margin-top: 7px;
+    }
+    .banner{
+        height: 300px;
+        background-size:902px 300px;
+    }
+    .channel ul li{
+        width: 50%;
+        max-width:100%;
+        padding: 0;
+
+    }
+    .service ul li{
+        float: none;
+        width: 90%;
+        padding: 0 5%;
+        text-align: left;
+        background: none;
+    }
+    .service ul li img{
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin: 15px  10px 0 0;
+    }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        @media screen and (max-device-width: 640px) {/*屏幕宽度小于等于640时条件成立*/
+            #div1{
+                background: green;
+            }
+        }
+       /*
+        @media screen and (min-width: 414px) and (max-width: 639px){!*大于等于414,并且小于等于639,条件成立*!
+            #div1{
+                background: yellow;
+            }
+        }*/
+        /*@media screen and (orientation: portrait) {
+             #div1{
+                 background: orange;
+             }
+        }
+        @media screen and (orientation: landscape){
+            #div1{
+                background: palegreen;
+            }
+        }*/
+
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+</body>
+</html>
