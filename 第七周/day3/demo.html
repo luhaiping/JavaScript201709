@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        /*相对单位:100% em rem:相对于根元素字体大小*/
+
+   /* @media screen and (min-width: 320px){
+        html{
+            font-size: 50px;
+        }
+    }
+        @media screen and (min-width: 375px){
+            html{
+                font-size: 65px;
+            }
+        }
+        @media screen and (min-width: 414px) {
+            html{
+                font-size: 100px;
+            }
+        }*/
+        /*#div1{
+            width: 3rem; !*rem指根元素字体大小的倍数*!
+            height: 3rem;
+            background: red;
+        }*/
+       /* html{
+          font-size:100px;
+        }*/
+        #div1{
+            width:0.86rem;
+            height:0.86rem;
+            background: red;
+        }
+/*思考:
+1.页面上这些元素的尺寸设置成多少rem
+    假设各个设备的宽度时640px/750px时根元素字体大小是100px->元素尺寸px/100->rem
+2.如何根据设备宽度设置根元素字体大小?
+   640     100px    86px
+   320     50px     43px
+   375     58.59375px  50.390625px    640/375 =  86/x
+
+   设备缩放的倍数 = 根元素字体大小缩放的倍数
+   640/设备宽度 = 100/设备的根元素字体大小
+*/
+    </style>
+    <script>
+        //各个设备的根元素字体大小
+        ~(function(){
+            var desW = 640;/*设计稿的宽度*/
+            var winW = document.documentElement.clientWidth;//设备宽度
+//            desW/winW = 100/fs
+//            fs = winW/desW*100
+            document.documentElement.style.fontSize = winW/desW*100+"px";
+        })();
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

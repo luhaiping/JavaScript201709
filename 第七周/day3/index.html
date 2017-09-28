@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰-H5场景</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!--处理移动适配-->
+    <script>
+        ~(function(){
+            var desW = 640;
+            var winW = document.documentElement.clientWidth;
+            document.documentElement.style.fontSize = winW/desW*100+"px";
+        })();
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="music">
+        <audio src="audio/beyond.mp3"  preload="none" id="beyond"></audio>
+        <!--
+        controls 显示默认的用户操作界面
+        loop 循环播放
+        preload auto 预加载音频文件
+                metadata 预加载元数据(例如:音频文件总共的时间)
+                none 不预加载音频文件
+        -->
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">
+                <img src="img/swiper/page1-text1.png" alt="">
+                <img src="img/swiper/page1-text2.png" alt="">
+                <img src="img/swiper/page1-text3.png" alt="">
+                <img src="img/swiper/page1-text4.png" alt="">
+            </div>
+            <div class="swiper-slide slide2">
+                <img src="img/swiper/page2-text1.png" alt="">
+                <img src="img/swiper/page2-text2.png" alt="">
+                <img src="img/swiper/page2-text3.png" alt="">
+                <img src="img/swiper/page2-text4.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper(".swiper-container",{
+        direction:"vertical",
+        loop:true,
+        //把原来的第一个复制下放在现在的最后一个位置
+        //把原来的最后一个复制下放在现在的第一个位置
+        onTransitionEnd :function(swiper){/*当滑块滑动结束时,执行这个回调函数*/
+            var curIndex = swiper.activeIndex;//当前显示滑块的索引
+            var slides = swiper.slides;//所有的滑块
+            //->给当前显示的滑块增加相应的id名
+            [].forEach.call(slides,function(item,index){
+                item.id = "";
+                if(index == curIndex){
+                    switch (index){
+                        case 0:
+                            item.id = "page"+(slides.length-2);
+                            break;
+                        case slides.length-1:
+                            item.id = "page1";
+                            break;
+                        default:
+                            item.id = "page"+index;
+                    }
+                }
+            })
+        }
+    })
+    var oMusic = document.querySelector(".music");
+    var oBeyond = document.querySelector("#beyond");
+    window.setTimeout(function(){
+        oMusic.style.opacity = 1;
+        oBeyond.play();//让音频文件播发  oBeyond.pause()这个表示停止
+        oMusic.className = "music  musicMove";
+    },1000)
+    oMusic.addEventListener("click",function(){
+        //判断当前音频文件是否是播放  oBeyond.paused 若为true表示停止,false表示播放
+        if(oBeyond.paused){
+            oBeyond.play();
+            oMusic.className = "music  musicMove";
+        }else{
+            oBeyond.pause();
+            oMusic.className = "music";
+        }
+    },false);
+
+</script>
