@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //    var str = "zhufeng2017zhufeng2016";
+    //    var reg = /\d+/g;
+    //        console.log(reg.exec(str));
+    //
+    //        console.log(reg.exec(str));
+    //        console.log(reg.exec(str));//null
+
+    //    console.log(str.match(reg));
+    //通过exec获取所有匹配的内容
+    //    RegExp.prototype.allExec = function(str){
+    //        //1.判断有没有加g  reg.global
+    //        if(!this.global) return this.exec(str);
+    //        var res = this.exec(str);
+    //        var ary = [];
+    //        while(res){
+    //            ary.push(res[0]);
+    //            res = this.exec(str);
+    //        }
+    //        return ary;
+    //    }
+    //    console.log(reg.allExec(str));
+
+
+    //格式化日期
+    var str = "2017-10-10 18:09:30";
+    String.prototype.format = function (temp) {
+        temp = temp || "{0}年{1}月{2}日 {3}时{4}分{5}秒";
+        //1.先把字符串中的整数部分获取到并放入数组
+        var reg = /\d+/g;
+        var ary = this.match(reg);//["2017", "10", "10", "18", "09", "30"]
+        //2.把日期按照模板的内容返回
+        reg = /{(\d)}/g;
+        var tempStr = temp.replace(reg, function ($0, $1) {
+            return ary[$1]
+        })
+        return tempStr;
+
+    }
+    //str.format(); //->2017年10月10日 18时09分30秒
+    //console.log(str.format("{0}-{1}"));//->2017-10
+    console.log(str.format("{0}/{1}/{2}")); //->2017/10/10
+
+
+</script>
+</body>
+</html>

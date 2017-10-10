@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Father(x,y){
+        this.x = x;
+        this.y = y;
+    }
+    Father.prototype.a = function(){
+        console.log("a");
+    }
+   function Son(z){
+        Father.call(this);
+        this.z = z;
+   }
+   Son.prototype = new Father(); //原型继承
+   Son.prototype.b = function(){
+       console.log("b");
+   }
+   var s = new Son(30);
+   console.dir(s);
+   //问题:污染子类的原型
+    //解决 寄生式组合集合
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+复习大纲:
+1.数据类型
+基本数据类型:number,string,boolean,null,undefined
+引用数据类型:函数类型(function)和对象类型
+number
+1.四则运算失败时
+2.强制将其他数据类型转换成数类型失败时 Number()|parseInt()|parseFloat()
+
+Number("")->0
+Number(null)->0
+Number(undefined)->NaN
+Number(true)->1
+Number(false)->0
+如果是字符串,只要有一个字符不是数字,则转换结果是NaN
+
+parseInt()->拎整数部分
+parseFloat()->拎整数和小数parseFloat(".5a")->0.5
+
+string
+es5字符串11个方法 es6的4个字符串方法
+charAt() 通过下标找到对应的字符
+charCodeAt() 下标找到对应字符的ASCII
+indexOf() 通过字符找到下标
+lastIndexOf()
+toUpperCase()
+toLowerCase()
+split("&") 将字符串按照指定的字符(还可以是正则)拆分成数组
+split("")|split()
+substr(n,m) n表示截取字符的开始索引 m表示个数
+substring(n,m)  从索引n截取到索引m
+slice(n,m)      可以是负数索引
+在正则这块用的比较多
+replace("zhufeng","zf")
+match()
+includes() 字符串中是否包含某个或某段字符
+startsWith()在一定范围内是否以某个字符开头
+endsWith()在一定范围内是否以某个字符结尾
+可以有第二个参数,includes和startsWith从索引n开始查找  endsWith 表示索引n之前(不包含索引n)是否以某个字符结尾
+repeat()重复某个字符或某段字符
+
+0,"",NaN,null,undefined ->false 其他的全为true
+
+函数的定义
+1.开辟一个内存空间,假设引用地址是xxff00
+2.将函数体的内容以字符串的形式存在这个内存空间里
+3.把引用地址xxff00赋给函数名sum,这个sum就代表整个函数
+
+函数的执行
+1.开辟一个私有作用域
+2.形参赋值
+3.预解释
+4.代码从上往下执行
+
+function sum(){
+    return
+}
+ return 注意点:
+ 1.不一定要return
+ 2.遇到return 代码无条件中止执行
+ 3.函数没写return或return 后面没写返回值,函数的返回值是undefined
+ 4.return 后面的函数不预解释,下面的预解释
+
+ 对象类型
+ var obj = {"name":"lily",age:18}
+ var obj = new Object()
+ 操作对象 增删改查 打点或者[]的方式
+ let {name,age} = obj;
+ Object.is() 判断两个值是否相等
+ Object.assign(target,source1,source2...) 合并对象
+ Object.assign(obj1,obj2);
+ Object.assign(obj1)==obj1 ->true
+ Object.assign({},obj1) 拷贝对象
+
+
+ 数组13方法+7个迭代的方法+es6方法
+ //原有数组发生改变
+ push()
+ unshift()
+ shift()
+ pop()
+ splice(n,m,x) 从索引n开始删除m个,以x的内容替换删除的内容
+ reverse()
+ sort(function(a,b){return a-b})
+
+ //原有数组不发生改变
+ string() 把数组转换成字符串
+ concat() 合并数组
+ slice(n,m)
+ join("&") 按照指定的字符拼接成新的字符串
+ join()|join("")
+ indexOf()  查找数组中是否有这一项,若有则返回这一项索引,没有则返回-1
+ lastIndexOf()
+
+ //7个迭代方法
+ forEach()
+ map()
+ filter() 过滤,会设置一个条件 ,把结果为true的成员都放在一个数组里返回
+ some() 只要有一个为true,则返回结果为true
+ every() 每个都为true,返回结果才为true
+ reduce() 从左往右计算每个成员,最终返回一个累计的值
+ reduceRight() 从右往左
+
+ //es6数组方法
+ Array.from() 把类数组转换成数组
+ Array.of() 把一个或者一组数转换成数组
+ copyWithin(target,start,end) 复制数组中某些项放入数组中(复制的内容会替换原来的内容)
+//target 目标位置
+//start 从当前位置开始读取  负数 倒数第几个
+//end  从当前位置结束 ,若没有设置,则读取到最后 负数 倒数第几个
+ find  返回匹配的这一项
+ findIndex 返回这一项的索引
+ for...of ... 遍历数组或类数组
+ for(let value of ary){} 默认遍历数组的每一项
+ for(let index of ary.keys()){} 遍历数组的每一项的索引
+ for(let ele of ary.entries()){} 遍历数组的每一项和索引
+
+ 变量提升
+ es6没有变量提升
+ 作用域:全局作用域和私有作用域(私有变量:var和形参)
+ 作用域变量查找 :
+ 1.先看当前作用域有没有私有变量,若有,则就它
+ 2.若没有则往上级作用域查找,....上查找,直到找到window,若还没则报错
+ 上级作用域只跟定义有关,跟执行无关
+ 作用域销毁:
+ 1.不立即销毁 方法返回一个需要执行的小函数,当小函数运行完后,整个方法才销毁
+ 2.不销毁 方法内部的内容被其他作用域里的内容给占用了
+
+ this规则:
+ 1.方法名前面有没有.,若没有,则this是window,若有,.前面是谁,this就是谁
+ 2.自执行函数里的this是window
+ 3.事件绑定的行为函数,this指绑定的元素
+ 4.构造函数里的this是实例
+ 5.定时器里的this是window
+ 6.es6里箭头函数里没有this,箭头函数的this指的是上级作用域的this(外层函数的this)
+
+ 构造函数和原型
+ 1.每个构造函数上有个属性prototype,prototype对象指向于这个构造函数默认的原型对象
+ 2.原型上有个默认的属性constructor ,指向构造函数
+ 3.每个对象上都有个属性__proto__,指向所属类的原型
+
+ instanceof 检测某个对象是否在这个类的原型链上
+ 所有的函数都是function类的实例
+ ->函数的三种角色 普通函数(4步骤) 构造函数(实例,原型) 对象(操作对象,增,删,改,查)
+ Function instanceof Object
+ Function.__proto__.__proto__ = Object.prototype
+ Object instanceof Function
+ Object.__proto__ == Function.prototype
+
+ 原型继承
+ - call+原型继承  寄生式组合继承
+ - 最佳解决方法 Object.create(obj) 自己封装
+ - es6继承写法
+
+回调函数 把一个函数的定义A作为值传给另一个函数,这个函数A称为回调函数
+ - 有没有参数
+ - 有没有返回值
+ - 执行的次数
+ - this问题
+
+ 类数组调用数组的方法
+ -通过call把数组的方法里的this改成类数组
+ [].push.call(likeAry,10);
+ Array.prototype.sort.call(likeAry,function(a,b){return a-b})
+
+ //类数组转换成数组的方法
+ function listToArray(likeAry){
+    var ary = [];
+    try{
+      ary = [].slice.call(likeAry,0);
+    }catch(e){
+       for(var i = 0;i<likeAry.length;i++){
+        ary[ary.length] = likeAry[i];
+       }
+    }
+    return ary;
+ }
+
+ 处理浏览器兼容性问题
+ 1.try...catch(e)...
+ 2.属性判断的方式
+  "map" in Array.prototype
+  Array.prototype.map
+ 3.检测数据类型
+ typeof 处理对象类型的数据不太准备
+ instanceof  检测一个对象是否属于这个类
+ Object.prototype.toString.call(null) "[object Null]"
+ 4.浏览器版本兼容性处理
+ navigator.userAgent.indexOf("MSIE 8.0")
+ /MSIE [6-8]\.0/.test(navigator.userAgent)
+
+ JSON格式的数据
+ ajax四步骤
+ 回流和重绘
+ 回流:当页面的结构(尺寸盒子模型的那些属性,位置,显示或隐藏...)发生改变时,浏览器重新渲染页面
+ 重绘:页面样式发生改变时,对当前的元素重新渲染
+ DOM映射 页面结构和JS代码一一对应
+
+ 正则处理字符串
+ 正则组成部分:普通字符,元字符和修饰符
+ 元字符:\转义普通字符
+ \d 0-9的数字 \D
+ \n 匹配换行字符
+ \w 常见的字符 a-zA-Z0-9  \W
+ \s 不可见的字符 空格 tab键 \t\r \S
+ \b 匹配单词的边界  \B
+ . 除了换行以外其他的字符
+ ^  以..开头
+ $  以...结尾
+ [abc] a或b或c
+ [a-z] a-z中的一个字符
+  [^abc] 除了abc以外的其他字符
+  (a|b) [ab]
+  量词元字符
+  + 1到多次
+  * 0到多次
+  ? 0到1次
+  {n} n次
+  {n,m} n到m次
+  {n,}  n到多次
+
+  修饰符
+  g 全文查找
+  m 换行查找
+  i 忽视大小写
+
+  正则的操作
+  匹配 test
+  捕获 exec  match replace split
+
+  格式化日期
+  var str = "2017-10-10 18:09:30";
+  var tempStr = "{0}年{1}月{2}日 {3}时{4}分{5}秒"
+
+  三大系列
+  client系列 clientWidth clientHeight clientLeft clientTop
+  offset系列 offsetWidth offsetHeight offsetTop offsetLeft offsetParent
+                                      盒子外边框到参照物内边框的距离
+  scroll系列 scrollWidth(真实内容的宽度+左padding)  scrollHeight(真实内容的高度+上padding) scrollLeft(横向卷出去的宽度) scrollTop (横向卷出去的高度)
+
+  用来获取任意css样式
+  标准:window.getComputedStyle(ele,null)[attr]
+  IE浏览器 ele.currentStyle[attr]
+
+
+  jquery
+
+  window.$ = window.jQuery = jQuery;
+  1.选择器  实例(jquery对象)
+  2.方法 原型上 实例.addClass() 核心的方法 $.ajax()
+  $.fn = $.prototype = { a:function(){}}
+  $.fn.extend({a:function(){}})
+  $.extend({ajax:function(){}})
+  $.ajax()
+  $.get()
+  $.post()
+  $.each()数组 对象 类数组
+  $("#div").each() 遍历的是jquery对象
+
+  $.callbacks() 安排一个队列
+  $.add(function(){}) 往队列里添加方法 列计划
+  $.fire() 把队列里的方法执行
+  $.remove(function(){}) 移除队列里的方法
+
+  children() 找子元素
+  find() 找后代元素
+  filter() 同级查找
+  next()
+  nextAll()
+  parent()
+  parents("p")
+  siblings() 获取所有的兄弟元素
+ $("div").on("click","ul",function(){
+        $(this)[0]
+        $(this).get(0)
+        $(this).eq(1)
+
+  })
+$("div").stop().animate({
+
+})
+原生js和jquery转换
+$("div").css("color","red");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

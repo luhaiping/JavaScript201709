@@ -1,18 +1,18 @@
-DOM0¼¶ÊÂ¼þ°ó¶¨ºÍDOM2¼¶ÊÂ¼þ°ó¶¨µÄÇø±ð
-1.DOM2¼¶ÊÇDOM0¼¶µÄÉý¼¶°æ
-2.DOM2¼¶ÐÞ¸´ÁËDOM0¼¶µÄÎÊÌâ
-DOM2¼¶Õâ±ß:±ê×¼ä¯ÀÀÆ÷ºÍIEä¯ÀÀÆ÷°ó¶¨·½Ê½²»Í¬
-±ê×¼ä¯ÀÀÆ÷ ele.addEventListener(type,fn,false)//ÊÂ¼þÀàÐÍ  °ó¶¨·½·¨  ÊÂ¼þ´«²¥µÄ½×¶Î
-IEä¯ÀÀÆ÷ ele.attachEvent("onclick",fn);
+DOM0çº§äº‹ä»¶ç»‘å®šå’ŒDOM2çº§äº‹ä»¶ç»‘å®šçš„åŒºåˆ«
+1.DOM2çº§æ˜¯DOM0çº§çš„å‡çº§ç‰ˆ
+2.DOM2çº§ä¿®å¤äº†DOM0çº§çš„é—®é¢˜
+DOM2çº§è¿™è¾¹:æ ‡å‡†æµè§ˆå™¨å’ŒIEæµè§ˆå™¨ç»‘å®šæ–¹å¼ä¸åŒ
+æ ‡å‡†æµè§ˆå™¨ ele.addEventListener(type,fn,false)//äº‹ä»¶ç±»åž‹  ç»‘å®šæ–¹æ³•  äº‹ä»¶ä¼ æ’­çš„é˜¶æ®µ
+IEæµè§ˆå™¨ ele.attachEvent("onclick",fn);
 
-IE(6-8)ä¯ÀÀÆ÷Óë±ê×¼ä¯ÀÀÆ÷µÄ¼æÈÝÐÔÎÊÌâ:
-1.°ó¶¨»ò½â°óµÄ·½Ê½²»Í¬
-2.IEÏÂÖ´ÐÐµÄË³ÐòÊÇÂÒÐòµÄ
-3.IEÏÂthisÊÇwindow
-4.IEÏÂÃ»ÓÐ½â¾öÖØ¸´°ó¶¨µÄÎÊÌâ
-5.ÊÂ¼þ¶ÔÏó:±ê×¼ä¯ÀÀÆ÷ÊÇÍ¨¹ý´«²ÎµÄ·½Ê½¸ø°ó¶¨µÄ·½·¨,ieÏÂÊÇ±£´æÔÚwindow.eventÏÂ
-6.ÊÂ¼þÔ´:±ê×¼ä¯ÀÀÆ÷ÏÂÊÇe.target ieÏÂÊÇe.srcElement
-7.e.pageX,e.pageYÔÚieÏÂ²»Ö§³Ö
-8.×èÖ¹Ä¬ÈÏÐÐÎª:±ê×¼ä¯ÀÀÆ÷ÏÂ e.preventDefault() IEÏÂ e.returnValue = false
-9.×èÖ¹ÊÂ¼þ´«²¥:±ê×¼ä¯ÀÀÆ÷ÏÂ e.stopPropagation() IEÏÂ e.cancelBubble = true
-10.IEä¯ÀÀÆ÷ÏÂÃ»ÓÐ²¶»ñ½×¶Î,Ö»ÓÐÃ°ÅÝ½×¶Î,ÌìÉúÈ±Ò»ÌõÍÈ,ÕâÃ»·¨½â¾ö
+IE(6-8)æµè§ˆå™¨ä¸Žæ ‡å‡†æµè§ˆå™¨çš„å…¼å®¹æ€§é—®é¢˜:
+1.ç»‘å®šæˆ–è§£ç»‘çš„æ–¹å¼ä¸åŒ
+2.IEä¸‹æ‰§è¡Œçš„é¡ºåºæ˜¯ä¹±åºçš„
+3.IEä¸‹thisæ˜¯window
+4.IEä¸‹æ²¡æœ‰è§£å†³é‡å¤ç»‘å®šçš„é—®é¢˜
+5.äº‹ä»¶å¯¹è±¡:æ ‡å‡†æµè§ˆå™¨æ˜¯é€šè¿‡ä¼ å‚çš„æ–¹å¼ç»™ç»‘å®šçš„æ–¹æ³•,ieä¸‹æ˜¯ä¿å­˜åœ¨window.eventä¸‹
+6.äº‹ä»¶æº:æ ‡å‡†æµè§ˆå™¨ä¸‹æ˜¯e.target ieä¸‹æ˜¯e.srcElement
+7.e.pageX,e.pageYåœ¨ieä¸‹ä¸æ”¯æŒ
+8.é˜»æ­¢é»˜è®¤è¡Œä¸º:æ ‡å‡†æµè§ˆå™¨ä¸‹ e.preventDefault() IEä¸‹ e.returnValue = false
+9.é˜»æ­¢äº‹ä»¶ä¼ æ’­:æ ‡å‡†æµè§ˆå™¨ä¸‹ e.stopPropagation() IEä¸‹ e.cancelBubble = true
+10.IEæµè§ˆå™¨ä¸‹æ²¡æœ‰æ•èŽ·é˜¶æ®µ,åªæœ‰å†’æ³¡é˜¶æ®µ,å¤©ç”Ÿç¼ºä¸€æ¡è…¿,è¿™æ²¡æ³•è§£å†³

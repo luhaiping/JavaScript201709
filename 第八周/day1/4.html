@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    function myCreate(obj){
+//        function Temp(){};
+//        Temp.prototype  = obj;
+//        return new Temp();
+//    }
+
+    function Father(x,y){
+        this.x = x;
+        this.y = y;
+    }
+    Father.prototype.a = function(){
+        console.log("a");
+    }
+
+
+
+   function Son(x,y,z){
+        Father.call(this,x,y);
+        this.z = z;
+   }
+   Son.prototype = Object.create(Father.prototype);
+   Son.prototype.b = function(){
+       console.log("b");
+   }
+   var s = new Son(10,20,30);
+   console.dir(s);
+   //避免了子类的原型作为父类的实例
+   //公有的属性和方法通过__proto__查找
+
+
+
+
+
+
+</script>
+</body>
+</html>

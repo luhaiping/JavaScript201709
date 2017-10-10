@@ -1,13 +1,13 @@
-DOM2¼¶ÊÂ¼şµÄ¼æÈİĞÔÎÊÌâ
-1.°ó¶¨(½â°ó)·½Ê½²»Í¬
-2.IEÏÂthisÊÇwindow
-3.IEÏÂÃ»ÓĞ½â¾öÖØ¸´°ó¶¨
-4.IEÏÂË³ĞòÊÇÂÒĞò
-5.ÊÂ¼ş¶ÔÏó:±ê×¼ä¯ÀÀÆ÷ÊÇÍ¨¹ıÊÂ¼ş´«²ÎµÄ·½Ê½¸ø°ó¶¨µÄ·½·¨ IEÉÏÊÇ±£´æÔÚwindow.eventÉÏ
-6.ÊÂ¼şÔ´»ñÈ¡·½Ê½²»Í¬:±ê×¼ä¯ÀÀÆ÷ e.target IEä¯ÀÀÆ÷e.srcElement
-7.IEÏÂe.pageXºÍe.pageY²»Ö§³Ö
+DOM2çº§äº‹ä»¶çš„å…¼å®¹æ€§é—®é¢˜
+1.ç»‘å®š(è§£ç»‘)æ–¹å¼ä¸åŒ
+2.IEä¸‹thisæ˜¯window
+3.IEä¸‹æ²¡æœ‰è§£å†³é‡å¤ç»‘å®š
+4.IEä¸‹é¡ºåºæ˜¯ä¹±åº
+5.äº‹ä»¶å¯¹è±¡:æ ‡å‡†æµè§ˆå™¨æ˜¯é€šè¿‡äº‹ä»¶ä¼ å‚çš„æ–¹å¼ç»™ç»‘å®šçš„æ–¹æ³• IEä¸Šæ˜¯ä¿å­˜åœ¨window.eventä¸Š
+6.äº‹ä»¶æºè·å–æ–¹å¼ä¸åŒ:æ ‡å‡†æµè§ˆå™¨ e.target IEæµè§ˆå™¨e.srcElement
+7.IEä¸‹e.pageXå’Œe.pageYä¸æ”¯æŒ
     e.pageX = e.clientX+(document.documentElement.scrollLeft||document.body.scrollLeft);
     e.pageY = e.clientY+(document.documentElement.scrollTop||document.body.scrollTop);
-8.×èÖ¹Ä¬ÈÏĞĞÎª:±ê×¼ä¯ÀÀÆ÷ e.preventDefault() IE e.returnValue = false
-9.×èÖ¹ÊÂ¼ş´«²¥:±ê×¼ä¯ÀÀÆ÷ e.stopPropagation() IE e.cancelBubble = true
-10.IEÏÂÃ»ÓĞ²¶»ñ½×¶Î,Ö»ÓĞÃ°Åİ½×¶Î
+8.é˜»æ­¢é»˜è®¤è¡Œä¸º:æ ‡å‡†æµè§ˆå™¨ e.preventDefault() IE e.returnValue = false
+9.é˜»æ­¢äº‹ä»¶ä¼ æ’­:æ ‡å‡†æµè§ˆå™¨ e.stopPropagation() IE e.cancelBubble = true
+10.IEä¸‹æ²¡æœ‰æ•è·é˜¶æ®µ,åªæœ‰å†’æ³¡é˜¶æ®µ

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    function offset(ele) {
+//        var left = ele.offsetLeft;
+//        var top = ele.offsetTop;
+//        var p = ele.offsetParent;
+//        while (p != document.body && p) {//p是body 或p是null时
+//            if (navigator.userAgent.indexOf("MSIE 8.0") == -1) {//不是iE8浏览器,需要累加参照物的边框
+//                left += p.clientLeft;
+//                top += p.clientTop;
+//            }
+//            left += p.offsetLeft;
+//            top += p.offsetTop;
+//            p = p.offsetParent;
+//        }
+//        return {
+//            left:left,
+//            top:top
+//        }
+//    }
+
+
+    function getCss(ele,attr){
+        var res = null;
+        if("getComputedStyle" in window){
+            res = window.getComputedStyle(ele,null)[attr];
+        }else{
+            if(attr == "opacity"){
+                res = ele.currentStyle.filter;
+                var reg = /^alpha\(opacity\s*=\s*(\d+(?:\.\d+)?)\)$/;
+                res = reg.test(res)?RegExp.$1/100:1
+            }else{
+                res = ele.currentStyle[attr];
+            }
+
+        }
+        //"12"或 "12px" ->数类型
+        reg = /^[+-]?(?:\d+(?:\.\d+)?)(?:px|rem|em|pt)?$/i;
+        return reg.test(res)?parseFloat(res):res;
+    }
+    function getByClass(strClass,context){//" div1 div2 "
+        context = context ||document;
+        if(document.getElementsByClassName){
+            return context.getElementsByClassName(strClass)
+        }
+        var strAry = strClass.replace(/(^ +)|( +$)/g,"").split(/ +/g);
+        var eles = context.getElementsByTagName("*");
+        for(var i = 0;i<strAry.length;i++){
+            var curClass = strAry[i];
+            var ary = [];
+            var reg = new RegExp("(^| +)"+curClass+"( +|$)");
+            //把每个类名curClass去eles.className里匹配,若匹配则放入数组
+            for(var k = 0;k<eles.length;k++){
+                if(reg.test(eles[i].className)){
+                    ary.push(eles[i]);
+                }
+            }
+            eles = ary;//把每次的结果赋给eles,这样另一个类名匹配时,就从上次的结果中查找
+        }
+        return eles;
+    }
+
+
+
+</script>
+</body>
+</html>

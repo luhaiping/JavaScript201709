@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var ary = [12,30,25,5];
+//    var obj = {};
+//    ary.map(function(item,index,ary){
+//        console.log(arguments);
+//    })
+
+    Array.prototype.myMap = function(callBack,context){
+        if("map" in Array.prototype){
+            return this.map(callBack,context);
+        }
+        var res = null;//保存每次回调函数运行的结果
+        var ary = [];
+        for(var i = 0;i<this.length;i++){
+            res = callBack.call(context,this[i],i,this);
+            ary.push(res);
+        }
+        return ary;
+    }
+
+    //创建一个ajax对象
+    var xml = new XMLHttpRequest();
+    //打开一个链接地址
+    xml.open("get","data.json",false);//true是异步 false 同步
+    //监听数据
+    xml.onreadystatechange = function(){
+        //请求状态码和网络状态码
+        if(xml.readyState==4 &&/^2\d{2}$/.test(xml.status)){
+            console.log(xml.responseText)
+        }
+    }
+    //发送数据
+    xml.send(null);
+</script>
+
+</body>
+</html>

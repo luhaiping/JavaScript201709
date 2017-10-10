@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Father{
+        constructor(z){
+            this.z = z;
+        }
+        b(){//原型上
+            console.log("b");
+        }
+        static fn(){ //在Father上添加的方法
+
+        }
+    }
+
+    class Son extends Father{
+      constructor(x,y,z){
+          super(z);//把父类的this改成子类的实例,并返回子类的实例
+          this.x = x;
+          this.y = y;
+      }
+      a(){
+        console.log("a");
+      }
+    }
+    var s = new Son(10,20,30);
+    console.dir(s);
+</script>
+</body>
+</html>
