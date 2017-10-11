@@ -1,0 +1,66 @@
+#div1 {
+  width: 100px;
+  height: 100px;
+  background: red;
+}
+.div1 {
+  background: url("../images/a.jpg") no-repeat;
+}
+.box {
+  width: 100px;
+  height: 100px;
+}
+.box img {
+  width: 100%;
+  height: 100%;
+}
+.box .red .gray {
+  color: #eee;
+}
+.box:hover {
+  background: green;
+}
+#header {
+  color: #eee;
+}
+#div1 ul li:hover {
+  color: red!important;
+}
+.box {
+  -webkit-transition: all 2s ease 0s;
+  -moz-transition: all 2s ease 0s;
+  -ms-transition: all 2s ease 0s;
+  -o-transition: all 2s ease 0s;
+  transition: all 2s ease 0s;
+}
+.box2 {
+  padding: 15px;
+}
+.box3 {
+  opacity: 0.5;
+  filter: alpha(opacity = 50);
+}
+.box4 {
+  background: green;
+}
+.box {
+  color: white;
+}
+.column-1 {
+  width: 25%;
+}
+.column-2 {
+  width: 50%;
+}
+.column-3 {
+  width: 75%;
+}
+.column-4 {
+  width: 100%;
+}
+.w1 {
+  transform: rotate(45deg);
+}
+.w2 {
+  transform: rotate(45deg) scale(2);
+}

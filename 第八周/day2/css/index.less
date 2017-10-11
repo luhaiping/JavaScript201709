@@ -1,0 +1,154 @@
+@import (reference) "public"; //reference只引用less代码,不解析成CSS样式输出
+@color:red; //存储值
+@selector:div1;//选择器 @{selector}
+@width:width;//属性  @{width}
+@url:"../images";//定义一个变量存储公共的url @{url}
+
+#@{selector}{
+  @{width}: 100px;
+  height: 100px;
+  background: @color;
+
+}
+.@{selector}{
+  background:url("@{url}/a.jpg") no-repeat;
+}
+
+//.a1(){//仅调用,不会在CSS中编译出来
+//  width: 100px;
+//  height:100px;
+//}
+//.a1{
+//  width: 100px;
+//  height:100px;
+//}
+//.b1{
+//  .a1; //本质上都是复制一份放b1里,这样很多冗余代码
+//  background: red;
+//}
+
+//共用代码而非复制代码
+//.b1:extend(.a1){
+//  background: red;
+//}
+
+//.b1{
+//  &:extend(.a1);//&父级 .b1
+//  background: red;
+//}
+
+//嵌套规则
+.box{
+  width: 100px;
+  height: 100px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .red{
+    .gray {
+      color: #eee;
+    }
+  }
+
+  &:hover {
+    background: green;
+  }
+}
+
+#header {
+  .box>.red>.gray;
+}
+
+
+#div1{
+  ul{
+    li{
+      &:hover{
+        color:red!important;
+      }
+    }
+  }
+  p{
+
+  }
+}
+//.transition(@property,@duration,@timing-function,@delay){
+//  -webkit-transition:  @property @duration @timing-function @delay;
+//  -moz-transition:  @property @duration @timing-function @delay;
+//  -ms-transition:  @property @duration @timing-function @delay;
+//  -o-transition:  @property @duration @timing-function @delay;
+//  transition:  @property @duration @timing-function @delay;
+//}
+.transition(@property:all,@duration:1s,@timing-function:ease,@delay:0s){
+  -webkit-transition:  @arguments;
+  -moz-transition:  @arguments;
+  -ms-transition:  @arguments;
+  -o-transition:  @arguments;
+  transition:  @arguments;
+}
+.box{
+  .transition(@duration: 2s);
+}
+.average(@x,@y){
+  @result:(@x+@y)/2;//把属性名定义成一个数量 ->函数的返回值
+}
+.box2{
+  .average(10,20);
+  padding:unit(@result,px);
+
+}
+.pos(@pos:absolute,@left:auto,@right:auto,@top:auto,@bottom:auto,@zIndex:1){
+  position: @pos;
+  left:@left;
+  right:@right;
+  bottom:@bottom;
+  top:@top;
+  z-index:@zIndex;
+}
+.opacity(@val:1){
+  @result :@val*100;
+  opacity: @val;
+  filter:~"alpha(opacity = @{result})";//并非所有的代码都能解析,不能解析的就按照CSS样式去解析
+}
+.box3{
+  .opacity(0.5);
+}
+
+//.mixin(@a) when(@a>10){
+//  background: red;
+//}
+.mixin(@a) when(@a>10) and (@a<20){
+  background: green;
+}
+.box4{
+  .mixin(11)
+}
+
+@my-option:true;
+& when (@my-option = true) {//类似于if语句条件判断
+  .box {
+    color: white;
+  }
+}
+
+
+
+.generate-columns(@n, @i: 1) when (@i <= @n) {
+  .column-@{i} {
+    width: (@i * 100% / @n);
+  }
+    .generate-columns(@n, (@i + 1));
+}
+
+.generate-columns(4);
+
+.w1{
+  //box-shadow+: 1px 1px 2px 3px orange;
+  transform+_:rotate(45deg)
+}
+.w2{
+  .w1;
+  //box-shadow+:2px 3px 5px 0px red ;
+  transform+_: scale(2)
+}

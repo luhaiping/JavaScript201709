@@ -1,0 +1,30 @@
+CSS预处理器:less sass stylus
+缺点:冗余代码,css优先级,样式冲突,效率不高...
+less 用最少的代码去做最多的事情
+less编译
+客户端(浏览器端)和服务器node命令
+引入less-2.5.3.min.js来编译less代码
+<link rel="stylesheet/less" href="css/index.less">
+less文件里css代码和less代码(在css的基础上又增加额外的一些语法,让我们能更高效的编写css代码)
+
+less的语法
+1.变量
+通常情况下定义如下这几种变量:属性值@color ,选择器,属性,url(后面这三个写时变量名要用{}包起来 如@{url})
+2.混合 调用不同选择器的css样式
+第一种 直接复制 ->冗余代码
+第二种 共用其他选择器的样式
+     .b1:extend(.a1){}
+     .b1{
+        &:extend(.a1);
+     }
+3.命名和嵌套规则
+!important表示优先级最高,公司中一般禁止用
+4.函数
+5.函数条件
+ when ....  and(,) ...
+
+6.Merge合并样式
+
+腾讯看比赛地址:
+http://kbs.sports.qq.com/#100324
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet/less" href="css/index.less">
+
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li>1111</li>
+    </ul>
+    <p></p>
+</div>
+</body>
+</html>
+<script>
+    //在引入less.js文件之前配置参数
+    var less = {
+        env:"development" ,//本地环境下开发代码
+        poll:1000 //在监视模式下,查看代码的间隔时间
+    }
+</script>
+<script src="js/less-2.5.3.min.js"></script>
+<script>
+    less.watch() //在监视模式下
+</script>
