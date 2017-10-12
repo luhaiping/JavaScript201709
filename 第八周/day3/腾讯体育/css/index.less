@@ -154,16 +154,23 @@ html,body{
     }
   }
   .con{
-    margin: 0 24px;
-    padding: 5px 0;
+    margin: 5px 24px;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    .wrapper{
+      .pos(@left: 0,@top:0);
+      height: 100%;
+    }
     a{
       float: left;
-      width: 100px;
+      width: 110px;
       height: 70px;
       line-height: 27px;
       font-size: 16px;
       color: @color-gray;
       text-align: center;
+
       span{
         display: block;
         &.week{

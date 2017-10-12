@@ -59,14 +59,8 @@
         <div class="calender">
             <div class="con">
                 <div class="wrapper">
-                    <a href="###" class="bg">
-                        <span class="week">星期六</span>
-                        <span class="time">10-29</span>
-                    </a>
-                    <a href="###">
-                        <span class="week">星期六</span>
-                        <span class="time">10-29</span>
-                    </a>
+
+
                 </div>
             </div>
             <a href="javascript:void(0)" class="btn btnLeft"></a>
@@ -86,6 +80,16 @@
         <a href="#<%=item.hash%>" data-id="<%=item.columnId%>"><%=item.title%><i></i></a>
     </li>
     <% })%>
+</script>
+
+<!--赛事日期数据的模板结构-->
+<script charset="utf-8" type="text/template" id="calenderTemplate">
+    <%$.each(calenderData,function(index,item){%>
+    <a href="javascript:void(0)" data-time="<%=item.date%>">
+        <span class="week"><%=item.weekday%></span>
+        <span class="time"><%=item.date.formatTime("{1}-{2}")%></span>
+    </a>
+    <%})%>
 </script>
 
 <script src="js/jquery-1.11.3.min.js"></script>
