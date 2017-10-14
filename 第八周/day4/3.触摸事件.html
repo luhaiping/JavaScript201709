@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top:40%;
+            left:30%
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    //单指触摸事件 touchstart touchmove touchend touchcancel
+    //touchstart 按下时触发
+    //touchmove  移动时触发
+    //touchend  离开时触发
+    var oDiv = document.getElementById("div1");
+    document.addEventListener("touchstart",start,false);
+    document.addEventListener("touchmove",move,false);
+    document.addEventListener("touchend",end,false);
+    var flag = false;
+    function start(e){
+        downX = e.touches[0].pageX;
+        downY = e.touches[0].pageY;
+    }
+    function move(e){
+        flag = true; //区别点击还是滑动
+        e.preventDefault();//禁止滑动时页面默认滚动的行为
+        var moveX = e.touches[0].pageX;
+        var moveY = e.touches[0].pageY;
+        var changePosX = moveX - downX;  //往右正值 往左负值
+        var changePosY = moveY - downY; //往下正值  往上负值
+//      console.log(changePosY); 判断是上一屏还是下一屏需要进行正负判断
+//        if(Math.abs(changePosX)>10){
+//            oDiv.style.webkitTransform="translate("+changePosX+"px)";
+//        }else if(Math.abs(changePosY)>10){
+//            oDiv.style.webkitTransform="translate(0,"+changePosY+"px)";
+//        }
+
+        if(changePosX>0){
+            console.log("往右滑")
+        }else if(changePosX<0){
+            console.log("往左滑")
+        }else if(changePosY>0){
+            console.log("往下滑")
+        }else if(changePosY<0){
+            console.log("往上滑")
+        }
+    }
+    function end(e){
+        //要求:滑动结束时再去做些事情 ,点击结束时不做任何处理
+        if(flag){
+            console.log("end");
+        }
+
+    }
+    /*
+    * 1.阻止滑动时页面默认滚动行为
+    * 2.知道滑动方向正负值问题 通过设置何时可以滑动条件
+    * 3.区别是点击还是滑动
+    * */
+    //点击 click dbclick
+    //触摸事件 touchstart
+    //tap longtap(长按 大于750ms以后)  swipeLeft swipeRight swipeUp swipeDwon   只要碰上了就会触发touchstart
+    //只点了一下,能click但是会有300ms毫秒延迟的问题 因为要判断是单击,双击,长按
+    //->解决300ms延迟的问题 fastclick
+
+
+</script>

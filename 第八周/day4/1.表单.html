@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<figure>-->
+    <!--<img src="a.jpg" alt="">-->
+    <!--<figcaption>对图片的说明-图题</figcaption>-->
+<!--</figure>-->
+<form id="form1" >
+    <!--0<input type="range" name="range" value="50" id="text1">100-->
+    <!--<input type="week" id="text1">-->
+    <input type="text" id="text1" name="text" placeholder="请输入姓名" autocomplete="off" autofocus  required pattern="^\d{2}$">
+    <input type="submit" value="提交">
+</form>
+<input type="email" name="email" form ="form1"><!--将表单元素和form标签关联起来-->
+
+</body>
+</html>
+<!--用更加明确的语义化标签来表示每个模块的内容
+    div   section 一个区块 范围最广
+    header  头部区域
+    footer  尾部区域
+    nav    导航部分
+    main 主体部分
+    aside 侧边栏
+    article 独立的完整区域
+
+-->
+<script>
+
+    var oText = document.getElementById("text1");
+    oText.onchange = function(){
+        console.log(oText.value);
+    }
+    //PC keydown,keyup,keypress ...等键盘事件在移动端页面不能用,手机上是虚拟键盘 在移动端用input事件来代替  oText.oninput 当输入时...
+    oText.onfocus = function(){ //获得焦点
+
+    }
+    oText.onblur = function(){//失去焦点
+
+    }
+
+</script>

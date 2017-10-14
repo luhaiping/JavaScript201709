@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <input type="text" name="text" pattern="^\d$" required id="text1">
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
+<script>
+    var oText1 = document.getElementById("text1");
+//    oText1.addEventListener("invalid",function(){ //验证不通过时会触发invalid事件
+//        //oText1.validity  查看是什么原因导致验证不通过
+//        console.log(this.validity);
+//        if(this.validity.patternMismatch){
+//            this.setCustomValidity("请输入一位的数字"); 改是默认提示信息
+//        }else{
+//            this.setCustomValidity("");
+//        }
+//
+//    },false);
+    /*
+     oText1.validity.valueMissing    true 输入内容为空
+     oText1.validity.typeMismatch    true 类型不匹配
+     oText1.validity.patternMismatch true  与正则的验证规则不匹配
+    */
+
+
+
+
+</script>

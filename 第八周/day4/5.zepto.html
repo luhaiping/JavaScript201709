@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="js/zepto.js"></script>
+<script>
+//    $("#div1").animate({
+//            opacity: 0.25,
+//            left:
+//                '50px',
+//            color:
+//                '#abcdef',
+//            rotateZ:
+//                '45deg',
+//            translate3d: '0,10px,0'
+//        }, 500,
+//        'ease-out')
+    $(document).swipeLeft(function(){
+        $("#div1").css({"transform":"rotate(45deg)","transition":"1s"});
+    })
+</script>
