@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script>
+        //移动适配
+        ~(function(){
+            var desW = 640;
+            var winW = document.documentElement.clientWidth;
+            //desW/winW = 100/fs
+            document.documentElement.style.fontSize = winW/desW*100+"px";
+        })();
+
+    </script>
+
+    <style type="text/css">
+        *{
+            margin:0;
+            padding: 0;
+        }
+        ul{
+            list-style:none;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #cube{
+            width: 100%;
+            height: 100%;
+            background: url(images/zf_cubeBg.jpg) no-repeat;
+            background-size:100% 100%;
+            -webkit-perspective: 2000px;
+            perspective: 2000px;
+        }
+        #cubeBox{
+            width: 5.1rem;
+            height: 5.1rem;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-left: -2.55rem;
+            margin-top: -2.55rem;
+            -webkit-transform: scale(0.6);
+            transform: scale(0.6) rotateX(-45deg) rotateY(45deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transform-origin: 2.55rem 2.55rem -2.55rem;/*变形的基准点变成正方体的中心点*/
+        }
+        #cubeBox li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top:0;
+            background-size:100% 100%;
+            background-repeat: no-repeat;
+        }
+        #cubeBox li:nth-child(1){
+            background-image: url(images/zf_cube1.png);
+            top:-5.1rem;
+            transform-origin: bottom;
+            transform: rotateX(90deg);
+
+
+        }
+        #cubeBox li:nth-child(2){
+            background-image: url(images/zf_cube2.png);
+            top:5.1rem;
+            transform-origin: top;
+            transform: rotateX(-90deg);
+        }
+        #cubeBox li:nth-child(3){
+            background-image: url(images/zf_cube3.png);
+            left:-5.1rem;
+            transform-origin:right;
+            transform: rotateY(-90deg);
+        }
+        #cubeBox li:nth-child(4){
+            background-image: url(images/zf_cube4.png);
+            left:5.1rem;
+            transform-origin:left;
+            transform: rotateY(90deg);
+        }
+        #cubeBox li:nth-child(5){
+            background-image: url(images/zf_cube5.png);
+            transform: translateZ(-5.1rem) rotateY(180deg);
+        }
+        #cubeBox li:nth-child(6){
+            background-image: url(images/zf_cube6.png);
+            transform: translateZ(0);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="cube">
+    <ul id="cubeBox">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    </div>
+
+</body>
+</html>
+<script>
+    ~(function(){
+        var cubeBox = document.getElementById("cubeBox");
+//    document.addEventListener("touchstart",start,false);
+//    document.addEventListener("touchmove",move,false);
+//    document.addEventListener("touchend",end,false);
+        ["touchstart","touchmove","touchend"].forEach(function(item,index){
+            document.addEventListener(item,eval(item.slice(5)),false)
+        });
+        var downX = null,
+            downY = null,
+            flag  = false,
+            x  = 0,
+            y  = 0,
+            startX =45,   //初始围着x轴上翻转的角度
+            startY = -45;  //初始围着y轴翻转的角度
+        //翻转方向的正负值 == 滑动距离的正负值
+        //rotateY() 左右翻转   右(正)
+        //rotateX() 上下翻转   下(负)
+        function start(e){
+            downX = e.touches[0].pageX;
+            downY = e.touches[0].pageY;
+        }
+        function move(e){
+            e.preventDefault();
+            flag = true;
+            var moveX = e.touches[0].pageX;
+            var moveY = e.touches[0].pageY;
+            x  = (moveX-downX)*1/2;//左右滑动距离(角度)
+            y  = (downY-moveY)*1/2;//上下滑动距离(角度)
+            if(startY+y>70){
+                y = -startY+70;
+            }else if(startY+y<-70){
+                y =-startY-70;
+            }
+            cubeBox.style.webkitTransform = "scale(0.6) rotateX("+(startY+y)+"deg) rotateY("+(startX+x)+"deg)";
+        }
+        function end(){
+            if(flag){
+                startX+=x;
+                startY+=y;
+            }
+
+        }
+    })();
+
+</script>
