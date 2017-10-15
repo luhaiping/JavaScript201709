@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet/less" href="css/a.less">
+    <!--移动适配-->
+    <script>
+        ~(function (desW) {
+            var winW = document.documentElement.clientWidth;
+            document.documentElement.style.fontSize = winW / desW * 100 + "px";
+        })(320);
+        //模拟,不标准,设计稿宽度750或者640
+    </script>
+
+    <!--处理less编译-->
+    <script>
+        var less = {
+            env: 'development',//开发模式
+            poll: 1000 /*监听的间隔时间*/
+        }
+    </script>
+    <script src="js/less-2.5.3.min.js"></script>
+    <script>
+        less.watch();
+    </script>
+
+</head>
+<body>
+<header class="header">
+    <h1>腾讯体育</h1>
+    <span>NBA</span>
+    <div class="menu"></div>
+    <a href="###" class="login">登录</a>
+</header>
+<nav class="nav">
+    <ul>
+        <li><a href="#">NBA</a></li>
+        <li><a href="#">CBA</a></li>
+        <li><a href="#">英超</a></li>
+        <li><a href="#">欧冠</a></li>
+        <li><a href="#">亚冠</a></li>
+        <li><a href="#">西甲</a></li>
+        <li><a href="#">德甲</a></li>
+        <li><a href="#">意甲</a></li>
+        <li><a href="#">法甲</a></li>
+        <li><a href="#">中超</a></li>
+        <li><a href="#">NFL</a></li>
+        <li><a href="#">综合</a></li>
+        <li><a href="#">社区</a></li>
+        <li><a href="#">欧洲杯</a></li>
+        <li><a href="#">下载</a></li>
+    </ul>
+</nav>
+<section class="video">
+    <video src="img/video.mp4" controls preload="none" poster="img/poster.jpg"></video>
+</section>
+<section class="match">
+
+</section>
+</body>
+</html>
+
+<script src="js/ejs.min.js"></script>
+<!--设置模板结构-->
+<script charset="utf-8" type="text/template" id="matchTemp">
+    <div class="top">
+        <div class="left">
+            <img src="<%=matchData.matchInfo.leftBadge%>" alt="">
+            <span><%=matchData.matchInfo.leftGoal%></span>
+        </div>
+        <div class="center"><%=matchData.matchInfo.startTime%></div>
+        <div class="right">
+            <span><%=matchData.matchInfo.rightGoal%></span>
+            <img src="<%=matchData.matchInfo.rightBadge%>" alt="">
+        </div>
+    </div>
+    <div class="mid">
+        <div class="process"></div>
+    </div>
+    <div class="bot">
+        <div class="left"><%=matchData.leftSupport%></div>
+        <div class="center">男篮热身赛</div>
+        <div class="right"><%=matchData.rightSupport%></div>
+    </div>
+
+</script>
+
+
+<script src="js/zepto.js"></script>
+<script src="js/index.js"></script>
+

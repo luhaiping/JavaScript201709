@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        ul {
+            list-style: none;
+            background: pink;
+            display: flex;
+            /*flex-direction:column-reverse;确定主轴的方向*/
+            width: 500px;
+            /*flex-wrap:wrap-reverse;反方向换行(从交叉轴的结束位置向起始位置排列)*/
+            /*flex-flow:row wrap; flex-direction和flex-wrap的复合属性*/
+            /*flex-direction: column;*/
+            /*justify-content: flex-start;设置主轴上对齐方式*/
+           /* align-items: baseline;设置交叉轴的对齐方式*/
+            /*align-items: flex-end;*/
+            flex-wrap: wrap;
+            align-content: space-around;/*有多行才能起作用*!*/
+            height: 1000px;
+        }
+        ul li{
+            width: 100px;
+            height: 100px;
+            background: green;
+            margin: 5px;
+        }
+       /* ul li:nth-child(4){
+            align-self: center;!*交叉轴上单独设置某个子容器的对齐方式*!
+        }*/
+        ul li:nth-child(3){
+            order:-2;/*设置子容器之间的顺序,默认值是0,值越小越往前*/
+        }
+        ul li:nth-child(4){
+            order: -1;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <li>55</li>
+    <li>66</li>
+    <li>77</li>
+    <li>88</li>
+    <li>99</li>
+    <li>100</li>
+
+</ul>
+</body>
+</html>
