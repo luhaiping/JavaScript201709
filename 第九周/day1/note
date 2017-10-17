@@ -1,0 +1,114 @@
+前端:提供界面和实现客户端交互逻辑
+后台:跟数据打交道
+
+客户端和服务器交互模型
+    最常见的客户端-浏览器
+    服务器 --服务器是什么样的一种设备
+
+①.制作好的一个项目,想让所有人都能看到?
+    1.买个服务器(去阿里云租服务器),然后把本地通过html/css/js制作好的页面通过ftp(文件传输协议)传到服务器
+    2.购买域名(万网)
+    3.DNS服务器解析成IP地址  -DNS服务器上记录了一条信息
+        www.zhufengpeuxun.com  -> 112.125.158.152
+
+②.在浏览器的地址栏输入地址按回车就能看到相应的页面,这个过程发生了啥?
+服务器端口号 :0~65535
+http默认端口号 80
+https(http+ssL) http默认端口号 443
+ftp http默认端口号  21
+
+1.在地址栏输入一个地址,按回车,这个相当于客户端向服务器端发送一个请求
+2.DNS服务器把地址里的域名解析成ip地址,并获取下端口号
+3.找到相应ip地址的服务器,在这个服务器上找到这个端口号的区域,找到相应请求的内容并返回给客户端
+4.客户端接收到服务器返回的数据,进行相应的操作,最终浏览器把整个页面渲染出来
+
+
+客户端和服务器是通过http传输数据,客户端发送一个请求到服务器响应该数据成功,这样完整的一个过程就是一个http事务
+
+URL (统一资源定位符)
+scheme://username:password@hostname:port/pathname?query#hash
+http://www.zhufengpeixun.com:80/FECourseList/2016-08-13/570.html?name="zf"&age=8#aa
+username,password 服务器账号和密码 通常不需要在地址栏里设置
+www.zhufengpeixun.com  ->hostname 域名
+80 - >端口号
+FECourseList/2016-08-13/570.html ->pathname 请求的路径
+?name="zf"&age 问号传参
+#aa  hash值
+
+URN (统一资源名称)
+URI(统一资源标识符) = URL+URN  通常URI指的是URL
+
+http(超文本传输协议)
+https(http+ssL)
+ftp 文件传输协议
+
+ajax (async Javascript and xml) 异步javascript和xml
+
+ajax是通过局部刷新页面的方式,之前都是通过全局刷新的方式操作
+
+全局刷新:后台返回数据后,浏览器必须刷新页面才能显示最新的数据
+局部刷新:只刷新局部区域,不会刷新整个页面
+
+request headers 请求头(请求首部)  -客户端请求时携带的数据
+response headers 响应头(响应首部) -服务器端响应时携带的数据
+
+请求的方式
+[get] get,delete,head
+get 向服务器获取数据
+delete  告诉服务删除某个资源
+head  返回服务器响应头,不需要响应主体
+
+[post] post,put
+post 向服务器发送数据
+put  向服务器推送数据 状态码只返回202
+
+get与post方式的区别:
+1.请求的方式不同
+2.传输内容的方式不同,get方式是把内容放在url地址传过去 ,post是放在请求主体里传过去
+3.发送内容有大小限制,get: chrome 8kb  firefox 7kb IE 2kb  post没有限制
+4.get存在缓存问题,post方式没有
+5.get存在安全问题,post方式没有
+
+向服务器获取数据 是用get方式,只有向服务器发送数据,才用post方式
+
+html(超文本标记语言)和xml(可扩展标签语言)
+html指w3c规定的好的标签
+xml 标签可以自己定义,主要作用是用来存储数据 ,现在用json格式的数据代替xml
+
+mime类型 主类型/子类型  content-type
+https://baike.baidu.com/item/MIME/2900607?fr=aladdin#4
+text/plain
+text/html
+text/xml
+application/json
+application/x-www-form-urlencoded
+image/gif
+image/jpg
+request headers:
+    Accept:浏览器接收的数据类型
+    Accept-Encoding:接收数据的压缩格式
+    Accept-Language:接收的语言
+    Cache-Control :设置缓存的时间
+    Connection:keep-alive  连接的方式:长连接
+    Host :域名+端口号
+    User-Agent:浏览器信息
+response headers:
+    HTTP/1.1 200 OK  起始行 协议 状态码
+    Content-Type:返回数据的mine类型
+    Date: Tue, 17 Oct 2017 04:23:24 GMT  服务器响应数据的时间
+    Content-Encoding: gzip  内容压缩的格式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

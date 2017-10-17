@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" enctype="application/x-www-form-urlencoded"></form>
+<script>
+    //1.创建一个ajax对象
+    var xhr = new XMLHttpRequest();
+
+    //2.打开一个链接地址
+    //xhr.open(type,url,async,username,password)
+    xhr.open("get","data.json",true);//默认是异步的 异步:不会影响页面效果 同步:会影响页面效果,有可能出现空白区域或者假死的状态
+    //设置请求首部
+    //xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+    //xhr.setRequestHeader("wy",18); //扩展首部
+
+    //3.监听请求的状态
+    //当ajax状态发生改变时就会触发onreadystatechange事件
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4&&/^2\d{2}$/.test(xhr.status)){
+            console.log(xhr.responseText);//返回的json格式字符串
+            //console.log(xhr.responseXML);//xml格式的数据
+            //获取响应首部
+            //console.log(xhr.getResponseHeader("last-modified"))
+            //console.log(xhr.getAllResponseHeaders());
+
+        }
+        /*请求状态码xhr.readyState*/
+        /*
+        * 0 初始化ajax时
+        * 1 调用open时
+        * 2 响应主体返回时
+        * 3 响应主体正在返回时....
+        * 4 响应成功,完全返回
+        * */
+
+        /*
+        * 2XX  成功
+        * 3XX  重定向或缓存
+        * 301 永久转移
+        * 302 临时转移
+        * 307 临时重定向
+        * 304 获取缓存中的数据
+        *
+        * ETag:"0cf3756b61cd31:0"
+          Last-Modified:GMT
+          上述两个是响应首部
+
+          If-Modified-Since:Thu, 24 Aug 2017 08:52:38 GMT
+          If-None-Match:"0cf3756b61cd31:0"
+          上述两个是请求首部
+
+        *
+        * 4XX  客户端失败
+        * 400 请求参数错误
+        * 401 请求权限不够
+        * 404 请求地址不存在
+
+        * 5XX  服务器失败
+        * 500  未知的服务器错误
+        * 503  超负荷请求
+        * */
+    };
+    //4.发送请求主体(内容格式:uri的格式)
+    xhr.send('name="zf"&age=8');
+
+
+
+</script>
+</body>
+</html>

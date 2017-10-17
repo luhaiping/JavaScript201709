@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    $.ajax({
+       type:"get",
+       url:"data.json",/*请求路径*/
+       async:true,//默认异步
+       cache:false, //true缓存 false 不缓存(在url地址后面加个随机数)
+       data:{name:'zf',age:8}, /*发送给服务器的数据*/
+       dataType:"json",//服务器返回的数据类型
+//        headers:{'content-type':"application/x-www-form-urlencoded"}, //设置请求的首部
+        timeout:500, //设置ajax请求超时的时间,超时时会触发ontimeout事件
+        beforeSend:function(){/*发送前做些事情*/
+
+        },
+        success : function(result){
+           console.log(result);
+        },
+        error: function(err,msg1,msg2){
+            console.log(err.status);/*返回状态码*/
+            console.log(msg2)/*出错的信息*/
+        }
+    })
+</script>
