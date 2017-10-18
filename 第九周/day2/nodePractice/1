@@ -1,0 +1,28 @@
+ {
+  protocol: null, 协议
+  slashes: null,斜杠
+  auth: null,
+  host: null,主机+端口号
+  port: null,端口号
+  hostname: null,主机
+  hash: null,
+  search: '?name=%22zf%22&age=8',问号传参
+  query: 'name=%22zf%22&age=8',参数
+  pathname: '/index.html', 路径
+  path: '/index.html?name=%22zf%22&age=8',加参数的路径
+  href: '/index.html?name=%22zf%22&age=8' }
+
+
+  {
+    protocol: null,
+    slashes: null,
+    auth: null,
+    host: null,
+    port: null,
+    hostname: null,
+    hash: null,
+    search: '?name=%22zf%22&age=8',
+    query: { name: '"zf"', age: '8' },
+    pathname: '/index.html',
+    path: '/index.html?name=%22zf%22&age=8',
+    href: '/index.html?name=%22zf%22&age=8' }

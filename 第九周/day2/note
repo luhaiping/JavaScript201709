@@ -1,0 +1,121 @@
+type
+get系列:get|delete|head
+post系列:post|put
+get与post区别
+1.请求的方式不同
+2.传输内容的方式
+3.get系列容易有缓存,post方式的没有
+4.get的方式有安全性问题,post没有
+5.get的大小 chrome 8k firefox 7k IE 2k ,post没有
+
+http状态码
+1XX 初始化
+2XX 请求成功
+3XX 重定向或者缓存 301 302 307 304
+4XX 客户端失败  400 401 404
+5XX 服务器端失败 500 503
+
+http
+http headers
+http response
+
+node
+是基于v8引擎,让js在服务器端运行的平台,它可以编写后台的程序
+1.node是基于v8引擎渲染js代码
+2.基于事件驱动文件I/O(输入/输出)操作
+3.采用异步单线程运行的机制
+4.npm包管理器 npmjs.com 第三方模块 通过npm统一操作
+5.基于js后台语言,学习成本非常低
+
+node 操作硬盘文件  http服务器
+
+node运行:
+1.右键 run a.js
+2.进入a.js文件所在目录 node a.js;
+
+node这边大大小小模块组成,一个js文件可以看成是一个模块
+按照commonjs规范  (AMD CMD)
+加载模块通过require()引入进来
+1.第三方模块 别人封装好的模块 npm
+    npm install jquery -g 全局安装 C:\Users\银鹏\AppData\Roaming\npm\node_modules\jquery
+    npm install less -g
+    C:\Users\银鹏\AppData\Roaming\npm\node_modules\less
+
+    全局安装容易发生冲突,因此把需要的模块都安装在本地项目中
+    需要设置下配置文件 npm init -y
+    {
+      "name": "day2",
+      "version": "1.0.0",
+      "description": "111",
+      "main": "ajax.js",入口文件
+      "scripts": { 项目的命令脚本配置信息
+        "zMime": "node node/b.js"     npm run zMime
+      },
+      "keywords": [11],
+      "author": "11",
+      "license": "ISC",
+      "devDependencies": { 模块配置在开发模式下  npm install mime --save-dev
+          "mime": "^2.0.3"
+        },
+        "dependencies": {  模块配置在生产模式下  npm install less --save
+            "less": "^3.0.0-alpha.3"
+        }
+    }
+
+    A上传项目时,node_modules文件夹不会传上去,B看A这个项目,得把A开发的项目使用的模块全安装上,不用一个一个安装,根据package.json这个文件,执行npm install命令,自动安装上所有的模块,这叫跑环境
+
+2.自定义模块
+把路径写上 ./ ../
+导出的接口 module.exports={} exports.fn = fn
+exports只能一个一个导出 modules.exports可以批量导出
+require("./a"); .js .json .node
+
+3.内置模块
+http  创建http服务
+fs   操作硬盘文件,读取文件,写入文件,判断文件是否存在,读取目录....
+url  详细获取url地址里的值,请求的地址 query hash...
+
+查找机制
+
+模块查找的机制:
+C:\Users\银鹏\Desktop\day2\node_modules
+C:\Users\银鹏\Desktop\node_modules
+C:\Users\银鹏\node_modules
+C:\Users\node_modules
+C:\node_modules
+
+
+fs
+
+fs.readFile([path],function(err,file){})  异步
+fs.readFileSync 同步
+
+
+****服务器响应数据三步 :
+1.读取文件
+2.设置响应头的content-type或者响应码
+3.把读取到的内容返回给客户端
+
+思考题:
+前台:ajax 发送请求 /getListAll 请求接口地址
+后台:读取data.json文件 把数据返回给客户端 ,客户端拿到数据,把数据展示在页面
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
