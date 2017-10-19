@@ -58,10 +58,9 @@
         e = e||window.event;
         let target = e.target||e.srcElement;
         if(target.className=="removeUser"){
-           let flag =  confirm("确认要删除吗?");
+           let flag =  confirm("确认要删除吗?");//弹框询问是否需要删除,点确定则返回true,点取消返回false
            if(flag){
-              let customId =  target.dataset.id;
-              console.log(customId);
+              let customId =  target.dataset.id;//html5获取自定义属性data-xx值的方式
                ajax({
                    type:"get",
                    url:"/removeInfo",
@@ -70,6 +69,7 @@
                    success(result){
                         if(result.code==0){
                             alert(result.msg);
+                            //后台从data.json删除这一项后,前台这边也要把这一项的li删除
                             oUl.removeChild(target.parentNode.parentNode);
                         }
                    }

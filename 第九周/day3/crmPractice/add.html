@@ -34,6 +34,7 @@
     let username = document.getElementById("username");
     let userTel = document.getElementById("userTel");
     let btn = document.getElementById("btn");
+    //要获取url地址add.html后的参数,看是否有参数,若有参数则是修改,没有参数是添加
     let url = window.location.href;
     let customId = formatQuery(url).id;
     if(customId){
