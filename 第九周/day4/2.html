@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="ajax.js"></script>
+<script>
+    ajax({
+      type:"get",
+      url :"data.json",
+      async:true,
+      cache :false,
+      data:{a:11,b:22},//get url?a=11&b=22
+      dataType:"json" ,
+      success(result){
+        console.log(result);
+      } ,
+      error(xhr){
+          console.log(xhr.status);
+      }
+    })
+
+
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("post","data.json?name=1&age=2",true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4&&/^2\d{2}$/.test(xhr.status)){
+          console.log(JSON.parse(xhr.responseText))   //返回是json格式的字符串
+        }
+    }
+    xhr.send('{"name":22,"aa":11}');
+
+    //get 与 post 区别
+    //1.get(get|delete|head) post(post|put)
+    //2.传参的方式
+    //3.get大小问题 chrome 8kb firefox 7kb ie 2kb post方式大小不限制
+    // get有缓存问题 post没有
+    //get 容易有安全问题,post没有
+
+
+</script>
+</body>
+</html>

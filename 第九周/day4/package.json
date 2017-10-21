@@ -1,0 +1,17 @@
+{
+  "name": "day4",
+  "version": "1.0.0",
+  "description": "111",
+  "main": "a.js",
+  "scripts": {
+    "build": "node a.js"
+  },
+  "keywords": [
+    111
+  ],
+  "author": "111",
+  "license": "ISC",
+  "devDependencies": {
+    "mime": "^2.0.3"
+  }
+}
