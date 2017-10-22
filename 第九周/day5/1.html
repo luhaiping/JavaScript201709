@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+       /* div:empty{
+            height: 100px;
+            background: red;
+        }
+        div:not(:nth-child(2)){
+
+        }
+*/
+    </style>
+</head>
+<body>
+<div>John Resig</div>
+<div>George Martin</div>
+<div>Malcom John Sinclair</div>
+<div></div>
+<div class="box" id="box">
+    <div class="a1"><p>Hello</p></div>
+    <div><h1 class="a1">Hello again!</h1></div>
+</div>
+
+
+<!--<p><span>Hello</span>,how are you?</p>-->
+</body>
+</html>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    //查找所有包含 "John" 的 div 元素
+    /*$("div:contains('John')").css({"background":"red",color:"green"});*/
+//    $("div:empty").css({height:100,background:"red"})
+      //$("div:parent").css({height:100,background:"red"})
+//    $("div:has(.a1)").css({"background":"red"})  从子元素查找
+//     $("div").eq(0).hasClass("a1") true false
+
+//    $("p").find("span").css("border","1px solid red").end().css("border","1px solid orange");
+
+    //$("div:not('.a1')").css({"background":"red"}) //排除某个元素
+    /*$("div",".box").css({"background":"red"}) //->第二个设置范围
+
+    $("div").each(function(index,item){ //->forEach相反 item,index
+
+    })
+    //不仅仅可以遍历jquery对象,还能遍历对象和数组
+    $.each(ary,function(index,item){})
+    $("div").length;
+    $("div").get(0)//->把jquery对象转化成原生js对象
+    //jquery 和原生js如何转化
+    var oDiv = document.getElementById("div1");
+    $(oDiv)//->$()把原生js对象包起来 ->转换成jquery对象
+
+    $("div").on("click",function(){
+        //当前点击元素的索引
+        $(this).index();
+    })*/
+
+   /* var oBox = document.getElementById("box");
+    console.log(oBox.dataset.id);*/
+    $(".box").data("id",'zf');
+    console.log($(".box").data("id"));
+    $(".box").attr("data-id","zf"); //非表单元素设置属性
+    $(":input").prop("type")//表单元素设置属性
+
+    //相当于放在jQuery类的原型上 ->通过实例调用 $().check()
+    jQuery.fn.extend({
+        check: function() {
+            return this.each(function() { this.checked = true; });
+        },
+        uncheck: function() {
+            return this.each(function() { this.checked = false; });
+        }
+    });
+
+    //相当于把方法设置在jQuery类上->调用方式 jQuery.min() $.min();
+    jQuery.extend({
+        min: function(a, b) { return a < b ? a : b; },
+        max: function(a, b) { return a > b ? a : b; }
+    });
+//    $.extend(target,obj1,obj2) ==  Object.assign(target,obj1,obj2)  合并对象
+//        $.each() $.map(arr,function(){return a+b})  ==>forEach 和map
+  /*  $.trim("  hello, how are you?  "); //去掉首尾空格
+    $.ajax({
+
+    })
+    $.get()
+    $.post()*/
+
+  $().hasClass(".a1") ;判断是否有这个类型
+  $().filter("[data-id="+customId+"]");//filter通过选择器筛选出某些元素  同级筛选
+  $().children() //从所有子元素查找
+  $().find() //从后代元素中查找
+  $().addClass()
+    $().removeClass()
+    $().toggleClass()
+    //设置内容的方法
+    $().html(str)  //innerHTML
+    $().text()  //innerText
+    $().val() //获取表单元素的内容
+    $().css() //获取css样式
+    $().offset()  //获取匹配元素在当前视口的相对偏移。
+    //获取盒子尺寸的方法
+    $().height()
+    $().width()
+    $().innerWidth()  //clientWidth
+    $().innerHeight //clientHeight
+    $().outerWidth([true])//offsetWidth   若设置true表示把margin值也计算在内
+    $().outerHeight([true])//offsetHeight
+
+    //操作DOM元素的方法
+    $().next()
+    $().nextAll();
+    $().prev();
+    $().prevAll();
+    $().parent();//父元素
+    $().parents(); //所有的父节点,可以通过标记名指定是哪个父节点
+    $().siblings() //获得所有的兄弟元素
+    $().children();
+    $().find();
+
+    //jquery里的订阅发布模式
+    let $callbacks = $.Callbacks(); //安排一个程序池
+    $callbacks.add(fn) //往程序池里添加方法 相当于做计划
+    $callbacks.remove(fn); //移除计划
+    $callbacks.fire() //执行计划
+
+</script>

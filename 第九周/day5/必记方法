@@ -1,0 +1,64 @@
+es5字符串11个方法 es6的4个字符串方法
+charAt() 通过下标找到对应的字符
+charCodeAt() 下标找到对应字符的ASCII
+indexOf() 通过字符找到下标
+lastIndexOf()
+toUpperCase()
+toLowerCase()
+split("&") 将字符串按照指定的字符(还可以是正则)拆分成数组
+split("")|split()
+substr(n,m) n表示截取字符的开始索引 m表示个数
+substring(n,m)  从索引n截取到索引m
+slice(n,m)      可以是负数索引
+在正则这块用的比较多
+replace("zhufeng","zf")
+match()
+includes() 字符串中是否包含某个或某段字符
+startsWith()在一定范围内是否以某个字符开头
+endsWith()在一定范围内是否以某个字符结尾
+可以有第二个参数,includes和startsWith从索引n开始查找  endsWith 表示索引n之前(不包含索引n)是否以某个字符结尾
+repeat()重复某个字符或某段字符
+
+
+数组13方法+7个迭代的方法+es6方法
+ 原有数组发生改变
+ push()
+ unshift()
+ shift()
+ pop()
+ splice(n,m,x) 从索引n开始删除m个,以x的内容替换删除的内容
+ reverse()
+ sort(function(a,b){return a-b})
+
+ 原有数组不发生改变
+ string() 把数组转换成字符串
+ concat() 合并数组
+ slice(n,m)
+ join("&") 按照指定的字符拼接成新的字符串
+ join()|join("")
+ indexOf()  查找数组中是否有这一项,若有则返回这一项索引,没有则返回-1
+ lastIndexOf()
+
+ 7个迭代方法
+ forEach()
+ map()
+ filter() 过滤,会设置一个条件 ,把结果为true的成员都放在一个数组里返回
+ some() 只要有一个为true,则返回结果为true
+ every() 每个都为true,返回结果才为true
+ reduce() 从左往右计算每个成员,最终返回一个累计的值
+ reduceRight() 从右往左
+
+ es6数组方法
+ Array.from() 把类数组转换成数组
+ Array.of() 把一个或者一组数转换成数组
+ copyWithin(target,start,end) 复制数组中某些项放入数组中(复制的内容会替换原来的内容)
+    target 目标位置
+    start 从当前位置开始读取  负数 倒数第几个
+    end  从当前位置结束 ,若没有设置,则读取到最后 负数 倒数第几个
+ find  返回匹配的这一项
+ findIndex 返回这一项的索引
+ for...of ... 遍历数组或类数组
+ for(let value of ary){} 默认遍历数组的每一项
+ for(let index of ary.keys()){} 遍历数组的每一项的索引
+ for(let ele of ary.entries()){} 遍历数组的每一项和索引
+
