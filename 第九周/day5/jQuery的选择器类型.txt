@@ -74,4 +74,4 @@
      window.$ = window.jQuery = jquery
 
      $(selector,context)
-     jQuery(":nth-child")
+     jQuery(":nth-child(2)")

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //解构赋值
+    //数组解构赋值
+//    let [a,b,c] = [10,20,30];
+    //let [a,[d],c] = [10,[20,40],30];
+    //let [a,b=10] =[30]; //若左边设置初始值 ,右边没设或设了undefined ,这时会去取初始值
+    //console.log(a,b);
+//    let a1 = [10,30];
+//    let b1 = [40,50];
+//    let [c1,c2,d1] = [40,...b1];//扩展运算符 合并数组
+//     console.log(c1,c2,d1);
+    //对象解构赋值
+//    let {name,age} = {name:"zf",age:"8"} ;//变量和属性名一样,才能取到属性名对应的属性值
+    //若变量名和属性名一样咋办?
+//    let {name:n,age:a} = {name:"zf",age:"8"};
+    //n,a变量  name,age是匹配模式
+//    console.log(n,a);
+//    let obj1 = {name:"zf",age:"8"};
+//    let  obj2 = {a:"a1",b:"b2"};
+//    let {name,age,a,b}  = {...obj1,...obj2};
+
+//    let foo = "boo";
+//    let o = {foo};
+//    console.log(o);//{foo:"boo"};
+
+    //复合解构赋值
+    let obj =  {"code":0,"msg":"",data:[{a:1},{a:2}]};
+    let {code,msg,data:[a,b]} = obj;
+    console.log(code,msg,a,b);
+
+    //函数部分
+    //1.形参可以设置默认值
+//    function sum(x,y=10){
+//        return x+y;
+//    }
+    //2.形参可以解构赋值
+    function sum([x,y=10]){
+        return x+y;
+    }
+    sum([20]);
+
+    function sum({x,y=10}){
+        return x+y;
+    }
+    sum({x:30,y:40});
+
+    function sum(...arg){//rest参数,是一个参数序列
+        //arg是一个数组
+    }
+    sum(30,40,50);
+
+    function off(ele){
+        let x = 10;
+        let y = 20;
+        return {x,y};//x的值和y值都返回 {x:10,y:20}
+    }
+
+//    function sum(){
+//
+//    }
+    let sum  = ()=>{ //函数体有多行内容才写{} ,若只有一个形参()可以省略不写
+
+    }
+    let sum = (x,y)=>x+y; //返回的内容只有一行
+
+    //箭头函数里没有this,没有arguments,...args  reset参数
+    //bind,call,apply
+    //不能把箭头函数当成构造函数使用
+    window.setTimeout(()=>{
+
+    },1000);
+
+    let obj = {
+       /* a:function(){
+
+        }*/
+       a(){
+
+       }
+    }
+    //es5
+    function F(x,y){
+        this.x = x;
+        this.y = y;
+    }
+    F.prototype.fn1 = function(){};
+    F.prototype.fn2  = function(){};
+    F.fn3 = function(){};
+
+
+    //es6 ->es2015
+    class F{
+        constructor(x,y){ //构造函数
+            this.x = x;
+            this.y  = y;
+        }
+        fn1(){//原型上的函数
+
+        }
+        fn2(){
+
+        }
+        static  fn3(){//F类上的函数 ->静态的方法
+
+        }
+    }
+
+    class F extends S{//F类继承S类
+        constructor(x,y,z){//F类
+            super(z);//把S构造函数的this改成F类的this,最终这个方法返回F的类 的实例
+        }
+        fn1(){ //原型上的方法->F类原型的
+
+        }
+
+    }
+    let index = 0;
+    let str = `${index==0?"a":"b"}`//${变量|js表达式}
+    console.log(str);
+
+
+</script>
+</body>
+</html>

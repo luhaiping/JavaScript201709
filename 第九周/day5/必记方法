@@ -17,7 +17,7 @@ includes() 字符串中是否包含某个或某段字符
 startsWith()在一定范围内是否以某个字符开头
 endsWith()在一定范围内是否以某个字符结尾
 可以有第二个参数,includes和startsWith从索引n开始查找  endsWith 表示索引n之前(不包含索引n)是否以某个字符结尾
-repeat()重复某个字符或某段字符
+repeat(n)重复某个字符或某段字符
 
 
 数组13方法+7个迭代的方法+es6方法
