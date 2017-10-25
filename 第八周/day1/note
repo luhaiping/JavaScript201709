@@ -38,6 +38,8 @@ endsWith()在一定范围内是否以某个字符结尾
 可以有第二个参数,includes和startsWith从索引n开始查找  endsWith 表示索引n之前(不包含索引n)是否以某个字符结尾
 repeat()重复某个字符或某段字符
 
+
+
 0,"",NaN,null,undefined ->false 其他的全为true
 
 函数的定义
