@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(item,index) in books">
+            {{index}}{{item.name}}
+            <ul>
+                <li v-for="(cValue,index2) in item.color">
+                    {{index2+1}}{{cValue}}
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            ary:["lily","lucy","rose"],
+            books:[{name:"node权威指南",color:["red","green","orange"]},{name:"Vue入门指南",color:["pink","deepskyblue"]},{name:"react实战应用",color:["blue"]}]
+        }
+    })
+</script>

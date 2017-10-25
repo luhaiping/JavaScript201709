@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--fn后的括号可加可不加,加()必须要把事件对象$event传进去-->
+    <button @click="fn()">你可以点一下</button>
+    <input type="text" @keydown.space="fn1($event)"> <!--13keydown的修饰符  上下左右 up down left right enter space-->
+
+</div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello"
+        },
+        methods:{//方法名不能跟上面的属性名重复
+           fn(){ //不能写成箭头函数  this只的是vue实例
+                alert(this.msg+1111);
+           },
+            fn1(e){
+                alert(this.msg);
+            }
+
+        }
+    })
+//    vm.fn()
+</script>

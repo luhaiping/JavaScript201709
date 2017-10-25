@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{   /*在没编译好之前,先隐藏{{msg}},当编译好了之后v-cloak指令失效,把数据在页面上显示出来*/
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <input type="text" v-model="list" @keydown.enter = "fn">
+    <ul>
+        <li v-for="item in ary">{{item}}</li>
+    </ul>
+    <!--v-if  v-else-if  v-else 操作的是DOM元素-->
+    <div v-if="ary.length<5">少于5条</div>  <!--若条件不成立,则会自动把DOM元素通过removeChild删除-->
+    <div v-else-if="ary.length>=5&&ary.length<10">大于等于5条小于10条</div>
+    <div v-else>大于10条</div>
+
+    <div>{{msg}}</div>
+</div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            list:"",//每条数据
+            ary:[], //放每条数据的数组
+            msg:"hellohello"  //测试闪烁效果
+        },
+        methods:{
+            fn(){  //按回车时执行方法  功能:把每条单个的数据放入数组里
+              this.ary.push(this.list);
+              this.list = "";
+            }
+        }
+
+    })
+</script>

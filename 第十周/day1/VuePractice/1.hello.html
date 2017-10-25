@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--以{{}}的方式将数据插入到DOM结构里  {{msg}}是一个文本-->
+<div id="app">
+    {{msg.name}} {{msg.age}} {{msg.address}}
+    <!--{{}} 不能写if..else..但是可以用三元运算符  单个的表达式-->
+    {{flag ? msg.name : msg.age }}
+</div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    //Vue和数据打交道,关注视图层
+    let vm = new Vue({
+        el:"#app",//根DOM元素 vue实例挂载在这个DOM元素
+        data:{ //放数据 data会被实例代替
+           msg:{"name":"zf","age":8},   //整个数据没有是会报错的,但是某个对象的属性没有,不会影响视图层
+           flag:true
+        }
+    })
+     //console.log(vm.msg);
+//    console.log(vm.$el);根DOM元素
+//     console.log(vm.$data);所有的放数据的对象
+    //额外的再增加一个属性 address:"回龙观东大街"
+    //vm.msg = {"name":"zf","age":8,"address":"回龙观东大街"};//重写msg的值
+    //往对象添加属性
+    vm.$set(vm.msg,"address","回龙观东大街");
+
+
+
+
+
+</script>

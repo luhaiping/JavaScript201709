@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟百度下拉搜索</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0
+        }
+        #sInput{
+            width: 190px;
+            height: 30px;
+            line-height: 30px;
+            border:1px solid orange;
+            padding-left: 10px;
+            display: block;
+            margin:20px auto 0;
+        }
+        #searchBox{
+            border:1px solid orange;
+            width: 200px;
+            border-top:0;
+            margin: 0 auto;
+            display: none;
+        }
+        #searchBox ul li{
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            padding-left: 10px;
+            list-style: none;
+        }
+        #searchBox ul li:hover{
+            background: aquamarine;
+        }
+    </style>
+</head>
+<body>
+<input type="text" name="text" id="sInput" autocomplete="off">
+<div id="searchBox">
+    <ul>
+      <!--  <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>-->
+    </ul>
+</div>
+</body>
+</html>
+<script  src="jquery.js"></script>
+<script>
+    let searchModule = (function(){
+        let $oInput = $("#sInput"),
+            $sBox = $("#searchBox"),
+            $oUl = $sBox.children("ul"),
+            interval = 100;
+        function bindHtml(val){
+            $.ajax({
+                url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val,
+                dataType:"jsonp",
+                jsonp:"cb",
+                success(data){
+                    let str="";
+                    data = data["s"];
+                    data.forEach(function(item,index){
+                        str+=`<li>${item}</li>`;
+                    });
+                    $oUl.html(str);
+                    $sBox.stop().slideDown(interval);
+                    if(str.length<=0){
+                        $sBox.stop().slideUp(interval);
+                    }
+                }
+
+            })
+
+        }
+
+        return {
+            init:function(){
+                //1.光标聚焦在输入框或者keyup时,判断文本框是否有内容,若有则根据输入的内容请求接口,把请求的内容放入searchBox里,并且searchBox显示出来,没有话则searchBox隐藏
+                $oInput.on("focus keyup",function(){
+                    let val = $(this).val();
+                    if(val.length>0){
+                        bindHtml(val);
+                        return;
+                    }
+                    $sBox.stop().slideUp(interval);
+
+                });
+
+                //2.点击li时,li的内容在输入框里
+                $sBox.on("click","li",function(e){
+                    let liCon = $(this).html();
+                    $oInput.val(liCon);
+                })
+
+
+            }
+        }
+    })();
+    searchModule.init();
+</script>
+

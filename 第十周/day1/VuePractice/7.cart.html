@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style type="text/css">
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <tr>
+                    <th class="text-center">商品名称</th>
+                    <th class="text-center">商品价格</th>
+                    <th class="text-center">操作</th>
+                    </tr>
+                    <tr v-for="product in productCarts">
+                        <td class="text-center">{{product.name}}</td>
+                        <td class="text-center">{{product.price}}</td>
+                        <td class="text-center"><button type="button" class="btn btn-xs btn-danger"  @click="removeOne(product)">删除</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><button type="button" class="btn  btn-danger pull-right" @click = "removeAll">删除全部</button></td>
+                    </tr>
+                </table>
+
+                <form>
+                    <div class="form-group">
+                        <label for="productName" class="control-label">商品名称</label>
+                        <input type="text" id="productName" class="form-control" placeholder="请输入商品名称" v-model="name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productPrice">商品价格</label>
+                        <input type="text" id="productPrice" class="form-control" placeholder="请输入商品价格" v-model="price">
+                    </div>
+                    <div  class="form-group">
+                        <button type="button" class="btn  btn-info" @click="add">添加</button>
+                        <button type="reset" class="btn  btn-warning">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            price:"",
+            productCarts:[]
+        },
+        methods:{
+            removeOne(product){//过滤掉要删除的这一项
+                this.productCarts = this.productCarts.filter((item)=>{
+                    return item!=product
+                })
+            },
+            removeAll(){
+                this.productCarts = [];
+            },
+            add(){
+                 this.productCarts.push({name:this.name,price:this.price});
+                 this.name = this.price = "";
+            }
+        }
+    })
+</script>

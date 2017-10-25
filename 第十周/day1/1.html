@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("get","data.json",true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4&&/^2\d{2}$/.test(xhr.status)){
+            //console.log(xhr.responseText);
+            console.log(xhr.getResponseHeader("Access-Control-Allow-Origin"));
+        }
+    }
+    xhr.send(null);
+</script>

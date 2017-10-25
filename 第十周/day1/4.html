@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script>
+    $.ajax({
+        url:"http://localhost:9091/getList",
+        dataType:"jsonp",
+        jsonp:"cb",//得是前后端约定好的参数名,默认callback
+        jsonpCallback:"fn2",//函数名
+        success:function(data){
+            console.log(data);
+        }
+    })
+
+
+</script>

@@ -1,0 +1,88 @@
+ajax和jsonp
+都是客户端向服务端发送一个请求,服务器响应回相应的数据
+ajax 同源策略  同域
+JSONP 非同源策略 跨域
+
+同源策略,这是一种安全的策略,若是跨域请求的话,很多事情是做不了,但是同源请求可以
+
+
+URL非常重要的三部分:协议,域名或ip,端口号
+只要这三部分都相同,则称为是同域请求,这三部分只要有一个不相同则属于跨域请求
+http://www.zhufengpeixun.com
+http://www.zhufengpeixun.com/getAll -->同域  - ajax
+http://www.zhufengpeixun.com:8081/getAll -跨域 -jsonp
+http://www.zhufengpeixun.cn/getAll-跨域 ->jsonp
+
+jsonp的由来:->根据服务器端返回的数据格式来定的
+funcName函数名+(json data)
+
+json data padding a function name->json格式的数据被一个函数名保存着
+jsonp
+
+http://matchweb.sports.qq.com/kbs/calendar?columnId=100000
+
+从页面的标签上下手实现jsonp请求
+img ->只能返回图片
+script 里src
+iframe不怎么用了
+
+实现jsonp步骤:
+1.在这个之前提前定义好一个函数,把这个函数名作为请求地址的参数一起发送给服务器
+2.把地址放在script标签的src属性里
+3.服务器接收到请求之后,返回给你拼接好的jsonp格式的数据->'fn([{"name":"zf"}])'
+4.服务器响应后到客户端这边,直接把函数fn执行了,参数就是返回的json格式的数据
+
+jsonp 只能get方式,是异步的
+Access-control-allow-origin:"*"
+
+
+Vue.js
+MVC模式
+Model 模型
+View  视图
+Controller 控制器
+
+MVVM模式的框架
+Model 模型
+View 视图
+viewModel 视图模型
+
+为啥学习Vue.js
+- 面试要问
+- 公司要用
+- 不需要操作DOM.只需要关注于试图层
+- 轻量级的框架,压缩后只有20k
+- 中文文档非常清楚,入门非常快
+- 渐进式框架,根据需求选择所要用的部分
+
+双向数据绑定 ->只有表单元素才能实现
+
+指令 v-开头的行内属性
+v-model  看到表单元素就加v-model 实现双向数据绑定
+v-once  数据只会渲染一次
+v-html  数据渲染成标签
+v-text  {{}}是v-text简写的写法 把数据渲染成文本
+v-for   遍历数据或对象 谁要遍历就在谁让加v-for
+v-on   v-on:click  ->@click
+v-if  操作DOM
+v-else-if 操作DOM
+v-else 操作DOM
+v-show  样式上的显示和隐藏 频繁的控制显示和隐藏
+v-cloak 响应比较慢时,会看到{{}}, 出现闪烁的效果 防止闪烁效果
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
